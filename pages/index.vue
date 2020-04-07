@@ -1,19 +1,138 @@
 <template>
-  <v-row align="center" justify="center"
-    ><v-col cols="12" sm="10" md="6">
-      <p class="title">Get your E-ID now!</p>
-      <p>
-        Explain what this is, link to/quote from Bundesrat announcement, what
-        will happen if you use this, etc. Text to make the user feel comfortable
-        and happy to use this page. Mention price.
-      </p>
-      <div class="text-center">
-        Built by Skribble <img src="/logo-skribble.svg" alt />
-      </div>
-    </v-col>
-  </v-row>
+  <v-layout>
+    <script src="https://js.stripe.com/v3/" />
+    <v-row align="center" justify="center"
+      ><v-col cols="12" sm="10" md="6">
+        <p class="title">Get your E-ID now!</p>
+        <p>
+          Explain what this is, link to/quote from Bundesrat announcement, what
+          will happen if you use this, etc. Text to make the user feel
+          comfortable and happy to use this page. Mention price.
+        </p>
+        <v-row align="center" justify="center"></v-row>
+        <v-card class="mx-auto pa-4" max-width="600" outlined>
+          <v-form ref="form" v-model="valid" lazy-validation>
+            <v-text-field
+              v-model="firstName"
+              :counter="20"
+              :rules="nameRules"
+              label="First Name"
+              required
+            ></v-text-field>
+
+            <v-text-field
+              v-model="lastName"
+              :counter="20"
+              :rules="nameRules"
+              label="Last Name"
+              required
+            ></v-text-field>
+
+            <v-text-field
+              v-model="email"
+              :rules="emailRules"
+              label="E-mail"
+              required
+            ></v-text-field>
+
+            <card
+              class="stripe-card ma-4"
+              :class="{ complete }"
+              stripe="pk_test_XXXXXXXXXXXXXXXXXXXXXXXX"
+              :options="stripeOptions"
+              @change="complete = $event.complete"
+            />
+
+            <v-checkbox
+              v-model="checkbox"
+              :rules="[(v) => !!v || 'You must agree to continue!']"
+              label="Do you agree?"
+              required
+            ></v-checkbox>
+
+            <v-btn class="pay-with-stripe" @click="pay" :disabled="!complete">
+              Pay now
+            </v-btn>
+          </v-form>
+          <v-card-actions> </v-card-actions>
+        </v-card>
+
+        <div class="text-center">
+          Built by Skribble <img src="/logo-skribble.svg" alt />
+        </div>
+      </v-col>
+    </v-row>
+  </v-layout>
 </template>
 
 <script>
-export default {};
+// import { stripeKey, stripeOptions } from "./stripeConfig.json";
+import { Card, handleCardSetup } from "vue-stripe-elements-plus";
+
+export default {
+  data() {
+    return {
+      complete: false,
+      stripe_pk: "",
+      stripeOptions: {
+        // see https://stripe.com/docs/stripe.js#element-options for details
+        elements: {
+          // fonts: [
+          //   {
+          //     family: "Averta",
+          //     src:
+          //       'url("https://my.skribble.com/_nuxt/fonts/48cfe38.woff2") format("woff2")',
+          //     style: "normal",
+          //     weight: 400,
+          //     display: "swap",
+          //   },
+          // ],
+        },
+        style: {
+          base: {
+            color: "#293D66",
+            fontSize: "18px",
+            fontFamily: "Roboto",
+            fontSmoothing: "antialiased",
+            "::placeholder": {
+              color: "#65728E",
+            },
+          },
+        },
+      },
+
+      valid: true,
+      firstName: "",
+      lastName: "",
+      nameRules: [
+        (v) => !!v || "Name is required",
+        (v) => (v && v.length <= 10) || "Names must be less than 10 characters",
+      ],
+      email: "",
+      emailRules: [
+        (v) => !!v || "E-mail is required",
+        (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
+      ],
+      select: null,
+      items: ["Item 1", "Item 2", "Item 3", "Item 4"],
+      checkbox: false,
+    };
+  },
+
+  components: { Card },
+
+  methods: {
+    pay() {
+      // createToken returns a Promise which resolves in a result object with
+      // either a token or an error key.
+      // See https://stripe.com/docs/api#tokens for the token object.
+      // See https://stripe.com/docs/api#errors for the error object.
+      // More general https://stripe.com/docs/stripe.js#stripe-create-token.
+      createToken().then((data) => console.log(data.token));
+    },
+    validate() {
+      this.$refs.form.validate();
+    },
+  },
+};
 </script>
