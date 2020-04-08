@@ -10,8 +10,19 @@
           comfortable and happy to use this page. Mention price.
         </p>
         <v-row align="center" justify="center"></v-row>
-        <v-card class="mx-auto pa-4" max-width="600" outlined>
-          <v-form ref="form" v-model="valid" :lazy-validation="lazy">
+        <v-card class="mx-auto pa-4" max-width="600" outlined
+          ><div v-show="status === 'paying'" class="text-center">
+            <v-progress-circular
+              indeterminate
+              color="primary"
+            ></v-progress-circular>
+          </div>
+          <v-form
+            v-show="status === 'start'"
+            ref="form"
+            v-model="valid"
+            :lazy-validation="lazy"
+          >
             <v-text-field
               v-model="firstName"
               :counter="20"
@@ -36,9 +47,10 @@
             ></v-text-field>
 
             <card
+              v-if="stripe_pk"
               class="stripe-card ma-4"
               :class="{ complete }"
-              stripe="pk_test_XXXXXXXXXXXXXXXXXXXXXXXX"
+              :stripe="stripe_pk"
               :options="stripeOptions"
               @change="complete = $event.complete"
             />
@@ -66,14 +78,19 @@
 </template>
 
 <script>
-// import { stripeKey, stripeOptions } from "./stripeConfig.json";
-import { Card, handleCardSetup } from "vue-stripe-elements-plus";
+import {
+  Card,
+  createPaymentMethod,
+  createToken,
+  handleCardPayment,
+} from "vue-stripe-elements-plus";
 
 export default {
   data() {
     return {
+      status: "start",
       complete: false,
-      stripe_pk: "",
+      stripe_pk: null,
       stripeOptions: {
         // see https://stripe.com/docs/stripe.js#element-options for details
         elements: {
@@ -119,31 +136,50 @@ export default {
   },
 
   components: { Card },
-
+  beforeCreate() {
+    // Get stripe public key from backend
+    this.$axios
+      .$post("/api/setup_payment", {
+        email: "joe@example.com",
+      })
+      .then((response) => {
+        this.stripe_pk = response.publishableKey;
+      });
+  },
   methods: {
     pay() {
+      this.status = "paying";
       // createToken returns a Promise which resolves in a result object with
       // either a token or an error key.
       // See https://stripe.com/docs/api#tokens for the token object.
       // See https://stripe.com/docs/api#errors for the error object.
       // More general https://stripe.com/docs/stripe.js#stripe-create-token.
       //
-      // createToken().then((data) => console.log(data.token));
-
       this.$axios
         .$post("/api/setup_payment", {
-          email: "joe@example.com",
+          email: this.email,
         })
-        .then((response) => console.log(response));
-
-      // async function createPaymentIntent() {
-      //   const paymentIntentData = await $axios.$post(
-      //     "https://seven-staging.videoident.me/api/setup_payment",
-      //     { email: "joe@example.com" }
-      //   );
-      //   return { paymentIntentData };
-      // }
-      // createPaymentIntent().then((data) => console.log(data));
+        .then((response) => {
+          createPaymentMethod("card", {}).then((response2) => {
+            handleCardPayment(
+              response.clientSecret,
+              response2.createPaymentMethod
+            ).then((response3) => {
+              if (response3.paymentIntent.status === "succeeded") {
+                const paymentIntentID = response3.paymentIntent.id.replace(
+                  "pi_",
+                  ""
+                );
+                this.$axios
+                  .$post(`/api/create_ident/${paymentIntentID}`, {
+                    firstName: this.firstName,
+                    lastName: this.lastName,
+                  })
+                  .then((response4) => console.log(response4));
+              } else console.error("payment failed");
+            });
+          });
+        });
     },
   },
 };
