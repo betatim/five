@@ -11,7 +11,7 @@
         </p>
         <v-row align="center" justify="center"></v-row>
         <v-card class="mx-auto pa-4" max-width="600" outlined>
-          <v-form ref="form" v-model="valid" lazy-validation>
+          <v-form ref="form" v-model="valid" :lazy-validation="lazy">
             <v-text-field
               v-model="firstName"
               :counter="20"
@@ -50,7 +50,7 @@
               required
             ></v-checkbox>
 
-            <v-btn class="pay-with-stripe" @click="pay" :disabled="!complete">
+            <v-btn class="pay-with-stripe" @click="pay" :disabled="!valid">
               Pay now
             </v-btn>
           </v-form>
@@ -116,6 +116,7 @@ export default {
       select: null,
       items: ["Item 1", "Item 2", "Item 3", "Item 4"],
       checkbox: false,
+      lazy: false,
     };
   },
 
@@ -129,9 +130,6 @@ export default {
       // See https://stripe.com/docs/api#errors for the error object.
       // More general https://stripe.com/docs/stripe.js#stripe-create-token.
       createToken().then((data) => console.log(data.token));
-    },
-    validate() {
-      this.$refs.form.validate();
     },
   },
 };
