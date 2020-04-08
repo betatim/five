@@ -28,10 +28,10 @@ export default {
    */
   plugins: [],
   proxy: {
-    "/ph/": {
-      target: process.env.API_URL,
+    "/api/": {
+      target: "https://seven-staging.videoident.me/",
       pathRewrite: {
-        "^/ph/": "/",
+        "^/api/": "/api/",
       },
     },
   },

@@ -5,7 +5,7 @@
   "author": "Skribble",
   "private": true,
   "scripts": {
-    "dev": "cross-env API_URL=https://seven-staging.videoident.me/api/ nuxt",
+    "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate"

@@ -131,7 +131,7 @@ export default {
       // createToken().then((data) => console.log(data.token));
 
       this.$axios
-        .$post("setup_payment", {
+        .$post("/api/setup_payment", {
           email: "joe@example.com",
         })
         .then((response) => console.log(response));
