@@ -102,20 +102,18 @@ export default {
       },
 
       valid: true,
-      firstName: "",
-      lastName: "",
+      firstName: "Name",
+      lastName: "Surname",
       nameRules: [
         (v) => !!v || "Name is required",
         (v) => (v && v.length <= 10) || "Names must be less than 10 characters",
       ],
-      email: "",
+      email: "namesurname@protonmail.com",
       emailRules: [
         (v) => !!v || "E-mail is required",
         (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
       ],
-      select: null,
-      items: ["Item 1", "Item 2", "Item 3", "Item 4"],
-      checkbox: false,
+      checkbox: true,
       lazy: false,
     };
   },
@@ -129,7 +127,23 @@ export default {
       // See https://stripe.com/docs/api#tokens for the token object.
       // See https://stripe.com/docs/api#errors for the error object.
       // More general https://stripe.com/docs/stripe.js#stripe-create-token.
-      createToken().then((data) => console.log(data.token));
+      //
+      // createToken().then((data) => console.log(data.token));
+
+      this.$axios
+        .$post("setup_payment", {
+          email: "joe@example.com",
+        })
+        .then((response) => console.log(response));
+
+      // async function createPaymentIntent() {
+      //   const paymentIntentData = await $axios.$post(
+      //     "https://seven-staging.videoident.me/api/setup_payment",
+      //     { email: "joe@example.com" }
+      //   );
+      //   return { paymentIntentData };
+      // }
+      // createPaymentIntent().then((data) => console.log(data));
     },
   },
 };
