@@ -27,7 +27,21 @@ export default {
    ** Plugins to load before mounting the App
    */
   plugins: [],
-    /*
+  /*
+   ** Nuxt.js dev-modules
+   */
+  buildModules: ["@nuxt/typescript-build", "@nuxtjs/vuetify"],
+  /*
+   ** Nuxt.js modules
+   */
+  modules: ["@nuxtjs/axios", "@nuxtjs/proxy"],
+  /*
+   ** Axios module configuration
+   */
+  axios: {
+    proxy: true, // Can be also an object with default options
+  },
+  /*
    ** Proxy module configuration
    */
   proxy: {
@@ -38,14 +52,6 @@ export default {
       },
     },
   },
-  /*
-   ** Nuxt.js dev-modules
-   */
-  buildModules: ["@nuxt/typescript-build", "@nuxtjs/vuetify"],
-  /*
-   ** Nuxt.js modules
-   */
-  modules: ["@nuxtjs/axios", "@nuxtjs/proxy"],
   /*
    ** vuetify module configuration
    ** https://github.com/nuxt-community/vuetify-module
