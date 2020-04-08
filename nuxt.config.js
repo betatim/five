@@ -27,6 +27,9 @@ export default {
    ** Plugins to load before mounting the App
    */
   plugins: [],
+    /*
+   ** Proxy module configuration
+   */
   proxy: {
     "/api/": {
       target: "https://seven-staging.videoident.me/",
