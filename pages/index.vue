@@ -41,7 +41,6 @@
             ></v-text-field>
 
             <card
-              v-if="stripe_pk"
               class="stripe-card ma-4"
               :class="{ complete }"
               :stripe="stripe_pk"
@@ -101,7 +100,7 @@ export default {
     return {
       status: "start",
       complete: false,
-      stripe_pk: null,
+      stripe_pk: "pk_test_zo6LGFqxYYQQVSyASbYbPrty00ZsNAMX8q",
       stripeOptions: {
         // see https://stripe.com/docs/stripe.js#element-options for details
         elements: {
@@ -149,16 +148,6 @@ export default {
   },
 
   components: { Card },
-  beforeCreate() {
-    // Get stripe public key from backend. The Stripe element needs that key before it is loaded
-    this.$axios
-      .$post("/api/setup_payment", {
-        email: "joe@example.com",
-      })
-      .then((response) => {
-        this.stripe_pk = response.publishableKey;
-      });
-  },
   methods: {
     pay() {
       this.status = "paying";
