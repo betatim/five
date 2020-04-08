@@ -10,13 +10,7 @@
           comfortable and happy to use this page. Mention price.
         </p>
         <v-row align="center" justify="center"></v-row>
-        <v-card class="mx-auto pa-4" max-width="600" outlined
-          ><div v-show="status === 'paying'" class="text-center">
-            <v-progress-circular
-              indeterminate
-              color="primary"
-            ></v-progress-circular>
-          </div>
+        <v-card class="mx-auto pa-4" max-width="600" outlined>
           <v-form
             v-show="status === 'start'"
             ref="form"
@@ -66,7 +60,25 @@
               Pay now
             </v-btn>
           </v-form>
-          <v-card-actions> </v-card-actions>
+          <div v-show="status === 'paying'" class="text-center">
+            <v-progress-circular
+              indeterminate
+              color="primary"
+            ></v-progress-circular>
+          </div>
+          <div v-show="status === 'paid'">
+            <p>Your e-ID video ident appointment is now ready for you.</p>
+            <p>
+              Visit the link below to start it now (opens a new tab):
+              <a :href="identURL" target="_blank">{{ identURL }}</a>
+            </p>
+            <p>We sent you a receipt for your payment by email.</p>
+            <p>Platforms to use your eID with:</p>
+            <ul>
+              <li>Skribble</li>
+              <li>Many more (link to SC list of other?)></li>
+            </ul>
+          </div>
         </v-card>
 
         <div class="text-center">
@@ -119,19 +131,21 @@ export default {
       },
 
       valid: true,
-      firstName: "Name",
-      lastName: "Surname",
+      firstName: "",
+      lastName: "",
       nameRules: [
         (v) => !!v || "Name is required",
         (v) => (v && v.length <= 10) || "Names must be less than 10 characters",
       ],
-      email: "namesurname@protonmail.com",
+      email: "",
       emailRules: [
         (v) => !!v || "E-mail is required",
         (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
       ],
       checkbox: true,
       lazy: false,
+
+      identURL: "",
     };
   },
 
@@ -175,7 +189,10 @@ export default {
                     firstName: this.firstName,
                     lastName: this.lastName,
                   })
-                  .then((response4) => console.log(response4));
+                  .then((response4) => {
+                    this.identURL = response4.identUrl;
+                    this.status = "paid";
+                  });
               } else console.error("payment failed");
             });
           });
