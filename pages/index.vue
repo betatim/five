@@ -93,7 +93,6 @@
 import {
   Card,
   createPaymentMethod,
-  createToken,
   handleCardPayment,
 } from "vue-stripe-elements-plus";
 
@@ -151,7 +150,7 @@ export default {
 
   components: { Card },
   beforeCreate() {
-    // Get stripe public key from backend
+    // Get stripe public key from backend. The Stripe element needs that key before it is loaded
     this.$axios
       .$post("/api/setup_payment", {
         email: "joe@example.com",
@@ -163,33 +162,34 @@ export default {
   methods: {
     pay() {
       this.status = "paying";
-      // createToken returns a Promise which resolves in a result object with
-      // either a token or an error key.
-      // See https://stripe.com/docs/api#tokens for the token object.
-      // See https://stripe.com/docs/api#errors for the error object.
-      // More general https://stripe.com/docs/stripe.js#stripe-create-token.
-      //
+
+      // Call Seven to get clientSecret
       this.$axios
         .$post("/api/setup_payment", {
           email: this.email,
         })
         .then((response) => {
+          // Create a payment method with the data that the user entered in the stripe element
           createPaymentMethod("card", {}).then((response2) => {
+            // Call Stripe to handle payment
             handleCardPayment(
               response.clientSecret,
               response2.createPaymentMethod
             ).then((response3) => {
+              // If payment succeeded
               if (response3.paymentIntent.status === "succeeded") {
                 const paymentIntentID = response3.paymentIntent.id.replace(
                   "pi_",
                   ""
                 );
+                // Call Seven to start an identity creation request
                 this.$axios
                   .$post(`/api/create_ident/${paymentIntentID}`, {
                     firstName: this.firstName,
                     lastName: this.lastName,
                   })
                   .then((response4) => {
+                    // Set url to show the user where to go
                     this.identURL = response4.identUrl;
                     this.status = "paid";
                   });
