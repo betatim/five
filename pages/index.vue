@@ -5,15 +5,20 @@
     <small>
     Elektronische Signaturen und digitales Vertrauen sind brandaktuelle Themen. Bleibe auf dem Laufenden! Siehe unsere <a href="https://www.skribble.com/de/datenschutz" target="_blank">Datenschutzerklärungen</a>.</small>
     <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2.js"></script>
-    <script>
-      hbspt.forms.create({
-        portalId: "5051692",
-        formId: "cb565705-2dda-41e1-b87a-1ccc50926592"
-      });
+    <script v-html="hsform">
+
     </script>
   </div>
 </main>
 </template>
+
+<script>
+export default {
+  data: () => ({
+    hsform: "hbspt.forms.create({portalId: '5051692',formId: 'cb565705-2dda-41e1-b87a-1ccc50926592'});"
+  })
+}
+</script>
 
 <style scoped>
 body {
