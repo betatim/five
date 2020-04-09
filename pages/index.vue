@@ -4,9 +4,9 @@
     <h1>Get your E-ID now!</h1>
     <h2>Faster than ever</h2>
     <p>
-      Explain what this is, link to/quote from Bundesrat announcement, what
-      will happen if you use this, etc. Text to make the user feel
-      comfortable and happy to use this page. Mention price.
+      Explain what this is, link to/quote from Bundesrat announcement, what will
+      happen if you use this, etc. Text to make the user feel comfortable and
+      happy to use this page. Mention price.
       <a href="#">Link to sources</a>
     </p>
     <h2>Ready in only 3 steps</h2>
@@ -17,18 +17,23 @@
       </li>
       <li>
         <h3>Video Ident</h3>
-        <p>Quick and easy - with our partners. <a href="#">Link to nowhere</a></p>
+        <p>
+          Quick and easy - with our partners. <a href="#">Link to nowhere</a>
+        </p>
       </li>
       <li>
         <h3>Ready to sign</h3>
-        <p>Automatically connected with your Skribble account. Log in and start signing like there's no tomorrow.</p>
+        <p>
+          Automatically connected with your Skribble account. Log in and start
+          signing like there's no tomorrow.
+        </p>
       </li>
     </ol>
-    
+
     <!-- Form -->
     <v-card class="mx-auto pa-4 my-10" max-width="600" outlined>
       <v-form
-        v-show="status === 'start'"
+        v-show="status === 'start' || status === 'error-during-payment'"
         ref="form"
         v-model="valid"
         :lazy-validation="lazy"
@@ -70,20 +75,47 @@
           label="Do you agree?"
           required
         ></v-checkbox>
+        <div class="text-center">
+          <v-btn class="pay-with-stripe" @click="pay" :disabled="!valid">
+            Pay now
+          </v-btn>
+        </div>
 
-        <v-btn class="pay-with-stripe" @click="pay" :disabled="!valid">
-          Pay now
-        </v-btn>
+        <!-- Error during payment -->
+        <p
+          v-if="status === 'error-during-payment'"
+          class="caption red--text mt-3"
+        >
+          There was an error while processing your payment. Please use a
+          different payment method or try again later
+        </p>
       </v-form>
 
-      <!-- Overlay -->
-      <div v-show="status === 'paying'" class="text-center">
+      <!-- Error after payment -->
+      <div v-if="status === 'error-after-payment'">
+        <p>
+          Your payment was processed successfully but there was an error while
+          generating your identification request.
+        </p>
+        <p>
+          Click below to re-submit your information. You will not be charged
+          again.
+        </p>
+        <div class="text-center">
+          <v-btn @click="reSubmit">
+            Re-submit
+          </v-btn>
+        </div>
+      </div>
+
+      <!-- Spinner Overlay -->
+      <div v-show="status === 'processing'" class="text-center">
         <v-progress-circular
           indeterminate
           color="primary"
         ></v-progress-circular>
       </div>
-      
+
       <!-- Success -->
       <div v-show="status === 'paid'">
         <p>Your e-ID video ident appointment is now ready for you.</p>
@@ -103,25 +135,59 @@
     <!-- FAQ -->
     <v-expansion-panels class="my-10">
       <v-expansion-panel>
-        <v-expansion-panel-header>Was passiert mit der ID nach dem 1. Okt 2020?</v-expansion-panel-header>
-        <v-expansion-panel-content>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium laboriosam amet ducimus enim <a href="#">Link to somewhere</a> itaque ipsum quas fugiat repudiandae ex atque corporis cupiditate aperiam, quidem consequuntur minima sunt? Nisi, eligendi aperiam.</v-expansion-panel-content>
+        <v-expansion-panel-header
+          >Was passiert mit der ID nach dem 1. Okt
+          2020?</v-expansion-panel-header
+        >
+        <v-expansion-panel-content
+          >Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium
+          laboriosam amet ducimus enim <a href="#">Link to somewhere</a> itaque
+          ipsum quas fugiat repudiandae ex atque corporis cupiditate aperiam,
+          quidem consequuntur minima sunt? Nisi, eligendi
+          aperiam.</v-expansion-panel-content
+        >
       </v-expansion-panel>
       <v-expansion-panel>
-        <v-expansion-panel-header>Wer ist der VideoIdent Anbieter?</v-expansion-panel-header>
+        <v-expansion-panel-header
+          >Wer ist der VideoIdent Anbieter?</v-expansion-panel-header
+        >
         <v-expansion-panel-content>
-          <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Blanditiis ullam dolorem optio nihil, <strong>magnam minima ipsam, maiores ex deleniti eius</strong>, possimus id! Sint ex ad doloribus qui illo, nostrum velit.</p>
+          <p>
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Blanditiis
+            ullam dolorem optio nihil,
+            <strong>magnam minima ipsam, maiores ex deleniti eius</strong>,
+            possimus id! Sint ex ad doloribus qui illo, nostrum velit.
+          </p>
           <ul>
             <li>Number 1</li>
             <li>Number 2</li>
             <li>Number 3</li>
           </ul>
-          <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Hic nesciunt placeat harum blanditiis accusamus culpa esse minus sint exercitationem, quod quasi dicta quidem tempora nemo explicabo vitae! Sit, laudantium exercitationem.</p>
-          <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Hic nesciunt placeat harum blanditiis accusamus culpa esse minus sint exercitationem, quod quasi dicta quidem tempora nemo explicabo vitae! Sit, laudantium exercitationem.</p>
+          <p>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Hic
+            nesciunt placeat harum blanditiis accusamus culpa esse minus sint
+            exercitationem, quod quasi dicta quidem tempora nemo explicabo
+            vitae! Sit, laudantium exercitationem.
+          </p>
+          <p>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Hic
+            nesciunt placeat harum blanditiis accusamus culpa esse minus sint
+            exercitationem, quod quasi dicta quidem tempora nemo explicabo
+            vitae! Sit, laudantium exercitationem.
+          </p>
         </v-expansion-panel-content>
       </v-expansion-panel>
       <v-expansion-panel>
-        <v-expansion-panel-header>Welche Dokumente kann ich für die Identifikation verwenden?</v-expansion-panel-header>
-        <v-expansion-panel-content>Lorem ipsum dolor sit amet consectetur, adipisicing elit. <em>Blanditiis ullam dolorem optio nihil</em>, magnam minima ipsam, maiores ex deleniti eius, possimus id! Sint ex ad doloribus qui illo, nostrum velit.</v-expansion-panel-content>
+        <v-expansion-panel-header
+          >Welche Dokumente kann ich für die Identifikation
+          verwenden?</v-expansion-panel-header
+        >
+        <v-expansion-panel-content
+          >Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+          <em>Blanditiis ullam dolorem optio nihil</em>, magnam minima ipsam,
+          maiores ex deleniti eius, possimus id! Sint ex ad doloribus qui illo,
+          nostrum velit.</v-expansion-panel-content
+        >
       </v-expansion-panel>
     </v-expansion-panels>
 
@@ -187,6 +253,7 @@ export default {
       checkbox: false,
       lazy: false,
 
+      paymentIntentID: "",
       identURL: "",
     };
   },
@@ -194,7 +261,7 @@ export default {
   components: { Card },
   methods: {
     pay() {
-      this.status = "paying";
+      this.status = "processing";
 
       // Call Seven to get clientSecret
       this.$axios
@@ -203,32 +270,72 @@ export default {
         })
         .then((response) => {
           // Create a payment method with the data that the user entered in the stripe element
-          createPaymentMethod("card", {}).then((response2) => {
-            // Call Stripe to handle payment
-            handleCardPayment(
-              response.clientSecret,
-              response2.createPaymentMethod
-            ).then((response3) => {
-              // If payment succeeded
-              if (response3.paymentIntent.status === "succeeded") {
-                const paymentIntentID = response3.paymentIntent.id.replace(
-                  "pi_",
-                  ""
-                );
-                // Call Seven to start an identity creation request
-                this.$axios
-                  .$post(`/api/create_ident/${paymentIntentID}`, {
-                    firstName: this.firstName,
-                    lastName: this.lastName,
-                  })
-                  .then((response4) => {
-                    // Set url to show the user where to go
-                    this.identURL = response4.identUrl;
-                    this.status = "paid";
-                  });
-              } else console.error("payment failed");
+          createPaymentMethod("card", {})
+            .then((response2) => {
+              // Call Stripe to handle payment
+              handleCardPayment(
+                response.clientSecret,
+                response2.createPaymentMethod
+              )
+                .then((response3) => {
+                  // If payment succeeded
+                  if (response3.paymentIntent.status === "succeeded") {
+                    this.paymentIntentID = response3.paymentIntent.id.replace(
+                      "pi_",
+                      ""
+                    );
+                    // Call Seven to start an identity creation request
+                    this.$axios
+                      .$post(`/api/create_ident/${this.paymentIntentID}`, {
+                        firstName: this.firstName,
+                        lastName: this.lastName,
+                      })
+                      .then((response4) => {
+                        // Set url to show the user where to go
+                        this.identURL = response4.identUrl;
+                        this.status = "paid";
+                      })
+                      .catch((error) => {
+                        this.status = "error-after-payment";
+                        console.error(error);
+                      });
+                  } else {
+                    this.status = "error-during-payment";
+                    console.error("payment failed");
+                  }
+                })
+                .catch((error) => {
+                  this.status = "error-during-payment";
+                  console.error(error);
+                });
+            })
+            .catch((error) => {
+              this.status = "error-during-payment";
+              console.error(error);
             });
-          });
+        })
+        .catch((error) => {
+          this.status = "error-during-payment";
+          console.error(error);
+        });
+    },
+    reSubmit() {
+      this.status = "processing";
+
+      // Call Seven to start an identity creation request
+      this.$axios
+        .$post(`/api/create_ident/${this.paymentIntentID}`, {
+          firstName: this.firstName,
+          // lastName: this.lastName,
+        })
+        .then((response4) => {
+          // Set url to show the user where to go
+          this.identURL = response4.identUrl;
+          this.status = "paid";
+        })
+        .catch((error) => {
+          this.status = "error-after-payment";
+          console.error(error);
         });
     },
   },
