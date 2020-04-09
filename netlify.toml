@@ -1,0 +1,8 @@
+[[redirects]]
+  from = "/api/*"
+  to = "https://seven-staging.videoident.me/api/:splat"
+  status = 200
+  signed = "PROXY_REQUEST_KEY"
+
+[build.environment]
+  PROXY_REQUEST_KEY = "4udspy7ahglvmjbw5okdw3rduvgw51zoh12c64ph8anygkzg6o6aakbcs5p7crln"
