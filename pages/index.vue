@@ -1,12 +1,10 @@
 <template>
   <div>
     <!-- Intro -->
-    <h1>Get your E-ID now!</h1>
-    <h2>Faster than ever</h2>
+    <h1>Video-Identifikation für elektronisches Signieren mit höchster Beweiskraft</h1>
+    <h2>Erstellen Sie sich in wenigen Minuten eine E-ID, die das Signieren mit der qualifizierten elektronischen Signatur (QES) erlaubt. Die QES ist der höchste Signaturstandard und der handschriftlichen Unterschrift vor dem Gesetz gleichgestellt.</h2>
     <p>
-      Explain what this is, link to/quote from Bundesrat announcement, what will
-      happen if you use this, etc. Text to make the user feel comfortable and
-      happy to use this page. Mention price.
+      Um Mit QES signieren zu können, muss man seine Identität einmalig überprüfen lassen. Bis am 02. Oktober 2020 Ist das per Video-Call möglich. Der Bund setzte diese Ausnahmeregelung im Rahmen der COVID-19 Krise in Kraft, um die Notwendigkeit für persönlichen Kontakt zu reduzieren und der gestiegenen Nachfrage für elektronisches Signieren nachzukommen. 
       <a href="#">Link to sources</a>
     </p>
     <h2>Ready in only 3 steps</h2>
