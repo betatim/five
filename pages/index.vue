@@ -1,10 +1,21 @@
 <template>
   <div>
     <!-- Intro -->
-    <h1>Video-Identifikation für elektronisches Signieren mit höchster Beweiskraft</h1>
-    <h2>Erstellen Sie sich in wenigen Minuten eine E-ID, die das Signieren mit der qualifizierten elektronischen Signatur (QES) erlaubt. Die QES ist der höchste Signaturstandard und der handschriftlichen Unterschrift vor dem Gesetz gleichgestellt.</h2>
+    <h1>
+      Video-Identifikation für elektronisches Signieren mit höchster Beweiskraft
+    </h1>
+    <h2>
+      Erstellen Sie sich in wenigen Minuten eine E-ID, die das Signieren mit der
+      qualifizierten elektronischen Signatur (QES) erlaubt. Die QES ist der
+      höchste Signaturstandard und der handschriftlichen Unterschrift vor dem
+      Gesetz gleichgestellt.
+    </h2>
     <p>
-      Um Mit QES signieren zu können, muss man seine Identität einmalig überprüfen lassen. Bis am 02. Oktober 2020 Ist das per Video-Call möglich. Der Bund setzte diese Ausnahmeregelung im Rahmen der COVID-19 Krise in Kraft, um die Notwendigkeit für persönlichen Kontakt zu reduzieren und der gestiegenen Nachfrage für elektronisches Signieren nachzukommen. 
+      Um Mit QES signieren zu können, muss man seine Identität einmalig
+      überprüfen lassen. Bis am 02. Oktober 2020 Ist das per Video-Call möglich.
+      Der Bund setzte diese Ausnahmeregelung im Rahmen der COVID-19 Krise in
+      Kraft, um die Notwendigkeit für persönlichen Kontakt zu reduzieren und der
+      gestiegenen Nachfrage für elektronisches Signieren nachzukommen.
       <a href="#">Link to sources</a>
     </p>
     <h2>Ready in only 3 steps</h2>
@@ -69,7 +80,7 @@
 
         <v-checkbox
           v-model="checkbox"
-          :rules="[(v) => !!v || 'You must agree to continue!']"
+          :rules="[v => !!v || 'You must agree to continue!']"
           label="Do you agree?"
           required
         ></v-checkbox>
@@ -205,12 +216,12 @@ import {
   Card,
   createPaymentMethod,
   handleCardPayment,
-} from "vue-stripe-elements-plus";
+} from 'vue-stripe-elements-plus'
 
 export default {
   data() {
     return {
-      status: "start",
+      status: 'start',
       complete: false,
       stripe_pk: process.env.strPk,
       stripeOptions: {
@@ -229,100 +240,100 @@ export default {
         },
         style: {
           base: {
-            color: "#293D66",
-            fontSize: "18px",
-            fontFamily: "Roboto",
-            fontSmoothing: "antialiased",
-            "::placeholder": {
-              color: "#65728E",
+            color: '#293D66',
+            fontSize: '18px',
+            fontFamily: 'Roboto',
+            fontSmoothing: 'antialiased',
+            '::placeholder': {
+              color: '#65728E',
             },
           },
         },
       },
 
       validForm: true,
-      firstName: "",
-      lastName: "",
+      firstName: '',
+      lastName: '',
       nameRules: [
-        (v) => !!v || "Name is required",
-        (v) => (v && v.length <= 10) || "Names must be less than 10 characters",
+        v => !!v || 'Name is required',
+        v => (v && v.length <= 10) || 'Names must be less than 10 characters',
       ],
-      email: "",
+      email: '',
       emailRules: [
-        (v) => !!v || "E-mail is required",
-        (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
+        v => !!v || 'E-mail is required',
+        v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
       ],
       checkbox: false,
       lazy: false,
 
-      paymentIntentID: "",
-      identURL: "",
-    };
+      paymentIntentID: '',
+      identURL: '',
+    }
   },
 
   components: { Card },
   methods: {
     pay() {
-      this.status = "processing";
+      this.status = 'processing'
 
       // Call Seven to get clientSecret
       this.$axios
-        .$post("/api/setup_payment", {
+        .$post('/api/setup_payment', {
           email: this.email,
         })
-        .then((response) => {
+        .then(response => {
           // Create a payment method with the data that the user entered in the stripe element
-          createPaymentMethod("card", {})
-            .then((response2) => {
+          createPaymentMethod('card', {})
+            .then(response2 => {
               // Call Stripe to handle payment
               handleCardPayment(
                 response.clientSecret,
                 response2.createPaymentMethod
               )
-                .then((response3) => {
+                .then(response3 => {
                   // If payment succeeded
-                  if (response3.paymentIntent.status === "succeeded") {
+                  if (response3.paymentIntent.status === 'succeeded') {
                     this.paymentIntentID = response3.paymentIntent.id.replace(
-                      "pi_",
-                      ""
-                    );
+                      'pi_',
+                      ''
+                    )
                     // Call Seven to start an identity creation request
                     this.$axios
                       .$post(`/api/create_ident/${this.paymentIntentID}`, {
                         firstName: this.firstName,
                         lastName: this.lastName,
                       })
-                      .then((response4) => {
+                      .then(response4 => {
                         // Set url to show the user where to go
-                        this.identURL = response4.identUrl;
-                        this.status = "paid";
+                        this.identURL = response4.identUrl
+                        this.status = 'paid'
                       })
-                      .catch((error) => {
-                        this.status = "error-after-payment";
-                        console.error(error);
-                      });
+                      .catch(error => {
+                        this.status = 'error-after-payment'
+                        console.error(error)
+                      })
                   } else {
-                    this.status = "error-during-payment";
-                    console.error("payment failed");
+                    this.status = 'error-during-payment'
+                    console.error('payment failed')
                   }
                 })
-                .catch((error) => {
-                  this.status = "error-during-payment";
-                  console.error(error);
-                });
+                .catch(error => {
+                  this.status = 'error-during-payment'
+                  console.error(error)
+                })
             })
-            .catch((error) => {
-              this.status = "error-during-payment";
-              console.error(error);
-            });
+            .catch(error => {
+              this.status = 'error-during-payment'
+              console.error(error)
+            })
         })
-        .catch((error) => {
-          this.status = "error-during-payment";
-          console.error(error);
-        });
+        .catch(error => {
+          this.status = 'error-during-payment'
+          console.error(error)
+        })
     },
     reSubmit() {
-      this.status = "processing";
+      this.status = 'processing'
 
       // Call Seven to start an identity creation request
       this.$axios
@@ -330,16 +341,16 @@ export default {
           firstName: this.firstName,
           // lastName: this.lastName,
         })
-        .then((response4) => {
+        .then(response4 => {
           // Set url to show the user where to go
-          this.identURL = response4.identUrl;
-          this.status = "paid";
+          this.identURL = response4.identUrl
+          this.status = 'paid'
         })
-        .catch((error) => {
-          this.status = "error-after-payment";
-          console.error(error);
-        });
+        .catch(error => {
+          this.status = 'error-after-payment'
+          console.error(error)
+        })
     },
   },
-};
+}
 </script>
