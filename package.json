@@ -5,10 +5,11 @@
   "author": "Skribble",
   "private": true,
   "scripts": {
-    "dev": "nuxt",
+    "dev": "cross-env STR_PK=pk_test_zo6LGFqxYYQQVSyASbYbPrty00ZsNAMX8q nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
-    "generate": "nuxt generate"
+    "generate-staging": "cross-env STR_PK=pk_test_zo6LGFqxYYQQVSyASbYbPrty00ZsNAMX8q nuxt generate",
+    "generate-prod": "cross-env STR_PK=pk_live_vdTt9jtSyEhEgtFBGH9TWn80001hJjAHMg nuxt generate"
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.9.7",

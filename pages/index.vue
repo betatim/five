@@ -144,7 +144,7 @@ export default {
     return {
       status: "start",
       complete: false,
-      stripe_pk: "pk_test_zo6LGFqxYYQQVSyASbYbPrty00ZsNAMX8q",
+      stripe_pk: process.env.strPk,
       stripeOptions: {
         // see https://stripe.com/docs/stripe.js#element-options for details
         elements: {
