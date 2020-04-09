@@ -222,7 +222,7 @@ export default {
   data() {
     return {
       status: 'start',
-      complete: false,
+      completeStripe: false,
       stripe_pk: process.env.strPk,
       stripeOptions: {
         // see https://stripe.com/docs/stripe.js#element-options for details
