@@ -8,13 +8,13 @@
 # All deploys generated from a pull/merge request
 # will inherit these settings.
 [context.deploy-preview]
-  command = "generate-staging"
+  command = "yarn generate-staging"
 
 # Branch deploy context:
 # All deploys that are not from a pull/merge request
 # or from the production branch will inherit these settings.
 [context.branch-deploy]
-  command = "generate-staging"
+  command = "yarn generate-staging"
 
 [[redirects]]
   from = "/api/*"
