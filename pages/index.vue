@@ -35,7 +35,7 @@
       <v-form
         v-show="status === 'start' || status === 'error-during-payment'"
         ref="form"
-        v-model="valid"
+        v-model="validForm"
         :lazy-validation="lazy"
       >
         <v-text-field
@@ -63,10 +63,10 @@
 
         <card
           class="stripe-card ma-4"
-          :class="{ complete }"
+          :class="{ complete: completeStripe }"
           :stripe="stripe_pk"
           :options="stripeOptions"
-          @change="complete = $event.complete"
+          @change="completeStripe = $event.complete"
         />
 
         <v-checkbox
@@ -76,7 +76,11 @@
           required
         ></v-checkbox>
         <div class="text-center">
-          <v-btn class="pay-with-stripe" @click="pay" :disabled="!valid">
+          <v-btn
+            class="pay-with-stripe"
+            @click="pay"
+            :disabled="!(validForm && completeStripe)"
+          >
             Pay now
           </v-btn>
         </div>
@@ -209,7 +213,7 @@ export default {
   data() {
     return {
       status: "start",
-      complete: false,
+      completeStripe: false,
       stripe_pk: "pk_test_zo6LGFqxYYQQVSyASbYbPrty00ZsNAMX8q",
       stripeOptions: {
         // see https://stripe.com/docs/stripe.js#element-options for details
@@ -238,7 +242,7 @@ export default {
         },
       },
 
-      valid: true,
+      validForm: true,
       firstName: "",
       lastName: "",
       nameRules: [
