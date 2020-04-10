@@ -4,16 +4,16 @@
     <v-row justify="center">
       <v-col cols="12" sm="10" md="11" lg="9" xl="6">
         <!-- Intro -->
-        <h1>
+        <h1 class="display-4">
           Video-Identifikation für elektronisches Signieren mit höchster
           Beweiskraft
         </h1>
-        <h2>
+        <p class="headline">
           Erstellen Sie sich in wenigen Minuten eine E-ID, die das Signieren mit
           der qualifizierten elektronischen Signatur (QES) erlaubt. Die QES ist
           der höchste Signaturstandard und der handschriftlichen Unterschrift
           vor dem Gesetz gleichgestellt.
-        </h2>
+        </p>
         <p>
           Um Mit QES signieren zu können, muss man seine Identität einmalig
           überprüfen lassen. Bis am 02. Oktober 2020 Ist das per Video-Call
