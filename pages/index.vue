@@ -295,61 +295,112 @@ export default {
     pay() {
       this.status = 'processing'
 
-      // Call Seven to get clientSecret
-      this.$axios
-        .$post('/api/setup_payment', {
+      // Async functions must be defined as arrow function so we can still scope Vue's "this"
+      // Call Seven (our backend) to setup a payment event
+      const setupPaymentIntent = async () => {
+        return await this.$axios.$post('/api/setup_payment', {
           email: this.email,
         })
-        .then(response => {
-          // Create a payment method with the data that the user entered in the stripe element
-          createPaymentMethod('card', {})
-            .then(response2 => {
-              // Call Stripe to handle payment
-              handleCardPayment(
-                response.clientSecret,
-                response2.createPaymentMethod
+      }
+
+      // Call Seven (our backend) to create an identity request
+      const createIdentityRequest = async () => {
+        return await this.$axios.$post(
+          `/api/create_ident/${this.paymentIntentID}`,
+          {
+            firstName: this.firstName,
+            lastName: this.lastName,
+          }
+        )
+      }
+
+      // Call our backend to setup a payment intent and Stripe to create a payment method
+      Promise.all([setupPaymentIntent(), createPaymentMethod('card', {})]).then(
+        ([responsePaymentIntent, responsePaymentMethod]) => {
+          // Once result from both is received
+          // execute payment with Stripe
+          handleCardPayment(
+            responsePaymentIntent.clientSecret,
+            responsePaymentMethod.createPaymentMethod
+          ).then(responseHandlePayment => {
+            // Once response from Stripe is received
+            if (responseHandlePayment.paymentIntent.status === 'succeeded') {
+              // If it is successful
+              // store paymentIntentID so we can use it in other methods
+              this.paymentIntentID = responseHandlePayment.paymentIntent.id.replace(
+                'pi_',
+                ''
               )
-                .then(response3 => {
-                  // If payment succeeded
-                  if (response3.paymentIntent.status === 'succeeded') {
-                    this.paymentIntentID = response3.paymentIntent.id.replace(
-                      'pi_',
-                      ''
-                    )
-                    // Call Seven to start an identity creation request
-                    this.$axios
-                      .$post(`/api/create_ident/${this.paymentIntentID}`, {
-                        firstName: this.firstName,
-                        lastName: this.lastName,
-                      })
-                      .then(response4 => {
-                        // Set url to show the user where to go
-                        this.identURL = response4.identUrl
-                        this.status = 'paid'
-                      })
-                      .catch(error => {
-                        this.status = 'error-after-payment'
-                        console.error(error)
-                      })
-                  } else {
-                    this.status = 'error-during-payment'
-                    console.error('payment failed')
-                  }
-                })
-                .catch(error => {
-                  this.status = 'error-during-payment'
-                  console.error(error)
-                })
-            })
-            .catch(error => {
-              this.status = 'error-during-payment'
+              // And call our backend to create an identity request
+              createIdentityRequest().then(responseIdentityRequest => {
+                // Once result from the identity request is received
+                // set url to show the user where to go
+                this.identURL = responseIdentityRequest.identUrl
+                this.status = 'paid'
+              })
+            } else {
+              this.status = 'error-after-payment'
               console.error(error)
-            })
-        })
-        .catch(error => {
-          this.status = 'error-during-payment'
-          console.error(error)
-        })
+            }
+          })
+        }
+      )
+
+      // Call Seven to get clientSecret
+      // this.$axios
+      //   .$post('/api/setup_payment', {
+      //     email: this.email,
+      //   })
+      //   .then(response => {
+      //     // Create a payment method with the data that the user entered in the stripe element
+      //     createPaymentMethod('card', {})
+      //       .then(response2 => {
+      //         // Call Stripe to handle payment
+      //         handleCardPayment(
+      //           response.clientSecret,
+      //           response2.createPaymentMethod
+      //         )
+      //           .then(response3 => {
+      //             // If payment succeeded
+      //             if (response3.paymentIntent.status === 'succeeded') {
+      //               this.paymentIntentID = response3.paymentIntent.id.replace(
+      //                 'pi_',
+      //                 ''
+      //               )
+      //               // Call Seven to start an identity creation request
+      //               this.$axios
+      //                 .$post(`/api/create_ident/${this.paymentIntentID}`, {
+      //                   firstName: this.firstName,
+      //                   lastName: this.lastName,
+      //                 })
+      //                 .then(response4 => {
+      //                   // Set url to show the user where to go
+      //                   this.identURL = response4.identUrl
+      //                   this.status = 'paid'
+      //                 })
+      //                 .catch(error => {
+      //                   this.status = 'error-after-payment'
+      //                   console.error(error)
+      //                 })
+      //             } else {
+      //               this.status = 'error-during-payment'
+      //               console.error('payment failed')
+      //             }
+      //           })
+      //           .catch(error => {
+      //             this.status = 'error-during-payment'
+      //             console.error(error)
+      //           })
+      //       })
+      //       .catch(error => {
+      //         this.status = 'error-during-payment'
+      //         console.error(error)
+      //       })
+      //   })
+      //   .catch(error => {
+      //     this.status = 'error-during-payment'
+      //     console.error(error)
+      //   })
     },
     reSubmit() {
       this.status = 'processing'
