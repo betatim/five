@@ -287,6 +287,7 @@ export default {
 
       paymentIntentID: '',
       identURL: '',
+      paymentErrorMessage: '',
     }
   },
 
@@ -294,6 +295,7 @@ export default {
   methods: {
     pay() {
       this.status = 'processing'
+      this.paymentErrorMessage = ''
 
       // Async functions must be defined as arrow function so we can still scope Vue's "this"
 
@@ -305,6 +307,7 @@ export default {
           })
         } catch (error) {
           this.status = 'error-during-payment'
+          throw error
         }
       }
 
@@ -314,6 +317,7 @@ export default {
           return await createPaymentMethod('card', {})
         } catch (error) {
           this.status = 'error-during-payment'
+          throw error
         }
       }
 
@@ -321,12 +325,14 @@ export default {
       const handleCardPaymentInStripe = async (clientSecret, paymentMethod) => {
         try {
           const response = await handleCardPayment(clientSecret, paymentMethod)
-          if (response.paymentIntent.status !== 'succeeded')
-            throw 'Payment intent failed'
+          if ('error' in response) throw response.error
+
           // store formatted paymentIntentID so we can use it in other methods
           this.paymentIntentID = response.paymentIntent.id.replace('pi_', '')
         } catch (error) {
           this.status = 'error-during-payment'
+          this.paymentErrorMessage = error.message
+          throw error
         }
       }
 
@@ -342,6 +348,7 @@ export default {
           )
         } catch (error) {
           this.status = 'error-after-payment'
+          throw error
         }
       }
 
