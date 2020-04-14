@@ -1,0 +1,18 @@
+// New way of using breakpoints
+// valid breakpoints are
+// 'print-only'
+// 'screen-only'
+// 'xs-only'
+// 'sm-only'
+// 'sm-and-down'
+// 'sm-and-up'
+// 'md-only'
+// 'md-and-down'
+// 'md-and-up'
+// 'lg-only'
+// 'lg-and-down'
+// 'lg-and-up'
+// 'xl-only'
+@mixin media($breakpoint: xs)
+  @media #{map-get($display-breakpoints, $breakpoint)}
+    @content

@@ -45,21 +45,26 @@
               </div>
               <ol class="steps__list mt-12">
                 <li>
-                  <h3 class="headline">Pay</h3>
-                  <p>That's right. Money first, you know the drill.</p>
-                </li>
-                <li>
-                  <h3 class="headline">Video Ident</h3>
+                  <h3 class="headline">Mit Kreditkarte bezahlen</h3>
                   <p>
-                    Quick and easy - with our partners.
-                    <a href="#">Link to nowhere</a>
+                    Sie brauchen keine Rechnung abzuwarten, um mit dem Signieren
+                    loszulegen.
                   </p>
                 </li>
                 <li>
-                  <h3 class="headline">Ready to sign</h3>
+                  <h3 class="headline">Per Video-Call identifizieren lassen</h3>
                   <p>
-                    Automatically connected with your Skribble account. Log in
-                    and start signing like there's no tomorrow.
+                    Ein geschulter Mitarbeitender unseres
+                    Identifikationspartners wird Ihr Identitätsdokument per
+                    Webcam prüfen.
+                  </p>
+                </li>
+                <li>
+                  <h3 class="headline">Via Mobiltelefon bestätigen</h3>
+                  <p>
+                    Sie erhalten von Swisscom einen Link per SMS und legen das
+                    Passwort fest, mit dem Sie in Zukunft ihre Signaturen
+                    bestätigen.
                   </p>
                 </li>
               </ol>
@@ -217,62 +222,122 @@
             <!-- FAQ -->
             <v-expansion-panels class="my-10">
               <v-expansion-panel>
-                <v-expansion-panel-header
-                  >Was passiert mit der ID nach dem 1. Okt
-                  2020?</v-expansion-panel-header
-                >
-                <v-expansion-panel-content
-                  >Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Accusantium laboriosam amet ducimus enim
-                  <a href="#">Link to somewhere</a> itaque ipsum quas fugiat
-                  repudiandae ex atque corporis cupiditate aperiam, quidem
-                  consequuntur minima sunt? Nisi, eligendi
-                  aperiam.</v-expansion-panel-content
-                >
+                <v-expansion-panel-header>
+                  Was passiert mit der E-ID nach dem 2. Oktober 2020?
+                </v-expansion-panel-header>
+                <v-expansion-panel-content> TODO:</v-expansion-panel-content>
               </v-expansion-panel>
+
               <v-expansion-panel>
-                <v-expansion-panel-header
-                  >Wer ist der VideoIdent Anbieter?</v-expansion-panel-header
-                >
+                <v-expansion-panel-header>
+                  Wo wird meine E-ID gespeichert?
+                </v-expansion-panel-header>
+                <v-expansion-panel-content>TODO: </v-expansion-panel-content>
+              </v-expansion-panel>
+
+              <v-expansion-panel>
+                <v-expansion-panel-header>
+                  Für was kann ich die E-ID alles nutzen?
+                </v-expansion-panel-header>
                 <v-expansion-panel-content>
-                  <p>
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                    Blanditiis ullam dolorem optio nihil,
-                    <strong
-                      >magnam minima ipsam, maiores ex deleniti eius</strong
-                    >, possimus id! Sint ex ad doloribus qui illo, nostrum
-                    velit.
-                  </p>
-                  <ul>
-                    <li>Number 1</li>
-                    <li>Number 2</li>
-                    <li>Number 3</li>
-                  </ul>
-                  <p>
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                    Hic nesciunt placeat harum blanditiis accusamus culpa esse
-                    minus sint exercitationem, quod quasi dicta quidem tempora
-                    nemo explicabo vitae! Sit, laudantium exercitationem.
-                  </p>
-                  <p>
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                    Hic nesciunt placeat harum blanditiis accusamus culpa esse
-                    minus sint exercitationem, quod quasi dicta quidem tempora
-                    nemo explicabo vitae! Sit, laudantium exercitationem.
-                  </p>
+                  Die E-ID wird in erster Linie für das elektronische Signieren
+                  generiert. Falls Sie sich für andere Anwendungsfälle
+                  interessieren, kontaktieren Sie bitte Skribble.
                 </v-expansion-panel-content>
               </v-expansion-panel>
+
+              <v-expansion-panel>
+                <v-expansion-panel-header>
+                  Wer führt die Video-Identifikation durch?
+                </v-expansion-panel-header>
+                <v-expansion-panel-content>
+                  Die Identifikation wird von Swisscom Trust Services angeboten
+                  und in Zusammenarbeit mit identity Trust Management AG
+                  durchgeführt.
+                </v-expansion-panel-content>
+              </v-expansion-panel>
+
+              <v-expansion-panel>
+                <v-expansion-panel-header>
+                  Ich bin nicht aus der Schweiz. Kann ich mich trotzdem
+                  identifizieren lassen?
+                </v-expansion-panel-header>
+                <v-expansion-panel-content
+                  >Ja, der Service steht für die meisten Nationalitäten zur
+                  Verfügung.
+                  <a
+                    href="http://documents.swisscom.com/product/filestore/lib/5705ba58-3fdb-446f-9e48-18a297b8d239/l%C3%A4nderliste%20f%C3%BCr%20die%20videoidentifikation-kurier-pos-en.pdf?idxme=pex-search"
+                    target="_blank"
+                    >Liste der akzeptierten Länder und Ausweisdokumente
+                    ansehen.</a
+                  >
+                </v-expansion-panel-content>
+              </v-expansion-panel>
+
+              <v-expansion-panel>
+                <v-expansion-panel-header>
+                  Wie lange dauert, bis ich die E-ID für das Signieren einsetzen
+                  kann?
+                </v-expansion-panel-header>
+                <v-expansion-panel-content
+                  >Die QES wird nach maximal 30 Minuten nach der Identifikation
+                  auf Skribble und anderen Services, die auf Swisscom Signing
+                  Service beruhenden, freigeschaltet.
+                </v-expansion-panel-content>
+              </v-expansion-panel>
+
+              <v-expansion-panel>
+                <v-expansion-panel-header>
+                  Wie lange dauert die Video-Identifikation?
+                </v-expansion-panel-header>
+                <v-expansion-panel-content>
+                  Die Video-Identifikation dauert maximal TODO:XX Minuten.
+                </v-expansion-panel-content>
+              </v-expansion-panel>
+
+              <v-expansion-panel>
+                <v-expansion-panel-header>
+                  In welcher Sprache kann ich die Video-Identifikation
+                  durchführen?
+                </v-expansion-panel-header>
+                <v-expansion-panel-content
+                  >Du kannst die Identifikation in Deutsch und Englisch
+                  durchführen.
+                </v-expansion-panel-content>
+              </v-expansion-panel>
+
               <v-expansion-panel>
                 <v-expansion-panel-header
-                  >Welche Dokumente kann ich für die Identifikation
-                  verwenden?</v-expansion-panel-header
-                >
+                  >Was ist im Preis enthalten?
+                </v-expansion-panel-header>
                 <v-expansion-panel-content
-                  >Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                  <em>Blanditiis ullam dolorem optio nihil</em>, magnam minima
-                  ipsam, maiores ex deleniti eius, possimus id! Sint ex ad
-                  doloribus qui illo, nostrum velit.</v-expansion-panel-content
-                >
+                  >Im Preis enthalten ist die Identifikation via Video, die
+                  anschliessend generierte elektronische Identität (E-ID). Nicht
+                  enthalten sind die Signaturen, die mit der E-ID gemacht
+                  werden.
+                </v-expansion-panel-content>
+              </v-expansion-panel>
+
+              <v-expansion-panel>
+                <v-expansion-panel-header>
+                  Für welche Signaturservices kann ich die E-ID einsetzen?
+                </v-expansion-panel-header>
+                <v-expansion-panel-content>
+                  Die E-ID kann für Skribble und andere Signaturservices
+                  eingesetzt werden, die auf Swisscom Signing Service
+                  beruhenden.
+                </v-expansion-panel-content>
+              </v-expansion-panel>
+
+              <v-expansion-panel>
+                <v-expansion-panel-header>
+                  Ist mein Signaturpasswort auf allen Signaturservices dasselbe?
+                </v-expansion-panel-header>
+                <v-expansion-panel-content
+                  >Ja. Ihr Passwort ist an Ihre E-ID geknüpft und kommt immer
+                  zum Zug, wenn sie mit einem Anbieter signieren, der auf dem
+                  Swisscom Signing Service beruht.
+                </v-expansion-panel-content>
               </v-expansion-panel>
             </v-expansion-panels>
 
@@ -458,6 +523,7 @@ export default {
 
 <style lang="sass">
 @import ~/assets/sass/_vars
+@import ~/assets/sass/_mixins
 
 .dark
   background-color: $c-skribbleu
@@ -472,6 +538,7 @@ export default {
   max-width: 680px
 
 .steps
+
   &__heading
     margin-left: auto
     margin-right: auto
@@ -487,6 +554,8 @@ export default {
     justify-content: center
     margin: 0
     list-style-type: none
+    +media(sm-and-down)
+      flex-wrap: wrap
 
     li
       flex: 0 1 31.33%
@@ -494,6 +563,26 @@ export default {
       padding-bottom: 10px
       background-color: #fff
       box-shadow: 0 1px 10px 0 rgba($c-grey-darker, .3)
+      +media(sm-and-down)
+        flex: 0 1 100%
+        margin: 0
+      @for $i from 1 through 3
+        &:nth-child(#{$i})
+          +media(sm-and-down)
+            @if $i == 2
+              margin: 40px 0
+          h3:after
+            content: '#{$i}'
+
+
+    h3
+      display: flex
+      justify-content: space-between
+      align-items: center
+      &:after
+        flex-basis: 20%
+        font-size: 1.9rem
+        text-align: right
 
     .headline
       padding: 20px
