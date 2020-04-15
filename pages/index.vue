@@ -57,7 +57,13 @@
                 </div>
               </div>
 
-              <v-btn class="mt-6" large color="primary">Jetzt starten</v-btn>
+              <v-btn
+                @click="$vuetify.goTo('#pay-form')"
+                class="mt-6"
+                large
+                color="primary"
+                >Jetzt starten</v-btn
+              >
             </div>
           </v-col>
         </v-row>
@@ -113,7 +119,7 @@
         </v-row>
       </v-container>
     </v-content>
-    <v-content class="dark">
+    <v-content id="pay-form" class="dark">
       <v-container>
         <v-row justify="center">
           <v-col cols="12" sm="10" md="11" lg="9" xl="6">
