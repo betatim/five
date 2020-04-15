@@ -22,6 +22,7 @@
                 einmalig überprüfen lassen. Bis am 02. Oktober 2020 Ist das per
                 Video-Call möglich. Der Bund
                 <a
+                  class="link"
                   href="https://www.admin.ch/gov/de/start/dokumentation/medienmitteilungen.msg-id-78641.html"
                   target="_blank"
                   >setzte diese Ausnahmeregelung im Rahmen der COVID-19 Krise in
@@ -38,6 +39,14 @@
               <p>
                 VideoIdent.me wird von Skribble in Zusammenarbeit mit Swisscom
                 und IdentityTM angeboten.
+              </p>
+              <p>
+                <div class="intro__logos">
+                  <div class="intro__logo skribble-logo">
+                    <img src="/logo-skribble.svg" alt="Skribble logo" />
+                    <div>Skribble</div>
+                  </div>
+                </div>
               </p>
             </div>
           </v-col>
@@ -177,11 +186,11 @@
                   >
                     <p
                       v-if="stripePaymentErrorMsg !== ''"
-                      class="caption red--text "
+                      class="caption red--text"
                     >
                       {{ stripePaymentErrorMsg }}
                     </p>
-                    <p class="caption red--text ">
+                    <p class="caption red--text">
                       There was an error while processing your payment. Please
                       use a different payment method or try again later
                     </p>
@@ -378,11 +387,20 @@
                 </v-expansion-panel>
               </v-expansion-panels>
             </div>
-            <!-- Disclaimer -->
-            <div class="text-center my-10">
-              Built by Skribble <img src="/logo-skribble.svg" alt />
-            </div>
           </v-col>
+        </v-row>
+      </v-container>
+    </v-content>
+    <v-content>
+      <v-container>
+        <v-row justify="center">
+          <div class="footer text-center my-10">
+            Built by
+            <div class="skribble-logo mt-2">
+              <img src="/logo-skribble.svg" alt="Skribble logo" />
+              <div>Skribble</div>
+            </div>
+          </div>
         </v-row>
       </v-container>
     </v-content>
@@ -562,6 +580,15 @@ export default {
 @import ~/assets/sass/_vars
 @import ~/assets/sass/_mixins
 
+.skribble-logo
+  display: flex
+  align-items: center
+  font: bold 1.5rem/1 $averta
+  color: $c-skribbleu
+
+  img
+    margin-right: 2px
+
 .dark
   background-color: $c-skribbleu
   color: #fff
@@ -573,6 +600,17 @@ export default {
   margin-left: auto
   margin-right: auto
   max-width: 680px
+
+  &__logos
+    display: flex
+    align-items: center
+
+  &__logo
+    margin: 0 10px
+    &:first-child
+      margin-left: 0
+    &:last-child
+      margin-right: 0
 
 .steps
 
@@ -661,4 +699,11 @@ export default {
     &-content__wrap
       max-width: 700px
       padding-left: 0
+
+.footer
+  font-size: .8rem
+
+  .skribble-logo
+    font: bold 1.5rem/1 $averta
+    color: $c-skribbleu
 </style>
