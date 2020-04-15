@@ -20,14 +20,24 @@
               <p>
                 Um Mit QES signieren zu können, muss man seine Identität
                 einmalig überprüfen lassen. Bis am 02. Oktober 2020 Ist das per
-                Video-Call möglich. Der Bund setzte diese Ausnahmeregelung im
-                Rahmen der COVID-19 Krise in Kraft, um die Notwendigkeit für
-                persönlichen Kontakt zu reduzieren und der gestiegenen Nachfrage
-                für elektronisches Signieren nachzukommen.
-                <a href="#">Link to sources</a>
+                Video-Call möglich. Der Bund
+                <a
+                  href="https://www.admin.ch/gov/de/start/dokumentation/medienmitteilungen.msg-id-78641.html"
+                  target="_blank"
+                  >setzte diese Ausnahmeregelung im Rahmen der COVID-19 Krise in
+                  Kraft</a
+                >, um die Notwendigkeit für persönlichen Kontakt zu reduzieren
+                und der gestiegenen Nachfrage für elektronisches Signieren
+                nachzukommen.
               </p>
               <p>
-                <v-btn color="primary">Jetzt starten</v-btn>
+                Diese Verordnung gilt für den Rechtsraum Schweiz. Für das
+                Signieren nach EU-Gesetz kann die E-ID auch nach dieser
+                Zeitperiode weiter eingesetzt werden.
+              </p>
+              <p>
+                VideoIdent.me wird von Skribble in Zusammenarbeit mit Swisscom
+                und IdentityTM angeboten.
               </p>
             </div>
           </v-col>
@@ -36,7 +46,7 @@
           <v-col cols="12" xl="9">
             <div class="steps py-12">
               <div class="steps__heading text-center">
-                <h2 class="display-3 mb-6">Ready in only 3 steps</h2>
+                <h2 class="display-3 mb-6">In drei Schritten zur E-ID</h2>
                 <p class="headline">
                   Die Identitätsprüfung erfolgt online und dauert nur wenige
                   Minuten. Anschlissend wird die QES innert 30 Minuten für Sie
@@ -70,13 +80,13 @@
               </ol>
               <div class="steps__footer mt-12 text-center">
                 <p>
+                  Der Identifikationsservice ist täglich von 07.00 bis 22.00 Uhr
+                  verfügbar.
+                </p>
+                <p>
                   Bitte halten Sie Ihren Reisepass/ID, eine Kreditkarte und Ihr
                   Mobiltelefon bereit. Ihr Gerät muss über eine Webcam und ein
                   Mikrofon verfügen.
-                </p>
-                <p>
-                  Der Identifikationsservice ist täglich von 07.00 bis 22.00 Uhr
-                  verfügbar.
                 </p>
               </div>
             </div>
@@ -117,7 +127,7 @@
                     v-model="firstName"
                     :counter="20"
                     :rules="nameRules"
-                    label="First Name"
+                    label="Vorname"
                     required
                   ></v-text-field>
 
@@ -125,14 +135,14 @@
                     v-model="lastName"
                     :counter="20"
                     :rules="nameRules"
-                    label="Last Name"
+                    label="Nachname"
                     required
                   ></v-text-field>
 
                   <v-text-field
                     v-model="email"
                     :rules="emailRules"
-                    label="E-mail"
+                    label="E-Mail"
                     required
                   ></v-text-field>
 
@@ -147,7 +157,7 @@
                   <v-checkbox
                     v-model="checkbox"
                     :rules="[v => !!v || 'You must agree to continue!']"
-                    label="Do you agree?"
+                    label="Mit dem Bezahlen akzeptiere ich Skribbles Datenschutzrichtlinien."
                     required
                   ></v-checkbox>
                   <div class="text-center">
@@ -156,7 +166,7 @@
                       @click="pay"
                       :disabled="!(validForm && completeStripe)"
                     >
-                      Pay now
+                      Jetzt bezahlen
                     </v-btn>
                   </div>
 
@@ -219,128 +229,147 @@
       <v-container>
         <v-row justify="center">
           <v-col cols="12" sm="10" md="11" lg="9" xl="6">
-            <!-- FAQ -->
-            <v-expansion-panels class="my-10">
-              <v-expansion-panel>
-                <v-expansion-panel-header>
-                  Was passiert mit der E-ID nach dem 2. Oktober 2020?
-                </v-expansion-panel-header>
-                <v-expansion-panel-content> TODO:</v-expansion-panel-content>
-              </v-expansion-panel>
-
-              <v-expansion-panel>
-                <v-expansion-panel-header>
-                  Wo wird meine E-ID gespeichert?
-                </v-expansion-panel-header>
-                <v-expansion-panel-content>TODO: </v-expansion-panel-content>
-              </v-expansion-panel>
-
-              <v-expansion-panel>
-                <v-expansion-panel-header>
-                  Für was kann ich die E-ID alles nutzen?
-                </v-expansion-panel-header>
-                <v-expansion-panel-content>
-                  Die E-ID wird in erster Linie für das elektronische Signieren
-                  generiert. Falls Sie sich für andere Anwendungsfälle
-                  interessieren, kontaktieren Sie bitte Skribble.
-                </v-expansion-panel-content>
-              </v-expansion-panel>
-
-              <v-expansion-panel>
-                <v-expansion-panel-header>
-                  Wer führt die Video-Identifikation durch?
-                </v-expansion-panel-header>
-                <v-expansion-panel-content>
-                  Die Identifikation wird von Swisscom Trust Services angeboten
-                  und in Zusammenarbeit mit identity Trust Management AG
-                  durchgeführt.
-                </v-expansion-panel-content>
-              </v-expansion-panel>
-
-              <v-expansion-panel>
-                <v-expansion-panel-header>
-                  Ich bin nicht aus der Schweiz. Kann ich mich trotzdem
-                  identifizieren lassen?
-                </v-expansion-panel-header>
-                <v-expansion-panel-content
-                  >Ja, der Service steht für die meisten Nationalitäten zur
-                  Verfügung.
-                  <a
-                    href="http://documents.swisscom.com/product/filestore/lib/5705ba58-3fdb-446f-9e48-18a297b8d239/l%C3%A4nderliste%20f%C3%BCr%20die%20videoidentifikation-kurier-pos-en.pdf?idxme=pex-search"
-                    target="_blank"
-                    >Liste der akzeptierten Länder und Ausweisdokumente
-                    ansehen.</a
+            <div class="faq">
+              <!-- FAQ -->
+              <v-expansion-panels accordion flat multiple class="my-10">
+                <v-expansion-panel>
+                  <v-expansion-panel-header>
+                    Was passiert mit der E-ID nach dem 2. Oktober 2020?
+                  </v-expansion-panel-header>
+                  <v-expansion-panel-content>
+                    Die hier erstellt E-ID wird, nach heutigem Kenntnisstand,
+                    per 2. Oktober 2020 fürs Signieren nach Schweizer Gesetz
+                    (ZertES) deaktiviert werden müssen. Die E-ID kann jedoch
+                    weiterhin fürs Signieren nach europäischen Gesetzt (eIDAS)
+                    eingesetzt werden.</v-expansion-panel-content
                   >
-                </v-expansion-panel-content>
-              </v-expansion-panel>
+                </v-expansion-panel>
 
-              <v-expansion-panel>
-                <v-expansion-panel-header>
-                  Wie lange dauert, bis ich die E-ID für das Signieren einsetzen
-                  kann?
-                </v-expansion-panel-header>
-                <v-expansion-panel-content
-                  >Die QES wird nach maximal 30 Minuten nach der Identifikation
-                  auf Skribble und anderen Services, die auf Swisscom Signing
-                  Service beruhenden, freigeschaltet.
-                </v-expansion-panel-content>
-              </v-expansion-panel>
+                <v-expansion-panel>
+                  <v-expansion-panel-header>
+                    Wo wird meine E-ID gespeichert?
+                  </v-expansion-panel-header>
+                  <v-expansion-panel-content
+                    >Die E-ID wird nach höchsten Sicherheitsstandards,
+                    verschlüsselt in den Rechenzentren der Swisscom abgelegt.
+                    Die E-ID kann nur im Falle eines Rechtsfalls von den
+                    Sicherheitsleuten des Swisscom Signing Service im
+                    4-Augen-Prinzip entschlüsselt und den Behörden zur Verfügung
+                    gestellt werden.
+                  </v-expansion-panel-content>
+                </v-expansion-panel>
 
-              <v-expansion-panel>
-                <v-expansion-panel-header>
-                  Wie lange dauert die Video-Identifikation?
-                </v-expansion-panel-header>
-                <v-expansion-panel-content>
-                  Die Video-Identifikation dauert maximal TODO:XX Minuten.
-                </v-expansion-panel-content>
-              </v-expansion-panel>
+                <v-expansion-panel>
+                  <v-expansion-panel-header>
+                    Für was kann ich die E-ID alles nutzen?
+                  </v-expansion-panel-header>
+                  <v-expansion-panel-content>
+                    Die hier erstellte E-ID wird in erster Linie für das
+                    Signieren mit der Qualifizierten Elektronischen Signatur
+                    (QES) generiert. Falls Sie sich für andere Anwendungsfälle
+                    interessieren, kontaktieren Sie bitte Skribble.
+                  </v-expansion-panel-content>
+                </v-expansion-panel>
 
-              <v-expansion-panel>
-                <v-expansion-panel-header>
-                  In welcher Sprache kann ich die Video-Identifikation
-                  durchführen?
-                </v-expansion-panel-header>
-                <v-expansion-panel-content
-                  >Du kannst die Identifikation in Deutsch und Englisch
-                  durchführen.
-                </v-expansion-panel-content>
-              </v-expansion-panel>
+                <v-expansion-panel>
+                  <v-expansion-panel-header>
+                    Wer führt die Video-Identifikation durch?
+                  </v-expansion-panel-header>
+                  <v-expansion-panel-content>
+                    Die Identifikation wird von Swisscom Trust Services
+                    angeboten und in Zusammenarbeit mit identity Trust
+                    Management AG durchgeführt.
+                  </v-expansion-panel-content>
+                </v-expansion-panel>
 
-              <v-expansion-panel>
-                <v-expansion-panel-header
-                  >Was ist im Preis enthalten?
-                </v-expansion-panel-header>
-                <v-expansion-panel-content
-                  >Im Preis enthalten ist die Identifikation via Video, die
-                  anschliessend generierte elektronische Identität (E-ID). Nicht
-                  enthalten sind die Signaturen, die mit der E-ID gemacht
-                  werden.
-                </v-expansion-panel-content>
-              </v-expansion-panel>
+                <v-expansion-panel>
+                  <v-expansion-panel-header>
+                    Ich bin nicht aus der Schweiz. Kann ich mich trotzdem
+                    identifizieren lassen?
+                  </v-expansion-panel-header>
+                  <v-expansion-panel-content
+                    >Ja, der Service steht für die meisten Nationalitäten zur
+                    Verfügung.
+                    <a
+                      href="http://documents.swisscom.com/product/filestore/lib/5705ba58-3fdb-446f-9e48-18a297b8d239/l%C3%A4nderliste%20f%C3%BCr%20die%20videoidentifikation-kurier-pos-en.pdf?idxme=pex-search"
+                      target="_blank"
+                      >Liste der akzeptierten Länder und Ausweisdokumente
+                      ansehen.</a
+                    >
+                  </v-expansion-panel-content>
+                </v-expansion-panel>
 
-              <v-expansion-panel>
-                <v-expansion-panel-header>
-                  Für welche Signaturservices kann ich die E-ID einsetzen?
-                </v-expansion-panel-header>
-                <v-expansion-panel-content>
-                  Die E-ID kann für Skribble und andere Signaturservices
-                  eingesetzt werden, die auf Swisscom Signing Service
-                  beruhenden.
-                </v-expansion-panel-content>
-              </v-expansion-panel>
+                <v-expansion-panel>
+                  <v-expansion-panel-header>
+                    Wie lange dauert, bis ich die E-ID für das Signieren
+                    einsetzen kann?
+                  </v-expansion-panel-header>
+                  <v-expansion-panel-content
+                    >Die QES wird nach maximal 30 Minuten nach der
+                    Identifikation auf Skribble und anderen Services, die auf
+                    Swisscom Signing Service beruhenden, freigeschaltet.
+                  </v-expansion-panel-content>
+                </v-expansion-panel>
 
-              <v-expansion-panel>
-                <v-expansion-panel-header>
-                  Ist mein Signaturpasswort auf allen Signaturservices dasselbe?
-                </v-expansion-panel-header>
-                <v-expansion-panel-content
-                  >Ja. Ihr Passwort ist an Ihre E-ID geknüpft und kommt immer
-                  zum Zug, wenn sie mit einem Anbieter signieren, der auf dem
-                  Swisscom Signing Service beruht.
-                </v-expansion-panel-content>
-              </v-expansion-panel>
-            </v-expansion-panels>
+                <v-expansion-panel>
+                  <v-expansion-panel-header>
+                    Wie lange dauert die Video-Identifikation?
+                  </v-expansion-panel-header>
+                  <v-expansion-panel-content
+                    >Die Video-Identifikation dauert ca. 5 Minuten. Je nach
+                    Auslastung des Video-Identifikations-Team kann die Wartezeit
+                    bis zum Start der Videoidentifikation bis zu 2 Minuten
+                    betragen.
+                  </v-expansion-panel-content>
+                </v-expansion-panel>
 
+                <v-expansion-panel>
+                  <v-expansion-panel-header>
+                    In welcher Sprache kann ich die Video-Identifikation
+                    durchführen?
+                  </v-expansion-panel-header>
+                  <v-expansion-panel-content
+                    >Du kannst die Identifikation in Deutsch und Englisch
+                    durchführen.
+                  </v-expansion-panel-content>
+                </v-expansion-panel>
+
+                <v-expansion-panel>
+                  <v-expansion-panel-header
+                    >Was ist im Preis enthalten?
+                  </v-expansion-panel-header>
+                  <v-expansion-panel-content
+                    >Im Preis enthalten ist die Identifikation via Video, die
+                    anschliessend generierte elektronische Identität (E-ID).
+                    Nicht enthalten sind die Signaturen, die mit der E-ID
+                    gemacht werden.
+                  </v-expansion-panel-content>
+                </v-expansion-panel>
+
+                <v-expansion-panel>
+                  <v-expansion-panel-header>
+                    Für welche Signaturservices kann ich die E-ID einsetzen?
+                  </v-expansion-panel-header>
+                  <v-expansion-panel-content>
+                    Die E-ID kann für Skribble und andere Signaturservices
+                    eingesetzt werden, die auf Swisscom Signing Service
+                    beruhenden.
+                  </v-expansion-panel-content>
+                </v-expansion-panel>
+
+                <v-expansion-panel>
+                  <v-expansion-panel-header>
+                    Ist mein Signaturpasswort auf allen Signaturservices
+                    dasselbe?
+                  </v-expansion-panel-header>
+                  <v-expansion-panel-content
+                    >Ja. Ihr Passwort ist an Ihre E-ID geknüpft und kommt immer
+                    zum Zug, wenn sie mit einem Anbieter signieren, der auf dem
+                    Swisscom Signing Service beruht.
+                  </v-expansion-panel-content>
+                </v-expansion-panel>
+              </v-expansion-panels>
+            </div>
             <!-- Disclaimer -->
             <div class="text-center my-10">
               Built by Skribble <img src="/logo-skribble.svg" alt />
@@ -574,7 +603,6 @@ export default {
           h3:after
             content: '#{$i}'
 
-
     h3
       display: flex
       justify-content: space-between
@@ -606,4 +634,23 @@ export default {
     padding: 20px 0
     border-top: 1px solid #fff
     border-bottom: 1px solid #fff
+
+.faq
+
+  .theme--light.v-expansion-panels .v-expansion-panel
+    color: $c-text
+
+  .v-expansion-panel
+    border-bottom: 1px solid $c-border
+    &:first-child
+      border-top: 1px solid $c-border
+
+    &-header
+      padding: 16px 36px 16px 0
+      font: bold 1rem/1.4 $averta
+      color: $c-skribbleu
+
+    &-content__wrap
+      max-width: 700px
+      padding-left: 0
 </style>
