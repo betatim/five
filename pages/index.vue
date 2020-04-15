@@ -48,9 +48,7 @@
                 </div>
               </div>
 
-              <v-btn class="mt-6" large outlined color="primary"
-                >Jetzt starten</v-btn
-              >
+              <v-btn class="mt-6" large color="primary">Jetzt starten</v-btn>
             </div>
           </v-col>
         </v-row>
@@ -137,42 +135,47 @@
                 >
                   <v-text-field
                     v-model="firstName"
-                    :counter="20"
                     :rules="nameRules"
                     label="Vorname"
+                    autocomplete="given-name"
                     required
+                    outlined
                   ></v-text-field>
-
                   <v-text-field
                     v-model="lastName"
-                    :counter="20"
                     :rules="nameRules"
                     label="Nachname"
+                    autocomplete="family-name"
                     required
+                    outlined
                   ></v-text-field>
-
                   <v-text-field
                     v-model="email"
                     :rules="emailRules"
                     label="E-Mail"
+                    autocomplete="email"
                     required
+                    outlined
                   ></v-text-field>
 
                   <card
-                    class="stripe-card ma-4"
+                    class="stripe-card"
                     :class="{ complete: completeStripe }"
                     :stripe="stripe_pk"
                     :options="stripeOptions"
                     @change="completeStripe = $event.complete"
                   />
-
                   <v-checkbox
                     v-model="checkbox"
-                    :rules="[v => !!v || 'You must agree to continue!']"
+                    :rules="[
+                      v =>
+                        !!v ||
+                        'Sie müssen zustimmen, um den Prozess zu starten.',
+                    ]"
                     label="Mit dem Bezahlen akzeptiere ich Skribbles Datenschutzrichtlinien."
                     required
                   ></v-checkbox>
-                  <div class="text-center">
+                  <div class="text-center mt-6">
                     <v-btn
                       @click="pay"
                       large
@@ -444,8 +447,8 @@ export default {
         style: {
           base: {
             color: '#293D66',
-            fontSize: '18px',
-            fontFamily: 'Roboto',
+            fontSize: '20px',
+            fontFamily: 'Averta',
             fontSmoothing: 'antialiased',
             '::placeholder': {
               color: '#65728E',
@@ -457,13 +460,10 @@ export default {
       validForm: true,
       firstName: '',
       lastName: '',
-      nameRules: [
-        v => !!v || 'Name is required',
-        v => (v && v.length <= 10) || 'Names must be less than 10 characters',
-      ],
+      nameRules: [v => !!v || 'Name wird benötigt'],
       email: '',
       emailRules: [
-        v => !!v || 'E-mail is required',
+        v => !!v || 'E-mail wird benötigt',
         v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
       ],
       checkbox: false,
@@ -675,6 +675,11 @@ export default {
 
 .pay
 
+  .stripe-card
+    padding: 15px 8px
+    border: 1px solid rgba(0,0,0,.38)
+    border-radius: 4px
+
   &__heading
     margin-left: auto
     margin-right: auto
@@ -683,7 +688,7 @@ export default {
   &__tag
     margin-left: auto
     margin-right: auto
-    max-width: 680px
+    max-width: 580px
     padding: 20px 0
     border-top: 1px solid #fff
     border-bottom: 1px solid #fff
@@ -691,7 +696,7 @@ export default {
   &__form.v-card
     margin-left: auto
     margin-right: auto
-    max-width: 680px
+    max-width: 580px
 
 .faq
 
