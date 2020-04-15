@@ -5,7 +5,7 @@
         <script src="https://js.stripe.com/v3/" />
         <v-row justify="center">
           <v-col cols="12" sm="10" md="11" lg="9" xl="6">
-            <div class="intro py-12">
+            <div class="intro py-12 my-12">
               <!-- Intro -->
               <h1 class="display-4 mb-6">
                 Video-Identifikation für elektronisches Signieren mit höchster
@@ -41,14 +41,14 @@
                 und IdentityTM angeboten.
               </p>
 
-              <div class="intro__logos">
+              <div class="intro__logos my-6">
                 <div class="intro__logo skribble-logo">
                   <img src="/logo-skribble.svg" alt="Skribble logo" />
                   <div>Skribble</div>
                 </div>
               </div>
 
-              <v-btn class="mt-12" large outlined color="primary"
+              <v-btn class="mt-6" large outlined color="primary"
                 >Jetzt starten</v-btn
               >
             </div>
@@ -56,7 +56,7 @@
         </v-row>
         <v-row justify="center">
           <v-col cols="12" xl="9">
-            <div class="steps py-12">
+            <div class="steps py-12 my-12">
               <div class="steps__heading text-center">
                 <h2 class="display-3 mb-6">In drei Schritten zur E-ID</h2>
                 <p class="headline">
@@ -110,7 +110,7 @@
       <v-container>
         <v-row justify="center">
           <v-col cols="12" sm="10" md="11" lg="9" xl="6">
-            <div class="pay py-12">
+            <div class="pay py-12 my-12">
               <div class="pay__heading text-center">
                 <h2 class="display-3 mb-6">Mit Kreditkarte bezahlen</h2>
                 <p class="headline">
@@ -251,7 +251,7 @@
       <v-container>
         <v-row justify="center">
           <v-col cols="12" sm="10" md="11" lg="9" xl="6">
-            <div class="faq py-12">
+            <div class="faq py-12 my-12">
               <!-- FAQ -->
               <h2 class="display-3 mb-6 text-center">FAQ</h2>
               <v-expansion-panels accordion flat multiple class="my-10">
@@ -314,6 +314,7 @@
                     >Ja, der Service steht für die meisten Nationalitäten zur
                     Verfügung.
                     <a
+                      class="link"
                       href="http://documents.swisscom.com/product/filestore/lib/5705ba58-3fdb-446f-9e48-18a297b8d239/l%C3%A4nderliste%20f%C3%BCr%20die%20videoidentifikation-kurier-pos-en.pdf?idxme=pex-search"
                       target="_blank"
                       >Liste der akzeptierten Länder und Ausweisdokumente
