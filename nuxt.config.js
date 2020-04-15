@@ -68,7 +68,9 @@ export default {
    */
   vuetify: {
     customVariables: ['~/assets/variables.sass'],
-    defaultAssets: false,
+    defaultAssets: {
+      icons: 'mdi',
+    },
     treeShake: true,
     theme: {
       dark: false,
