@@ -171,13 +171,21 @@
                   </div>
 
                   <!-- Error during payment -->
-                  <p
+                  <div
+                    class="text-center mt-4"
                     v-if="status === 'error-during-payment'"
-                    class="caption red--text mt-3"
                   >
-                    There was an error while processing your payment. Please use
-                    a different payment method or try again later
-                  </p>
+                    <p
+                      v-if="stripePaymentErrorMsg !== ''"
+                      class="caption red--text "
+                    >
+                      {{ stripePaymentErrorMsg }}
+                    </p>
+                    <p class="caption red--text ">
+                      There was an error while processing your payment. Please
+                      use a different payment method or try again later
+                    </p>
+                  </div>
                 </v-form>
 
                 <!-- Error after payment -->
@@ -438,7 +446,7 @@ export default {
 
       paymentIntentID: '',
       identURL: '',
-      paymentErrorMessage: '',
+      stripePaymentErrorMsg: '',
     }
   },
 
@@ -446,7 +454,7 @@ export default {
   methods: {
     pay() {
       this.status = 'processing'
-      this.paymentErrorMessage = ''
+      this.stripePaymentErrorMsg = ''
 
       // Async functions must be defined as arrow function so we can still scope Vue's "this"
 
@@ -482,7 +490,7 @@ export default {
           this.paymentIntentID = response.paymentIntent.id.replace('pi_', '')
         } catch (error) {
           this.status = 'error-during-payment'
-          this.paymentErrorMessage = error.message
+          this.stripePaymentErrorMsg = error.message
           throw error
         }
       }
