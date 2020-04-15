@@ -46,6 +46,15 @@
                   <img src="/logo-skribble.svg" alt="Skribble logo" />
                   <div>Skribble</div>
                 </div>
+                <div class="intro__logo identity-logo">
+                  <img src="/identity-tm.png" alt="Identity.tm logo" />
+                </div>
+                <div class="intro__logo swisscom-logo">
+                  <img
+                    src="/swisscom-trust-services.png"
+                    alt="Swisscom Trust Services logo"
+                  />
+                </div>
               </div>
 
               <v-btn class="mt-6" large color="primary">Jetzt starten</v-btn>
@@ -596,6 +605,14 @@ export default {
   img
     margin-right: 2px
 
+.identity-logo img
+  width: 180px
+  max-width: 100%
+
+.swisscom-logo img
+  width: 242px
+  max-width: 100%
+
 .dark
   background-color: $c-skribbleu
   color: #fff
@@ -611,13 +628,19 @@ export default {
   &__logos
     display: flex
     align-items: center
+    +media(sm-and-down)
+      flex-direction: column
+      align-items: flex-start
 
   &__logo
-    margin: 0 10px
-    &:first-child
-      margin-left: 0
-    &:last-child
-      margin-right: 0
+    margin: 0 20px
+    +media(sm-and-down)
+      margin: 10px
+    +media(md-and-up)
+      &:first-child
+        margin-left: 0
+      &:last-child
+        margin-right: 0
 
 .steps
 
