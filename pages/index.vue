@@ -40,14 +40,17 @@
                 VideoIdent.me wird von Skribble in Zusammenarbeit mit Swisscom
                 und IdentityTM angeboten.
               </p>
-              <p>
-                <div class="intro__logos">
-                  <div class="intro__logo skribble-logo">
-                    <img src="/logo-skribble.svg" alt="Skribble logo" />
-                    <div>Skribble</div>
-                  </div>
+
+              <div class="intro__logos">
+                <div class="intro__logo skribble-logo">
+                  <img src="/logo-skribble.svg" alt="Skribble logo" />
+                  <div>Skribble</div>
                 </div>
-              </p>
+              </div>
+
+              <v-btn class="mt-12" large outlined color="primary"
+                >Jetzt starten</v-btn
+              >
             </div>
           </v-col>
         </v-row>
@@ -107,7 +110,7 @@
       <v-container>
         <v-row justify="center">
           <v-col cols="12" sm="10" md="11" lg="9" xl="6">
-            <div class="pay">
+            <div class="pay py-12">
               <div class="pay__heading text-center">
                 <h2 class="display-3 mb-6">Mit Kreditkarte bezahlen</h2>
                 <p class="headline">
@@ -117,13 +120,13 @@
                   identifizieren können.
                 </p>
               </div>
-              <div class="pay__tag text-center">
+              <div class="pay__tag text-center mt-12">
                 <strong>Sie profitieren vom Einstiegspreis von CHF 15.-</strong
                 ><br />
                 (regulärer Preis: 25.-)
               </div>
               <!-- Form -->
-              <v-card class="mx-auto pa-4 my-10" max-width="600" outlined>
+              <v-card class="pay__form pa-4 my-12" outlined>
                 <v-form
                   v-show="
                     status === 'start' || status === 'error-during-payment'
@@ -171,8 +174,10 @@
                   ></v-checkbox>
                   <div class="text-center">
                     <v-btn
-                      class="pay-with-stripe"
                       @click="pay"
+                      large
+                      class="pay-with-stripe"
+                      color="primary"
                       :disabled="!(validForm && completeStripe)"
                     >
                       Jetzt bezahlen
@@ -246,8 +251,9 @@
       <v-container>
         <v-row justify="center">
           <v-col cols="12" sm="10" md="11" lg="9" xl="6">
-            <div class="faq">
+            <div class="faq py-12">
               <!-- FAQ -->
+              <h2 class="display-3 mb-6 text-center">FAQ</h2>
               <v-expansion-panels accordion flat multiple class="my-10">
                 <v-expansion-panel>
                   <v-expansion-panel-header>
@@ -680,6 +686,11 @@ export default {
     padding: 20px 0
     border-top: 1px solid #fff
     border-bottom: 1px solid #fff
+
+  &__form.v-card
+    margin-left: auto
+    margin-right: auto
+    max-width: 680px
 
 .faq
 

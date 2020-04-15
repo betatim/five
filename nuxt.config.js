@@ -68,6 +68,7 @@ export default {
    */
   vuetify: {
     customVariables: ['~/assets/variables.sass'],
+    defaultAssets: false,
     treeShake: true,
     theme: {
       dark: false,

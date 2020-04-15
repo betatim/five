@@ -24,8 +24,21 @@
 .headline
   color: $c-skribbleu
 
-.v-application .link
-  color: $c-text
-  text-decoration: underline
-  &:hover
-    color: $c-primary
+.v-application 
+  .link
+    color: $c-text
+    text-decoration: underline
+    &:hover
+      color: $c-primary
+
+  .v-btn
+    &:not(.v-btn--round).v-size--large
+      min-width: 9rem
+      height: 3.2rem
+      font-size: 1rem
+      font-weight: bold
+      text-transform: none
+      letter-spacing: .4px
+
+    &--outlined.v-btn
+      border: 3px solid currentColor
