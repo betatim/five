@@ -5,13 +5,25 @@
         <script src="https://js.stripe.com/v3/" />
         <v-row justify="center">
           <v-col cols="12" sm="10" md="11" lg="9" xl="6">
-            <div class="intro py-12 my-12">
+            <div class="intro py-md-12 my-sm-4 my-md-12">
               <!-- Intro -->
-              <h1 class="display-4 mb-6">
+              <h1
+                :class="[
+                  { 'display-1': $vuetify.breakpoint.smAndDown },
+                  { 'display-4': $vuetify.breakpoint.mdAndUp },
+                  'mb-6',
+                ]"
+              >
                 Video-Identifikation für elektronisches Signieren mit höchster
                 Beweiskraft
               </h1>
-              <p class="headline mb-6">
+              <p
+                :class="[
+                  { 'font-weight-bold': $vuetify.breakpoint.smAndDown },
+                  { headline: $vuetify.breakpoint.mdAndUp },
+                  'mb-6',
+                ]"
+              >
                 Erstellen Sie sich in wenigen Minuten eine E-ID, die das
                 Signieren mit der qualifizierten elektronischen Signatur (QES)
                 erlaubt. Die QES ist der höchste Signaturstandard und der
@@ -69,16 +81,34 @@
         </v-row>
         <v-row justify="center">
           <v-col cols="12" xl="9">
-            <div class="steps py-12 my-12">
-              <div class="steps__heading text-center">
-                <h2 class="display-3 mb-6">In drei Schritten zur E-ID</h2>
-                <p class="headline">
+            <div class="steps py-2 py-md-12 my-2 my-md-12">
+              <div
+                :class="[
+                  { 'text-center': $vuetify.breakpoint.smAndUp },
+                  'steps__heading',
+                ]"
+              >
+                <h2
+                  :class="[
+                    { 'display-1': $vuetify.breakpoint.smAndDown },
+                    { 'display-3': $vuetify.breakpoint.mdAndUp },
+                    'mb-6',
+                  ]"
+                >
+                  In drei Schritten zur E-ID
+                </h2>
+                <p
+                  :class="[
+                    { 'font-weight-bold': $vuetify.breakpoint.smAndDown },
+                    { headline: $vuetify.breakpoint.mdAndUp },
+                  ]"
+                >
                   Die Identitätsprüfung erfolgt online und dauert nur wenige
                   Minuten. Anschlissend wird die QES innert 30 Minuten für Sie
                   auf Skribble.com freigeschaltet.
                 </p>
               </div>
-              <ol class="steps__list mt-12">
+              <ol class="steps__list mt-12 pa-0">
                 <li>
                   <h3 class="headline">Mit Kreditkarte bezahlen</h3>
                   <p>
@@ -123,10 +153,28 @@
       <v-container>
         <v-row justify="center">
           <v-col cols="12" sm="10" md="11" lg="9" xl="6">
-            <div class="pay py-12 my-12">
-              <div class="pay__heading text-center">
-                <h2 class="display-3 mb-6">Mit Kreditkarte bezahlen</h2>
-                <p class="headline">
+            <div class="pay py-2 py-md-12 my-2 my-md-12">
+              <div
+                :class="[
+                  { 'text-center': $vuetify.breakpoint.smAndUp },
+                  'pay__heading',
+                ]"
+              >
+                <h2
+                  :class="[
+                    { 'display-1': $vuetify.breakpoint.smAndDown },
+                    { 'display-3': $vuetify.breakpoint.mdAndUp },
+                    'mb-6',
+                  ]"
+                >
+                  Mit Kreditkarte bezahlen
+                </h2>
+                <p
+                  :class="[
+                    { 'font-weight-bold': $vuetify.breakpoint.smAndDown },
+                    { headline: $vuetify.breakpoint.mdAndUp },
+                  ]"
+                >
                   Nach dem Bezahlvorgang werden sie an unseren
                   Identifikationspartner weitergeleitet, bei dem Sie sich im
                   Auftrag von Swisscom Trust Services via Video-Call
@@ -269,7 +317,7 @@
       <v-container>
         <v-row justify="center">
           <v-col cols="12" sm="10" md="11" lg="9" xl="6">
-            <div class="faq py-12 my-12">
+            <div class="faq py-2 py-md-12 my-2 my-md-12">
               <!-- FAQ -->
               <h2 class="display-3 mb-6 text-center">FAQ</h2>
               <v-expansion-panels accordion flat multiple class="my-10">
@@ -623,8 +671,9 @@ export default {
   background-color: $c-skribbleu
   color: #fff
 
-  h1, h2, h3, p
-    color: #fff
+  h1, h2, h3, h4, h5, p
+    &, &.font-weight-bold
+      color: #fff
 
 .intro
   margin-left: auto
