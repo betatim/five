@@ -5,7 +5,7 @@
         <script src="https://js.stripe.com/v3/" />
         <v-row justify="center">
           <v-col cols="12" sm="10" md="11" lg="9" xl="6">
-            <div class="intro py-12">
+            <div class="intro py-12 my-12">
               <!-- Intro -->
               <h1 class="display-4 mb-6">
                 Video-Identifikation für elektronisches Signieren mit höchster
@@ -22,6 +22,7 @@
                 einmalig überprüfen lassen. Bis am 02. Oktober 2020 Ist das per
                 Video-Call möglich. Der Bund
                 <a
+                  class="link"
                   href="https://www.admin.ch/gov/de/start/dokumentation/medienmitteilungen.msg-id-78641.html"
                   target="_blank"
                   >setzte diese Ausnahmeregelung im Rahmen der COVID-19 Krise in
@@ -39,12 +40,23 @@
                 VideoIdent.me wird von Skribble in Zusammenarbeit mit Swisscom
                 und IdentityTM angeboten.
               </p>
+
+              <div class="intro__logos my-6">
+                <div class="intro__logo skribble-logo">
+                  <img src="/logo-skribble.svg" alt="Skribble logo" />
+                  <div>Skribble</div>
+                </div>
+              </div>
+
+              <v-btn class="mt-6" large outlined color="primary"
+                >Jetzt starten</v-btn
+              >
             </div>
           </v-col>
         </v-row>
         <v-row justify="center">
           <v-col cols="12" xl="9">
-            <div class="steps py-12">
+            <div class="steps py-12 my-12">
               <div class="steps__heading text-center">
                 <h2 class="display-3 mb-6">In drei Schritten zur E-ID</h2>
                 <p class="headline">
@@ -98,7 +110,7 @@
       <v-container>
         <v-row justify="center">
           <v-col cols="12" sm="10" md="11" lg="9" xl="6">
-            <div class="pay">
+            <div class="pay py-12 my-12">
               <div class="pay__heading text-center">
                 <h2 class="display-3 mb-6">Mit Kreditkarte bezahlen</h2>
                 <p class="headline">
@@ -108,13 +120,13 @@
                   identifizieren können.
                 </p>
               </div>
-              <div class="pay__tag text-center">
+              <div class="pay__tag text-center mt-12">
                 <strong>Sie profitieren vom Einstiegspreis von CHF 15.-</strong
                 ><br />
                 (regulärer Preis: 25.-)
               </div>
               <!-- Form -->
-              <v-card class="mx-auto pa-4 my-10" max-width="600" outlined>
+              <v-card class="pay__form pa-4 my-12" outlined>
                 <v-form
                   v-show="
                     status === 'start' || status === 'error-during-payment'
@@ -162,8 +174,10 @@
                   ></v-checkbox>
                   <div class="text-center">
                     <v-btn
-                      class="pay-with-stripe"
                       @click="pay"
+                      large
+                      class="pay-with-stripe"
+                      color="primary"
                       :disabled="!(validForm && completeStripe)"
                     >
                       Jetzt bezahlen
@@ -177,11 +191,11 @@
                   >
                     <p
                       v-if="stripePaymentErrorMsg !== ''"
-                      class="caption red--text "
+                      class="caption red--text"
                     >
                       {{ stripePaymentErrorMsg }}
                     </p>
-                    <p class="caption red--text ">
+                    <p class="caption red--text">
                       There was an error while processing your payment. Please
                       use a different payment method or try again later
                     </p>
@@ -237,8 +251,9 @@
       <v-container>
         <v-row justify="center">
           <v-col cols="12" sm="10" md="11" lg="9" xl="6">
-            <div class="faq">
+            <div class="faq py-12 my-12">
               <!-- FAQ -->
+              <h2 class="display-3 mb-6 text-center">FAQ</h2>
               <v-expansion-panels accordion flat multiple class="my-10">
                 <v-expansion-panel>
                   <v-expansion-panel-header>
@@ -299,6 +314,7 @@
                     >Ja, der Service steht für die meisten Nationalitäten zur
                     Verfügung.
                     <a
+                      class="link"
                       href="http://documents.swisscom.com/product/filestore/lib/5705ba58-3fdb-446f-9e48-18a297b8d239/l%C3%A4nderliste%20f%C3%BCr%20die%20videoidentifikation-kurier-pos-en.pdf?idxme=pex-search"
                       target="_blank"
                       >Liste der akzeptierten Länder und Ausweisdokumente
@@ -378,11 +394,20 @@
                 </v-expansion-panel>
               </v-expansion-panels>
             </div>
-            <!-- Disclaimer -->
-            <div class="text-center my-10">
-              Built by Skribble <img src="/logo-skribble.svg" alt />
-            </div>
           </v-col>
+        </v-row>
+      </v-container>
+    </v-content>
+    <v-content>
+      <v-container>
+        <v-row justify="center">
+          <div class="footer text-center my-10">
+            Built by
+            <div class="skribble-logo mt-2">
+              <img src="/logo-skribble.svg" alt="Skribble logo" />
+              <div>Skribble</div>
+            </div>
+          </div>
         </v-row>
       </v-container>
     </v-content>
@@ -562,6 +587,15 @@ export default {
 @import ~/assets/sass/_vars
 @import ~/assets/sass/_mixins
 
+.skribble-logo
+  display: flex
+  align-items: center
+  font: bold 1.5rem/1 $averta
+  color: $c-skribbleu
+
+  img
+    margin-right: 2px
+
 .dark
   background-color: $c-skribbleu
   color: #fff
@@ -573,6 +607,17 @@ export default {
   margin-left: auto
   margin-right: auto
   max-width: 680px
+
+  &__logos
+    display: flex
+    align-items: center
+
+  &__logo
+    margin: 0 10px
+    &:first-child
+      margin-left: 0
+    &:last-child
+      margin-right: 0
 
 .steps
 
@@ -643,6 +688,11 @@ export default {
     border-top: 1px solid #fff
     border-bottom: 1px solid #fff
 
+  &__form.v-card
+    margin-left: auto
+    margin-right: auto
+    max-width: 680px
+
 .faq
 
   .theme--light.v-expansion-panels .v-expansion-panel
@@ -661,4 +711,11 @@ export default {
     &-content__wrap
       max-width: 700px
       padding-left: 0
+
+.footer
+  font-size: .8rem
+
+  .skribble-logo
+    font: bold 1.5rem/1 $averta
+    color: $c-skribbleu
 </style>
