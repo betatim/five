@@ -184,15 +184,11 @@
               </p>
             </div>
             <div class="pay__tag text-center mt-12 white--text">
-              <strong>Sie profitieren vom Einstiegspreis von CHF 15.-</strong
+              <strong
+                >Sie profitieren für begrenzte Zeit vom Vorzugspreis von CHF
+                19.-</strong
               ><br />
               (regulärer Preis: 25.-)
-            </div>
-            <div class="text-center mt-6">
-              <v-btn @click="status = 'start'">start</v-btn>
-              <v-btn @click="status = 'processing'">processing</v-btn>
-              <v-btn @click="status = 'error-after-payment'">error</v-btn>
-              <v-btn @click="status = 'paid'">paid</v-btn>
             </div>
             <!-- Form -->
             <div class="pay__flex">
@@ -716,7 +712,7 @@ export default {
     margin-right: 2px
 
 .identity-logo img
-  width: 180px
+  width: 150px
   max-width: 100%
 
 .swisscom-logo img
@@ -817,7 +813,7 @@ export default {
   &__tag
     margin-left: auto
     margin-right: auto
-    max-width: 580px
+    max-width: 600px
     padding: 20px 0
     border-top: 1px solid #fff
     border-bottom: 1px solid #fff
