@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-content>
-      <v-container>
+      <v-container class="px-6 px-md-4">
         <script src="https://js.stripe.com/v3/" />
         <v-row justify="center">
           <v-col cols="12" sm="10" md="11" lg="9" xl="6">
@@ -79,6 +79,8 @@
             </div>
           </v-col>
         </v-row>
+      </v-container>
+      <v-container class="px-6 px-md-4">
         <v-row justify="center">
           <v-col cols="12" xl="9">
             <div class="steps py-2 py-md-12 my-2 my-md-12">
@@ -148,233 +150,229 @@
           </v-col>
         </v-row>
       </v-container>
-    </v-content>
-    <v-content id="pay-form" class="dark">
-      <v-container>
-        <v-row justify="center">
-          <v-col cols="12" sm="10" md="11" lg="9" xl="6">
-            <div class="pay py-2 py-md-12 my-2 my-md-12">
-              <div
+
+      <v-row id="pay-form" class="dark mx-0" justify="center">
+        <v-col cols="12" sm="10" md="11" lg="9" xl="6">
+          <div class="pay py-2 px-5 py-md-12 px-md-0 my-2 my-md-12">
+            <div
+              :class="[
+                { 'text-center': $vuetify.breakpoint.smAndUp },
+                'pay__heading',
+              ]"
+            >
+              <h2
                 :class="[
-                  { 'text-center': $vuetify.breakpoint.smAndUp },
-                  'pay__heading',
+                  { 'display-1': $vuetify.breakpoint.smAndDown },
+                  { 'display-3': $vuetify.breakpoint.mdAndUp },
+                  'mb-6',
+                  'white--text',
                 ]"
               >
-                <h2
-                  :class="[
-                    { 'display-1': $vuetify.breakpoint.smAndDown },
-                    { 'display-3': $vuetify.breakpoint.mdAndUp },
-                    'mb-6',
-                    'white--text',
-                  ]"
-                >
-                  Mit Kreditkarte bezahlen
-                </h2>
-                <p
-                  :class="[
-                    { 'font-weight-bold': $vuetify.breakpoint.smAndDown },
-                    { headline: $vuetify.breakpoint.mdAndUp },
-                    'white--text',
-                  ]"
-                >
-                  Nach dem Bezahlvorgang werden sie an unseren
-                  Identifikationspartner weitergeleitet, bei dem Sie sich im
-                  Auftrag von Swisscom Trust Services via Video-Call
-                  identifizieren können.
-                </p>
-              </div>
-              <div class="pay__tag text-center mt-12 white--text">
-                <strong>Sie profitieren vom Einstiegspreis von CHF 15.-</strong
-                ><br />
-                (regulärer Preis: 25.-)
-              </div>
-              <div class="text-center mt-6">
-                <v-btn @click="status = 'start'">start</v-btn>
-                <v-btn @click="status = 'processing'">processing</v-btn>
-                <v-btn @click="status = 'error-after-payment'">error</v-btn>
-                <v-btn @click="status = 'paid'">paid</v-btn>
-              </div>
-              <!-- Form -->
-              <div class="pay__flex">
-                <v-card class="pay__card pa-6 my-12" outlined>
-                  <v-expand-transition>
-                    <div
-                      v-show="
-                        status === 'start' || status === 'error-during-payment'
-                      "
-                      class="pay__form"
-                    >
-                      <v-form
-                        ref="form"
-                        v-model="validForm"
-                        :lazy-validation="lazy"
-                      >
-                        <v-text-field
-                          v-model="firstName"
-                          :rules="nameRules"
-                          label="Vorname"
-                          autocomplete="given-name"
-                          required
-                          outlined
-                        ></v-text-field>
-                        <v-text-field
-                          v-model="lastName"
-                          :rules="nameRules"
-                          label="Nachname"
-                          autocomplete="family-name"
-                          required
-                          outlined
-                        ></v-text-field>
-                        <v-text-field
-                          v-model="email"
-                          :rules="emailRules"
-                          label="E-Mail"
-                          autocomplete="email"
-                          required
-                          outlined
-                        ></v-text-field>
-
-                        <card
-                          class="stripe-card"
-                          :class="{ complete: completeStripe }"
-                          :stripe="stripe_pk"
-                          :options="stripeOptions"
-                          @change="completeStripe = $event.complete"
-                        />
-                        <v-checkbox
-                          class="pay__consent mt-8 mx-auto"
-                          v-model="checkbox"
-                          :rules="[
-                            v =>
-                              !!v ||
-                              'Sie müssen zustimmen, um den Prozess zu starten.',
-                          ]"
-                          required
-                        >
-                          <template v-slot:label>
-                            <div class="pay__consent-label">
-                              Mit dem Bezahlen akzeptiere ich Skribbles
-                              <a
-                                @click.stop
-                                class="link"
-                                href="https://www.skribble.com/de/datenschutz/"
-                                target="_blank"
-                                >Datenschutzrichtlinien</a
-                              >.
-                            </div>
-                          </template>
-                        </v-checkbox>
-                        <div class="text-center mt-6">
-                          <v-btn
-                            @click="pay"
-                            large
-                            class="pay-with-stripe"
-                            color="primary"
-                            :disabled="!(validForm && completeStripe)"
-                          >
-                            Jetzt bezahlen
-                          </v-btn>
-                        </div>
-
-                        <!-- Error during payment -->
-                        <div
-                          class="text-center mt-4"
-                          v-if="status === 'error-during-payment'"
-                        >
-                          <p
-                            v-if="stripePaymentErrorMsg !== ''"
-                            class="caption red--text"
-                          >
-                            {{ stripePaymentErrorMsg }}
-                          </p>
-                          <p class="caption red--text">
-                            Es ist ein Fehler beim Bezahlen aufgetreten. Bitte
-                            verwenden Sie ein anderes Zahlungsmittel oder
-                            versuchen Sie es später erneut.
-                          </p>
-                        </div>
-                      </v-form>
-                    </div>
-                  </v-expand-transition>
-
-                  <!-- Error after payment -->
-                  <div
-                    v-if="status === 'error-after-payment'"
-                    class="pay__error text--text text-center"
-                  >
-                    <p>
-                      Die Zahlung war erfolgreich, aber wir konnten keinen
-                      Identifikationsprozess erstellen. Klicken Sie auf Erneut
-                      senden, um es nochmals zu versuchen.
-                    </p>
-                    <p>
-                      Ihre Karte wird nicht nochmals belastet.
-                    </p>
-                    <div class="mt-10 text-center">
-                      <v-btn large color="primary" @click="reSubmit">
-                        Erneut senden
-                      </v-btn>
-                    </div>
-                  </div>
-
-                  <!-- Spinner Overlay -->
-                  <v-expand-transition>
-                    <div v-show="status === 'processing'" class="text-center">
-                      <v-progress-circular
-                        indeterminate
-                        color="primary"
-                      ></v-progress-circular>
-                    </div>
-                  </v-expand-transition>
-
-                  <!-- Success -->
-                  <v-expand-transition>
-                    <div
-                      v-show="status === 'paid'"
-                      class="pay__success pa-4 text--text text-center"
-                    >
-                      <h2
-                        :class="[
-                          { 'display-1': $vuetify.breakpoint.smAndDown },
-                          { 'display-3': $vuetify.breakpoint.mdAndUp },
-                          'mb-6',
-                        ]"
-                      >
-                        Zahlung erfolgreich!
-                      </h2>
-                      <p>
-                        Die Bestätigung finden Sie in Ihrem E-Mail-Briefkasten.
-                      </p>
-                      <p class="font-weight-bold">
-                        Sie können nun mit der Video-Identifikation fortfahren.
-                      </p>
-                      <p>
-                        <a
-                          class="pay__link my-6"
-                          :href="identURL"
-                          target="_blank"
-                          >{{ identURL }}</a
-                        >
-                      </p>
-                      <p class="caption mb-0">
-                        Sie werden zum Portal unseres Identifikations-Partners
-                        weitergeleitet, bei dem Sie sich im Auftrag der Swisscom
-                        Trust Services identifizieren können. Ihre hierfür
-                        erhobenen Personendaten werden ausschliesslich für die
-                        ordnungsgemässe Identifizierung im Rahmen der
-                        elektronischen Signatur verwendet.
-                      </p>
-                    </div>
-                  </v-expand-transition>
-                </v-card>
-              </div>
+                Mit Kreditkarte bezahlen
+              </h2>
+              <p
+                :class="[
+                  { 'font-weight-bold': $vuetify.breakpoint.smAndDown },
+                  { headline: $vuetify.breakpoint.mdAndUp },
+                  'white--text',
+                ]"
+              >
+                Nach dem Bezahlvorgang werden sie an unseren
+                Identifikationspartner weitergeleitet, bei dem Sie sich im
+                Auftrag von Swisscom Trust Services via Video-Call
+                identifizieren können.
+              </p>
             </div>
-          </v-col>
-        </v-row>
-      </v-container>
-    </v-content>
-    <v-content>
-      <v-container>
+            <div class="pay__tag text-center mt-12 white--text">
+              <strong>Sie profitieren vom Einstiegspreis von CHF 15.-</strong
+              ><br />
+              (regulärer Preis: 25.-)
+            </div>
+            <div class="text-center mt-6">
+              <v-btn @click="status = 'start'">start</v-btn>
+              <v-btn @click="status = 'processing'">processing</v-btn>
+              <v-btn @click="status = 'error-after-payment'">error</v-btn>
+              <v-btn @click="status = 'paid'">paid</v-btn>
+            </div>
+            <!-- Form -->
+            <div class="pay__flex">
+              <v-card class="pay__card pa-6 my-12" outlined>
+                <v-expand-transition>
+                  <div
+                    v-show="
+                      status === 'start' || status === 'error-during-payment'
+                    "
+                    class="pay__form"
+                  >
+                    <v-form
+                      ref="form"
+                      v-model="validForm"
+                      :lazy-validation="lazy"
+                    >
+                      <v-text-field
+                        v-model="firstName"
+                        :rules="nameRules"
+                        label="Vorname"
+                        autocomplete="given-name"
+                        required
+                        outlined
+                      ></v-text-field>
+                      <v-text-field
+                        v-model="lastName"
+                        :rules="nameRules"
+                        label="Nachname"
+                        autocomplete="family-name"
+                        required
+                        outlined
+                      ></v-text-field>
+                      <v-text-field
+                        v-model="email"
+                        :rules="emailRules"
+                        label="E-Mail"
+                        autocomplete="email"
+                        required
+                        outlined
+                      ></v-text-field>
+
+                      <card
+                        class="stripe-card"
+                        :class="{ complete: completeStripe }"
+                        :stripe="stripe_pk"
+                        :options="stripeOptions"
+                        @change="completeStripe = $event.complete"
+                      />
+                      <v-checkbox
+                        class="pay__consent mt-8 mx-auto"
+                        v-model="checkbox"
+                        :rules="[
+                          v =>
+                            !!v ||
+                            'Sie müssen zustimmen, um den Prozess zu starten.',
+                        ]"
+                        required
+                      >
+                        <template v-slot:label>
+                          <div class="pay__consent-label">
+                            Mit dem Bezahlen akzeptiere ich Skribbles
+                            <a
+                              @click.stop
+                              class="link"
+                              href="https://www.skribble.com/de/datenschutz/"
+                              target="_blank"
+                              >Datenschutzrichtlinien</a
+                            >.
+                          </div>
+                        </template>
+                      </v-checkbox>
+                      <div class="text-center mt-6">
+                        <v-btn
+                          @click="pay"
+                          large
+                          class="pay-with-stripe"
+                          color="primary"
+                        >
+                          <!-- :disabled="!(validForm && completeStripe)" -->
+                          Jetzt bezahlen
+                        </v-btn>
+                      </div>
+
+                      <!-- Error during payment -->
+                      <div
+                        class="text-center mt-4"
+                        v-if="status === 'error-during-payment'"
+                      >
+                        <p
+                          v-if="stripePaymentErrorMsg !== ''"
+                          class="caption red--text"
+                        >
+                          {{ stripePaymentErrorMsg }}
+                        </p>
+                        <p class="caption red--text">
+                          Es ist ein Fehler beim Bezahlen aufgetreten. Bitte
+                          verwenden Sie ein anderes Zahlungsmittel oder
+                          versuchen Sie es später erneut.
+                        </p>
+                      </div>
+                    </v-form>
+                  </div>
+                </v-expand-transition>
+
+                <!-- Error after payment -->
+                <div
+                  v-if="status === 'error-after-payment'"
+                  class="pay__error text--text text-center"
+                >
+                  <p>
+                    Die Zahlung war erfolgreich, aber wir konnten keinen
+                    Identifikationsprozess erstellen. Klicken Sie auf Erneut
+                    senden, um es nochmals zu versuchen.
+                  </p>
+                  <p>
+                    Ihre Karte wird nicht nochmals belastet.
+                  </p>
+                  <div class="mt-10 text-center">
+                    <v-btn large color="primary" @click="reSubmit">
+                      Erneut senden
+                    </v-btn>
+                  </div>
+                </div>
+
+                <!-- Spinner Overlay -->
+                <v-expand-transition>
+                  <div v-show="status === 'processing'" class="text-center">
+                    <v-progress-circular
+                      indeterminate
+                      color="primary"
+                    ></v-progress-circular>
+                  </div>
+                </v-expand-transition>
+
+                <!-- Success -->
+                <v-expand-transition>
+                  <div
+                    v-show="status === 'paid'"
+                    class="pay__success pa-4 text--text text-center"
+                  >
+                    <h2
+                      :class="[
+                        { 'display-1': $vuetify.breakpoint.smAndDown },
+                        { 'display-3': $vuetify.breakpoint.mdAndUp },
+                        'mb-6',
+                      ]"
+                    >
+                      Zahlung erfolgreich!
+                    </h2>
+                    <p>
+                      Die Bestätigung finden Sie in Ihrem E-Mail-Briefkasten.
+                    </p>
+                    <p class="font-weight-bold">
+                      Sie können nun mit der Video-Identifikation fortfahren.
+                    </p>
+                    <p>
+                      <a
+                        class="pay__link my-6"
+                        :href="identURL"
+                        target="_blank"
+                        >{{ identURL }}</a
+                      >
+                    </p>
+                    <p class="caption mb-0">
+                      Sie werden zum Portal unseres Identifikations-Partners
+                      weitergeleitet, bei dem Sie sich im Auftrag der Swisscom
+                      Trust Services identifizieren können. Ihre hierfür
+                      erhobenen Personendaten werden ausschliesslich für die
+                      ordnungsgemässe Identifizierung im Rahmen der
+                      elektronischen Signatur verwendet.
+                    </p>
+                  </div>
+                </v-expand-transition>
+              </v-card>
+            </div>
+          </div>
+        </v-col>
+      </v-row>
+
+      <v-container class="px-6 px-md-4">
         <v-row justify="center">
           <v-col cols="12" sm="10" md="11" lg="9" xl="6">
             <div class="faq py-2 py-md-12 my-2 my-md-12">
@@ -523,9 +521,7 @@
           </v-col>
         </v-row>
       </v-container>
-    </v-content>
-    <v-content>
-      <v-container>
+      <v-container class="px-6 px-md-4">
         <v-row justify="center">
           <div class="footer text-center my-10">
             Built by
