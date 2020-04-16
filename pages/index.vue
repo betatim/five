@@ -188,16 +188,23 @@
                 ><br />
                 (regulärer Preis: 25.-)
               </div>
+              <div class="text-center mt-6">
+                <v-btn @click="status = 'start'">start</v-btn>
+                <v-btn @click="status = 'processing'">processing</v-btn>
+                <v-btn @click="status = 'error-after-payment'">error</v-btn>
+                <v-btn @click="status = 'paid'">paid</v-btn>
+              </div>
               <!-- Form -->
               <div class="pay__flex">
-                <v-card class="pay__card pa-4 my-12" outlined>
+                <v-card class="pay__card pa-6 my-12" outlined>
                   <v-expand-transition>
-                    <div class="pay__form">
+                    <div
+                      v-if="
+                        status === 'start' || status === 'error-during-payment'
+                      "
+                      class="pay__form"
+                    >
                       <v-form
-                        v-show="
-                          status === 'start' ||
-                          status === 'error-during-payment'
-                        "
                         ref="form"
                         v-model="validForm"
                         :lazy-validation="lazy"
@@ -250,8 +257,8 @@
                             large
                             class="pay-with-stripe"
                             color="primary"
-                            :disabled="!(validForm && completeStripe)"
                           >
+                            <!-- :disabled="!(validForm && completeStripe)" -->
                             Jetzt bezahlen
                           </v-btn>
                         </div>
@@ -268,9 +275,9 @@
                             {{ stripePaymentErrorMsg }}
                           </p>
                           <p class="caption red--text">
-                            There was an error while processing your payment.
-                            Please use a different payment method or try again
-                            later
+                            Es ist ein Fehler beim Abrechnen aufgetreten. Bitte
+                            verwenden Sie ein anderes Zahlungsmittel oder
+                            versuchen Sie es später erneut.
                           </p>
                         </div>
                       </v-form>
@@ -278,18 +285,21 @@
                   </v-expand-transition>
 
                   <!-- Error after payment -->
-                  <div v-if="status === 'error-after-payment'">
+                  <div
+                    v-if="status === 'error-after-payment'"
+                    class="pay__error text--text"
+                  >
                     <p>
-                      Your payment was processed successfully but there was an
-                      error while generating your identification request.
+                      Die Zahlung war erfolgreich, aber wir konnten keinen
+                      Identifikationsprozess erstellen. Klicken Sie auf Erneut
+                      senden, um es nochmals zu versuchen.
                     </p>
                     <p>
-                      Click below to re-submit your information. You will not be
-                      charged again.
+                      Ihre Karte wird nicht nochmals belastet.
                     </p>
-                    <div class="text-center">
-                      <v-btn @click="reSubmit">
-                        Re-submit
+                    <div class="mt-10 text-center">
+                      <v-btn large color="primary" @click="reSubmit">
+                        Erneut senden
                       </v-btn>
                     </div>
                   </div>
@@ -308,7 +318,7 @@
                   <v-expand-transition>
                     <div
                       v-show="status === 'paid'"
-                      class="pay__success pa-6 text--text"
+                      class="pay__success pa-4 text--text"
                     >
                       <h2
                         :class="[
@@ -583,76 +593,76 @@ export default {
 
       // Async functions must be defined as arrow function so we can still scope Vue's "this"
 
-      // Call Seven (our backend) to setup a payment event
-      const setupPaymentIntent = async () => {
-        try {
-          return await this.$axios.$post('/api/setup_payment', {
-            email: this.email,
-          })
-        } catch (error) {
-          this.status = 'error-during-payment'
-          throw error
-        }
-      }
+      // // Call Seven (our backend) to setup a payment event
+      // const setupPaymentIntent = async () => {
+      //   try {
+      //     return await this.$axios.$post('/api/setup_payment', {
+      //       email: this.email,
+      //     })
+      //   } catch (error) {
+      //     this.status = 'error-during-payment'
+      //     throw error
+      //   }
+      // }
 
-      // Call Stripe to create a payment method
-      const createPaymentMethodInStripe = async () => {
-        try {
-          return await createPaymentMethod('card', {})
-        } catch (error) {
-          this.status = 'error-during-payment'
-          throw error
-        }
-      }
+      // // Call Stripe to create a payment method
+      // const createPaymentMethodInStripe = async () => {
+      //   try {
+      //     return await createPaymentMethod('card', {})
+      //   } catch (error) {
+      //     this.status = 'error-during-payment'
+      //     throw error
+      //   }
+      // }
 
-      // Call Stripe to execute payment
-      const handleCardPaymentInStripe = async (clientSecret, paymentMethod) => {
-        try {
-          const response = await handleCardPayment(clientSecret, paymentMethod)
-          if ('error' in response) throw response.error
+      // // Call Stripe to execute payment
+      // const handleCardPaymentInStripe = async (clientSecret, paymentMethod) => {
+      //   try {
+      //     const response = await handleCardPayment(clientSecret, paymentMethod)
+      //     if ('error' in response) throw response.error
 
-          // store formatted paymentIntentID so we can use it in other methods
-          this.paymentIntentID = response.paymentIntent.id.replace('pi_', '')
-        } catch (error) {
-          this.status = 'error-during-payment'
-          this.stripePaymentErrorMsg = error.message
-          throw error
-        }
-      }
+      //     // store formatted paymentIntentID so we can use it in other methods
+      //     this.paymentIntentID = response.paymentIntent.id.replace('pi_', '')
+      //   } catch (error) {
+      //     this.status = 'error-during-payment'
+      //     this.stripePaymentErrorMsg = error.message
+      //     throw error
+      //   }
+      // }
 
-      // Call Seven (our backend) to create an identity request
-      const createIdentityRequest = async () => {
-        try {
-          return await this.$axios.$post(
-            `/api/create_ident/${this.paymentIntentID}`,
-            {
-              firstName: this.firstName,
-              lastName: this.lastName,
-            }
-          )
-        } catch (error) {
-          this.status = 'error-after-payment'
-          throw error
-        }
-      }
+      // // Call Seven (our backend) to create an identity request
+      // const createIdentityRequest = async () => {
+      //   try {
+      //     return await this.$axios.$post(
+      //       `/api/create_ident/${this.paymentIntentID}`,
+      //       {
+      //         firstName: this.firstName,
+      //         lastName: this.lastName,
+      //       }
+      //     )
+      //   } catch (error) {
+      //     this.status = 'error-after-payment'
+      //     throw error
+      //   }
+      // }
 
-      // Call our backend to setup a payment intent and Stripe to create a payment method
-      Promise.all([setupPaymentIntent(), createPaymentMethodInStripe()]).then(
-        ([responsePaymentIntent, responsePaymentMethod]) => {
-          // Once result from both is received, execute payment with Stripe
-          handleCardPaymentInStripe(
-            responsePaymentIntent.clientSecret,
-            responsePaymentMethod.createPaymentMethod
-          ).then(responseHandlePayment => {
-            // Once response from Stripe is received, call our backend to create an identity request
-            createIdentityRequest().then(responseIdentityRequest => {
-              // Once result from the identity request is received, set ident url to show the user where to go
-              this.identURL = responseIdentityRequest.identUrl
-              this.status = 'paid'
-            })
-          })
-        }
-      )
+      // // Call our backend to setup a payment intent and Stripe to create a payment method
+      // Promise.all([setupPaymentIntent(), createPaymentMethodInStripe()]).then(
+      //   ([responsePaymentIntent, responsePaymentMethod]) => {
+      //     // Once result from both is received, execute payment with Stripe
+      //     handleCardPaymentInStripe(
+      //       responsePaymentIntent.clientSecret,
+      //       responsePaymentMethod.createPaymentMethod
+      //     ).then(responseHandlePayment => {
+      //       // Once response from Stripe is received, call our backend to create an identity request
+      //       createIdentityRequest().then(responseIdentityRequest => {
+      //         // Once result from the identity request is received, set ident url to show the user where to go
+      //         this.identURL = responseIdentityRequest.identUrl
+      //         this.status = 'paid'
+      //       })
+      //     })
+      //   }
+      // )
     },
     reSubmit() {
       this.status = 'processing'
@@ -804,10 +814,11 @@ export default {
     border-bottom: 1px solid #fff
 
   &__flex
-    display: flex
-    justify-content: center
+    // display: flex
+    // justify-content: center
 
   &__card.v-card
+    max-width: 580px
     margin-left: auto
     margin-right: auto
 
@@ -815,7 +826,10 @@ export default {
     max-width: 580px
 
   &__success
-    max-width: 600px
+    max-width: 580px
+
+  &__error
+    max-width: 580px
 
   &__link
     display: block
