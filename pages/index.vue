@@ -165,6 +165,7 @@
                     { 'display-1': $vuetify.breakpoint.smAndDown },
                     { 'display-3': $vuetify.breakpoint.mdAndUp },
                     'mb-6',
+                    'white--text',
                   ]"
                 >
                   Mit Kreditkarte bezahlen
@@ -173,6 +174,7 @@
                   :class="[
                     { 'font-weight-bold': $vuetify.breakpoint.smAndDown },
                     { headline: $vuetify.breakpoint.mdAndUp },
+                    'white--text',
                   ]"
                 >
                   Nach dem Bezahlvorgang werden sie an unseren
@@ -181,133 +183,168 @@
                   identifizieren können.
                 </p>
               </div>
-              <div class="pay__tag text-center mt-12">
+              <div class="pay__tag text-center mt-12 white--text">
                 <strong>Sie profitieren vom Einstiegspreis von CHF 15.-</strong
                 ><br />
                 (regulärer Preis: 25.-)
               </div>
               <!-- Form -->
-              <v-card class="pay__form pa-4 my-12" outlined>
-                <v-form
-                  v-show="
-                    status === 'start' || status === 'error-during-payment'
-                  "
-                  ref="form"
-                  v-model="validForm"
-                  :lazy-validation="lazy"
-                >
-                  <v-text-field
-                    v-model="firstName"
-                    :rules="nameRules"
-                    label="Vorname"
-                    autocomplete="given-name"
-                    required
-                    outlined
-                  ></v-text-field>
-                  <v-text-field
-                    v-model="lastName"
-                    :rules="nameRules"
-                    label="Nachname"
-                    autocomplete="family-name"
-                    required
-                    outlined
-                  ></v-text-field>
-                  <v-text-field
-                    v-model="email"
-                    :rules="emailRules"
-                    label="E-Mail"
-                    autocomplete="email"
-                    required
-                    outlined
-                  ></v-text-field>
+              <div class="pay__flex">
+                <v-card class="pay__card pa-4 my-12" outlined>
+                  <v-expand-transition>
+                    <div class="pay__form">
+                      <v-form
+                        v-show="
+                          status === 'start' ||
+                          status === 'error-during-payment'
+                        "
+                        ref="form"
+                        v-model="validForm"
+                        :lazy-validation="lazy"
+                      >
+                        <v-text-field
+                          v-model="firstName"
+                          :rules="nameRules"
+                          label="Vorname"
+                          autocomplete="given-name"
+                          required
+                          outlined
+                        ></v-text-field>
+                        <v-text-field
+                          v-model="lastName"
+                          :rules="nameRules"
+                          label="Nachname"
+                          autocomplete="family-name"
+                          required
+                          outlined
+                        ></v-text-field>
+                        <v-text-field
+                          v-model="email"
+                          :rules="emailRules"
+                          label="E-Mail"
+                          autocomplete="email"
+                          required
+                          outlined
+                        ></v-text-field>
 
-                  <card
-                    class="stripe-card"
-                    :class="{ complete: completeStripe }"
-                    :stripe="stripe_pk"
-                    :options="stripeOptions"
-                    @change="completeStripe = $event.complete"
-                  />
-                  <v-checkbox
-                    v-model="checkbox"
-                    :rules="[
-                      v =>
-                        !!v ||
-                        'Sie müssen zustimmen, um den Prozess zu starten.',
-                    ]"
-                    label="Mit dem Bezahlen akzeptiere ich Skribbles Datenschutzrichtlinien."
-                    required
-                  ></v-checkbox>
-                  <div class="text-center mt-6">
-                    <v-btn
-                      @click="pay"
-                      large
-                      class="pay-with-stripe"
-                      color="primary"
-                      :disabled="!(validForm && completeStripe)"
-                    >
-                      Jetzt bezahlen
-                    </v-btn>
-                  </div>
+                        <card
+                          class="stripe-card"
+                          :class="{ complete: completeStripe }"
+                          :stripe="stripe_pk"
+                          :options="stripeOptions"
+                          @change="completeStripe = $event.complete"
+                        />
+                        <v-checkbox
+                          v-model="checkbox"
+                          :rules="[
+                            v =>
+                              !!v ||
+                              'Sie müssen zustimmen, um den Prozess zu starten.',
+                          ]"
+                          label="Mit dem Bezahlen akzeptiere ich Skribbles Datenschutzrichtlinien."
+                          required
+                        ></v-checkbox>
+                        <div class="text-center mt-6">
+                          <v-btn
+                            @click="pay"
+                            large
+                            class="pay-with-stripe"
+                            color="primary"
+                            :disabled="!(validForm && completeStripe)"
+                          >
+                            Jetzt bezahlen
+                          </v-btn>
+                        </div>
 
-                  <!-- Error during payment -->
-                  <div
-                    class="text-center mt-4"
-                    v-if="status === 'error-during-payment'"
-                  >
-                    <p
-                      v-if="stripePaymentErrorMsg !== ''"
-                      class="caption red--text"
-                    >
-                      {{ stripePaymentErrorMsg }}
+                        <!-- Error during payment -->
+                        <div
+                          class="text-center mt-4"
+                          v-if="status === 'error-during-payment'"
+                        >
+                          <p
+                            v-if="stripePaymentErrorMsg !== ''"
+                            class="caption red--text"
+                          >
+                            {{ stripePaymentErrorMsg }}
+                          </p>
+                          <p class="caption red--text">
+                            There was an error while processing your payment.
+                            Please use a different payment method or try again
+                            later
+                          </p>
+                        </div>
+                      </v-form>
+                    </div>
+                  </v-expand-transition>
+
+                  <!-- Error after payment -->
+                  <div v-if="status === 'error-after-payment'">
+                    <p>
+                      Your payment was processed successfully but there was an
+                      error while generating your identification request.
                     </p>
-                    <p class="caption red--text">
-                      There was an error while processing your payment. Please
-                      use a different payment method or try again later
+                    <p>
+                      Click below to re-submit your information. You will not be
+                      charged again.
                     </p>
+                    <div class="text-center">
+                      <v-btn @click="reSubmit">
+                        Re-submit
+                      </v-btn>
+                    </div>
                   </div>
-                </v-form>
 
-                <!-- Error after payment -->
-                <div v-if="status === 'error-after-payment'">
-                  <p>
-                    Your payment was processed successfully but there was an
-                    error while generating your identification request.
-                  </p>
-                  <p>
-                    Click below to re-submit your information. You will not be
-                    charged again.
-                  </p>
-                  <div class="text-center">
-                    <v-btn @click="reSubmit">
-                      Re-submit
-                    </v-btn>
-                  </div>
-                </div>
+                  <!-- Spinner Overlay -->
+                  <v-expand-transition>
+                    <div v-show="status === 'processing'" class="text-center">
+                      <v-progress-circular
+                        indeterminate
+                        color="primary"
+                      ></v-progress-circular>
+                    </div>
+                  </v-expand-transition>
 
-                <!-- Spinner Overlay -->
-                <div v-show="status === 'processing'" class="text-center">
-                  <v-progress-circular
-                    indeterminate
-                    color="primary"
-                  ></v-progress-circular>
-                </div>
-
-                <!-- Success -->
-                <div v-show="status === 'paid'">
-                  <p>Your e-ID video ident appointment is now ready for you.</p>
-                  <p>
-                    Visit the link below to start it now (opens a new tab):
-                    <a :href="identURL" target="_blank">{{ identURL }}</a>
-                  </p>
-                  <p>We sent you a receipt for your payment by email.</p>
-                  <p>Platforms to use your eID with:</p>
-                  <ul>
-                    <li>Skribble</li>
-                    <li>Many more (link to SC list of other?)></li>
-                  </ul>
-                </div>
-              </v-card>
+                  <!-- Success -->
+                  <v-expand-transition>
+                    <div
+                      v-show="status === 'paid'"
+                      class="pay__success pa-6 text--text"
+                    >
+                      <h2
+                        :class="[
+                          { 'display-1': $vuetify.breakpoint.smAndDown },
+                          { 'display-3': $vuetify.breakpoint.mdAndUp },
+                          'mb-6',
+                        ]"
+                      >
+                        Zahlung erfolgreich!
+                      </h2>
+                      <p>
+                        Die Bestätigung finden Sie in Ihrem E-Mail-Briefkasten.
+                      </p>
+                      <p class="font-weight-bold">
+                        Sie können nun mit der Video-Identifikation fortfahren.
+                      </p>
+                      <p>
+                        <a
+                          class="pay__link my-6"
+                          :href="identURL"
+                          target="_blank"
+                          >{{ identURL }}</a
+                        >
+                      </p>
+                      <p class="caption mb-0">
+                        Sie werden zum Portal unseres Identifikations-Partners
+                        weitergeleitet, bei dem Sie sich im Auftrag der Swisscom
+                        Trust Services identifizieren können. Ihre hierfür
+                        erhobenen Personendaten werden ausschliesslich für die
+                        ordnungsgemässe Identifizierung im Rahmen der
+                        elektronischen Signatur verwendet.
+                      </p>
+                    </div>
+                  </v-expand-transition>
+                </v-card>
+              </div>
             </div>
           </v-col>
         </v-row>
@@ -669,11 +706,6 @@ export default {
 
 .dark
   background-color: $c-skribbleu
-  color: #fff
-
-  h1, h2, h3, h4, h5, p
-    &, &.font-weight-bold
-      color: #fff
 
 .intro
   margin-left: auto
@@ -771,10 +803,27 @@ export default {
     border-top: 1px solid #fff
     border-bottom: 1px solid #fff
 
-  &__form.v-card
+  &__flex
+    display: flex
+    justify-content: center
+
+  &__card.v-card
     margin-left: auto
     margin-right: auto
+
+  &__form
     max-width: 580px
+
+  &__success
+    max-width: 600px
+
+  &__link
+    display: block
+    padding: 6px 12px
+    border: 3px solid $c-border
+    border-radius: 4px
+    &:hover
+      border-color: $c-primary
 
 .faq
 
