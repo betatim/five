@@ -199,7 +199,7 @@
                 <v-card class="pay__card pa-6 my-12" outlined>
                   <v-expand-transition>
                     <div
-                      v-if="
+                      v-show="
                         status === 'start' || status === 'error-during-payment'
                       "
                       class="pay__form"
@@ -242,23 +242,36 @@
                           @change="completeStripe = $event.complete"
                         />
                         <v-checkbox
+                          class="pay__consent mt-8 mx-auto"
                           v-model="checkbox"
                           :rules="[
                             v =>
                               !!v ||
                               'Sie müssen zustimmen, um den Prozess zu starten.',
                           ]"
-                          label="Mit dem Bezahlen akzeptiere ich Skribbles Datenschutzrichtlinien."
                           required
-                        ></v-checkbox>
+                        >
+                          <template v-slot:label>
+                            <div class="pay__consent-label">
+                              Mit dem Bezahlen akzeptiere ich Skribbles
+                              <a
+                                @click.stop
+                                class="link"
+                                href="https://www.skribble.com/de/datenschutz/"
+                                target="_blank"
+                                >Datenschutzrichtlinien</a
+                              >.
+                            </div>
+                          </template>
+                        </v-checkbox>
                         <div class="text-center mt-6">
                           <v-btn
                             @click="pay"
                             large
                             class="pay-with-stripe"
                             color="primary"
+                            :disabled="!(validForm && completeStripe)"
                           >
-                            <!-- :disabled="!(validForm && completeStripe)" -->
                             Jetzt bezahlen
                           </v-btn>
                         </div>
@@ -275,7 +288,7 @@
                             {{ stripePaymentErrorMsg }}
                           </p>
                           <p class="caption red--text">
-                            Es ist ein Fehler beim Abrechnen aufgetreten. Bitte
+                            Es ist ein Fehler beim Bezahlen aufgetreten. Bitte
                             verwenden Sie ein anderes Zahlungsmittel oder
                             versuchen Sie es später erneut.
                           </p>
@@ -287,7 +300,7 @@
                   <!-- Error after payment -->
                   <div
                     v-if="status === 'error-after-payment'"
-                    class="pay__error text--text"
+                    class="pay__error text--text text-center"
                   >
                     <p>
                       Die Zahlung war erfolgreich, aber wir konnten keinen
@@ -318,7 +331,7 @@
                   <v-expand-transition>
                     <div
                       v-show="status === 'paid'"
-                      class="pay__success pa-4 text--text"
+                      class="pay__success pa-4 text--text text-center"
                     >
                       <h2
                         :class="[
@@ -593,76 +606,76 @@ export default {
 
       // Async functions must be defined as arrow function so we can still scope Vue's "this"
 
-      // // Call Seven (our backend) to setup a payment event
-      // const setupPaymentIntent = async () => {
-      //   try {
-      //     return await this.$axios.$post('/api/setup_payment', {
-      //       email: this.email,
-      //     })
-      //   } catch (error) {
-      //     this.status = 'error-during-payment'
-      //     throw error
-      //   }
-      // }
+      // Call Seven (our backend) to setup a payment event
+      const setupPaymentIntent = async () => {
+        try {
+          return await this.$axios.$post('/api/setup_payment', {
+            email: this.email,
+          })
+        } catch (error) {
+          this.status = 'error-during-payment'
+          throw error
+        }
+      }
 
-      // // Call Stripe to create a payment method
-      // const createPaymentMethodInStripe = async () => {
-      //   try {
-      //     return await createPaymentMethod('card', {})
-      //   } catch (error) {
-      //     this.status = 'error-during-payment'
-      //     throw error
-      //   }
-      // }
+      // Call Stripe to create a payment method
+      const createPaymentMethodInStripe = async () => {
+        try {
+          return await createPaymentMethod('card', {})
+        } catch (error) {
+          this.status = 'error-during-payment'
+          throw error
+        }
+      }
 
-      // // Call Stripe to execute payment
-      // const handleCardPaymentInStripe = async (clientSecret, paymentMethod) => {
-      //   try {
-      //     const response = await handleCardPayment(clientSecret, paymentMethod)
-      //     if ('error' in response) throw response.error
+      // Call Stripe to execute payment
+      const handleCardPaymentInStripe = async (clientSecret, paymentMethod) => {
+        try {
+          const response = await handleCardPayment(clientSecret, paymentMethod)
+          if ('error' in response) throw response.error
 
-      //     // store formatted paymentIntentID so we can use it in other methods
-      //     this.paymentIntentID = response.paymentIntent.id.replace('pi_', '')
-      //   } catch (error) {
-      //     this.status = 'error-during-payment'
-      //     this.stripePaymentErrorMsg = error.message
-      //     throw error
-      //   }
-      // }
+          // store formatted paymentIntentID so we can use it in other methods
+          this.paymentIntentID = response.paymentIntent.id.replace('pi_', '')
+        } catch (error) {
+          this.status = 'error-during-payment'
+          this.stripePaymentErrorMsg = error.message
+          throw error
+        }
+      }
 
-      // // Call Seven (our backend) to create an identity request
-      // const createIdentityRequest = async () => {
-      //   try {
-      //     return await this.$axios.$post(
-      //       `/api/create_ident/${this.paymentIntentID}`,
-      //       {
-      //         firstName: this.firstName,
-      //         lastName: this.lastName,
-      //       }
-      //     )
-      //   } catch (error) {
-      //     this.status = 'error-after-payment'
-      //     throw error
-      //   }
-      // }
+      // Call Seven (our backend) to create an identity request
+      const createIdentityRequest = async () => {
+        try {
+          return await this.$axios.$post(
+            `/api/create_ident/${this.paymentIntentID}`,
+            {
+              firstName: this.firstName,
+              lastName: this.lastName,
+            }
+          )
+        } catch (error) {
+          this.status = 'error-after-payment'
+          throw error
+        }
+      }
 
-      // // Call our backend to setup a payment intent and Stripe to create a payment method
-      // Promise.all([setupPaymentIntent(), createPaymentMethodInStripe()]).then(
-      //   ([responsePaymentIntent, responsePaymentMethod]) => {
-      //     // Once result from both is received, execute payment with Stripe
-      //     handleCardPaymentInStripe(
-      //       responsePaymentIntent.clientSecret,
-      //       responsePaymentMethod.createPaymentMethod
-      //     ).then(responseHandlePayment => {
-      //       // Once response from Stripe is received, call our backend to create an identity request
-      //       createIdentityRequest().then(responseIdentityRequest => {
-      //         // Once result from the identity request is received, set ident url to show the user where to go
-      //         this.identURL = responseIdentityRequest.identUrl
-      //         this.status = 'paid'
-      //       })
-      //     })
-      //   }
-      // )
+      // Call our backend to setup a payment intent and Stripe to create a payment method
+      Promise.all([setupPaymentIntent(), createPaymentMethodInStripe()]).then(
+        ([responsePaymentIntent, responsePaymentMethod]) => {
+          // Once result from both is received, execute payment with Stripe
+          handleCardPaymentInStripe(
+            responsePaymentIntent.clientSecret,
+            responsePaymentMethod.createPaymentMethod
+          ).then(responseHandlePayment => {
+            // Once response from Stripe is received, call our backend to create an identity request
+            createIdentityRequest().then(responseIdentityRequest => {
+              // Once result from the identity request is received, set ident url to show the user where to go
+              this.identURL = responseIdentityRequest.identUrl
+              this.status = 'paid'
+            })
+          })
+        }
+      )
     },
     reSubmit() {
       this.status = 'processing'
@@ -813,9 +826,8 @@ export default {
     border-top: 1px solid #fff
     border-bottom: 1px solid #fff
 
-  &__flex
-    // display: flex
-    // justify-content: center
+  &__consent.v-input
+    max-width: 300px
 
   &__card.v-card
     max-width: 580px
