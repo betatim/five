@@ -546,7 +546,7 @@
                       >Skribble</a
                     >
                     und andere Signaturservices eingesetzt werden, die auf
-                    Swisscom Signing Service beruhenden.
+                    dem Swisscom Signing Service beruhen.
                   </v-expansion-panel-content>
                 </v-expansion-panel>
 
