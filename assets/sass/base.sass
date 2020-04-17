@@ -13,9 +13,15 @@
   font-display: fallback
 
 @import 'vars'
+@import 'mixins'
 
 *
   box-sizing: border-box
+
+
+html .v-application
+  +media(xs-only)
+    font-size: 18px
 
 .display-4,
 .display-3,

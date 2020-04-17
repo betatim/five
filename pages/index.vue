@@ -71,9 +71,10 @@
 
               <v-btn
                 @click="$vuetify.goTo('#pay-form')"
-                class="mt-6"
+                class="mt-md-6"
                 large
                 color="primary"
+                :block="$vuetify.breakpoint.xsOnly"
                 >Jetzt starten</v-btn
               >
             </div>
@@ -83,10 +84,11 @@
       <v-container class="px-6 px-md-4">
         <v-row justify="center">
           <v-col cols="12" xl="9">
-            <div class="steps py-2 py-md-12 my-2 my-md-12">
+            <div class="steps py-2 py-md-12 my-4 my-md-12">
               <div
                 :class="[
                   { 'text-center': $vuetify.breakpoint.smAndUp },
+                  { 'mx-auto': $vuetify.breakpoint.smAndUp },
                   'steps__heading',
                 ]"
               >
@@ -110,7 +112,7 @@
                   auf Skribble.com freigeschaltet.
                 </p>
               </div>
-              <ol class="steps__list mt-12 pa-0">
+              <ol class="steps__list mt-8 mt-md-12 pa-0">
                 <li>
                   <h3 class="headline">Mit Kreditkarte bezahlen</h3>
                   <p>
@@ -135,7 +137,13 @@
                   </p>
                 </li>
               </ol>
-              <div class="steps__footer mt-12 text-center">
+              <div
+                :class="[
+                  { 'text-center': $vuetify.breakpoint.smAndUp },
+                  'steps__footer',
+                  'mt-8 mt-md-12',
+                ]"
+              >
                 <p>
                   Der Identifikationsservice ist täglich von 07.00 bis 22.00 Uhr
                   verfügbar.
@@ -153,10 +161,11 @@
 
       <v-row id="pay-form" class="dark mx-0" justify="center">
         <v-col cols="12" sm="10" md="11" lg="9" xl="6">
-          <div class="pay py-2 px-5 py-md-12 px-md-0 my-2 my-md-12">
+          <div class="pay py-2 px-5 py-md-12 px-md-0 my-4 my-md-12">
             <div
               :class="[
                 { 'text-center': $vuetify.breakpoint.smAndUp },
+                { 'mx-auto': $vuetify.breakpoint.smAndUp },
                 'pay__heading',
               ]"
             >
@@ -183,7 +192,15 @@
                 identifizieren können.
               </p>
             </div>
-            <div class="pay__tag text-center mt-12 white--text">
+            <div
+              :class="[
+                { 'text-center': $vuetify.breakpoint.smAndUp },
+                { 'mx-auto': $vuetify.breakpoint.smAndUp },
+                'pay__tag',
+                'mt-12',
+                'white--text',
+              ]"
+            >
               <strong
                 >Sie profitieren für begrenzte Zeit vom Vorzugspreis von CHF
                 19.-</strong
@@ -192,7 +209,7 @@
             </div>
             <!-- Form -->
             <div class="pay__flex">
-              <v-card class="pay__card pa-6 my-12" outlined>
+              <v-card class="pay__card pa-4 pa-sm-6 my-12" outlined>
                 <v-expand-transition>
                   <div
                     v-show="
@@ -267,6 +284,7 @@
                           class="pay-with-stripe"
                           color="primary"
                           :disabled="!(validForm && completeStripe)"
+                          :block="$vuetify.breakpoint.xsOnly"
                         >
                           Jetzt bezahlen
                         </v-btn>
@@ -307,7 +325,12 @@
                     Ihre Karte wird nicht nochmals belastet.
                   </p>
                   <div class="mt-10 text-center">
-                    <v-btn large color="primary" @click="reSubmit">
+                    <v-btn
+                      @click="reSubmit"
+                      large
+                      color="primary"
+                      :block="$vuetify.breakpoint.xsOnly"
+                    >
                       Erneut senden
                     </v-btn>
                   </div>
@@ -371,7 +394,12 @@
           <v-col cols="12" sm="10" md="11" lg="9" xl="6">
             <div class="faq py-2 py-md-12 my-2 my-md-12">
               <!-- FAQ -->
-              <h2 class="display-3 mb-6 text-center">FAQ</h2>
+              <h2
+                :class="{ 'text-center': $vuetify.breakpoint.smAndUp }"
+                class="display-3 mb-6"
+              >
+                FAQ
+              </h2>
               <v-expansion-panels accordion flat multiple class="my-10">
                 <v-expansion-panel>
                   <v-expansion-panel-header>
@@ -745,8 +773,6 @@ export default {
 .steps
 
   &__heading
-    margin-left: auto
-    margin-right: auto
     max-width: 480px
 
   &__footer
@@ -775,7 +801,7 @@ export default {
         &:nth-child(#{$i})
           +media(sm-and-down)
             @if $i == 2
-              margin: 40px 0
+              margin: 24px 0
           h3:after
             content: '#{$i}'
 
@@ -804,13 +830,9 @@ export default {
     border-radius: 4px
 
   &__heading
-    margin-left: auto
-    margin-right: auto
     max-width: 480px
 
   &__tag
-    margin-left: auto
-    margin-right: auto
     max-width: 600px
     padding: 20px 0
     border-top: 1px solid #fff
@@ -823,6 +845,9 @@ export default {
     max-width: 580px
     margin-left: auto
     margin-right: auto
+    +media(xs-only)
+      margin-left: -20px
+      margin-right: -20px
 
   &__form
     max-width: 580px
@@ -844,9 +869,14 @@ export default {
       border-top: 1px solid $c-border
 
     &-header
-      padding: 16px 36px 16px 0
+      padding: 16px 0 16px 0
       font: bold 1rem/1.4 $averta
       color: $c-skribbleu
+      +media(xs-only)
+        font-size: .9rem
+
+      &__icon
+        padding-left: 20px
 
     &-content__wrap
       max-width: 700px
