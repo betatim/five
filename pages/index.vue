@@ -440,7 +440,13 @@
                     Die hier erstellte E-ID wird in erster Linie für das
                     Signieren mit der Qualifizierten Elektronischen Signatur
                     (QES) generiert. Falls Sie sich für andere Anwendungsfälle
-                    interessieren, kontaktieren Sie bitte Skribble.
+                    interessieren, kontaktieren Sie bitte
+                    <a
+                      class="link"
+                      href="https://www.skribble.com"
+                      target="_blank"
+                      >Skribble</a
+                    >.
                   </v-expansion-panel-content>
                 </v-expansion-panel>
 
@@ -480,8 +486,15 @@
                   </v-expansion-panel-header>
                   <v-expansion-panel-content
                     >Die QES wird nach maximal 30 Minuten nach der
-                    Identifikation auf Skribble und anderen Services, die auf
-                    Swisscom Signing Service beruhenden, freigeschaltet.
+                    Identifikation auf
+                    <a
+                      class="link"
+                      href="https://www.skribble.com"
+                      target="_blank"
+                      >Skribble</a
+                    >
+                    und anderen Services, die auf Swisscom Signing Service
+                    beruhenden, freigeschaltet.
                   </v-expansion-panel-content>
                 </v-expansion-panel>
 
@@ -525,9 +538,15 @@
                     Für welche Signaturservices kann ich die E-ID einsetzen?
                   </v-expansion-panel-header>
                   <v-expansion-panel-content>
-                    Die E-ID kann für Skribble und andere Signaturservices
-                    eingesetzt werden, die auf Swisscom Signing Service
-                    beruhenden.
+                    Die E-ID kann für
+                    <a
+                      class="link"
+                      href="https://www.skribble.com"
+                      target="_blank"
+                      >Skribble</a
+                    >
+                    und andere Signaturservices eingesetzt werden, die auf
+                    Swisscom Signing Service beruhenden.
                   </v-expansion-panel-content>
                 </v-expansion-panel>
 
