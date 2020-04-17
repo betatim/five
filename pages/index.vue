@@ -30,7 +30,7 @@
                 handschriftlichen Unterschrift vor dem Gesetz gleichgestellt.
               </p>
               <p>
-                Um Mit QES signieren zu können, muss man seine Identität
+                Um mt QES signieren zu können, muss man seine Identität
                 einmalig überprüfen lassen. Bis am 02. Oktober 2020 ist das per
                 Video-Call möglich. Der Bund
                 <a
