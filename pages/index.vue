@@ -30,8 +30,8 @@
                 handschriftlichen Unterschrift vor dem Gesetz gleichgestellt.
               </p>
               <p>
-                Um Mit QES signieren zu können, muss man seine Identität
-                einmalig überprüfen lassen. Bis am 02. Oktober 2020 Ist das per
+                Um mit QES signieren zu können, muss man seine Identität
+                einmalig überprüfen lassen. Bis am 02. Oktober 2020 ist das per
                 Video-Call möglich. Der Bund
                 <a
                   class="link"
@@ -108,12 +108,10 @@
                   ]"
                 >
                   Die Identitätsprüfung erfolgt online und dauert nur wenige
-                  Minuten. Anschlissend wird die QES innert 30 Minuten für Sie
-                  auf
-                  <a href="https://www.skribble.com/" target="_blank"
+                  Minuten. Anschliessend wird die QES innert 30 Minuten für Sie
+                  auf <a href="https://www.skribble.com/" target="_blank"
                     >Skribble.com</a
-                  >
-                  freigeschaltet.
+                  > freigeschaltet.
                 </p>
               </div>
               <ol class="steps__list mt-8 mt-md-12 pa-0">
@@ -601,16 +599,16 @@ export default {
       stripeOptions: {
         // see https://stripe.com/docs/stripe.js#element-options for details
         elements: {
-          // fonts: [
-          //   {
-          //     family: "Averta",
-          //     src:
-          //       'url("https://my.skribble.com/_nuxt/fonts/48cfe38.woff2") format("woff2")',
-          //     style: "normal",
-          //     weight: 400,
-          //     display: "swap",
-          //   },
-          // ],
+          fonts: [
+            {
+              family: 'Averta',
+              src:
+                'url("https://my.skribble.com/_nuxt/fonts/48cfe38.woff2") format("woff2")',
+              style: 'normal',
+              weight: 400,
+              display: 'swap',
+            },
+          ],
         },
         style: {
           base: {
