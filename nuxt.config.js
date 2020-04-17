@@ -3,30 +3,36 @@ import colors from "vuetify/es5/util/colors";
 export default {
   mode: "universal",
   /*
+   ** Environment variables
+   */
+  env: {
+    strPk: process.env.STR_PK,
+  },
+  /*
    ** Headers of the page
    */
   head: {
-    titleTemplate: "%s",
-    title: "VideoIdent.me - coming soon",
+    titleTemplate: '%s',
+    title: 'VideoIdent.me',
     meta: [
-      { charset: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
+      { charset: 'utf-8' },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       {
-        hid: "description",
-        name: "description",
-        content: "VideoIdent.me - coming soon",
+        hid: 'description',
+        name: 'description',
+        content: 'VideoIdent.me',
       },
     ],
-    link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
   /*
    ** Customize the progress-bar color
    */
-  loading: { color: "#fff" },
+  loading: { color: '#fff' },
   /*
    ** Global CSS
    */
-  css: [],
+  css: ['@assets/sass/base.sass'],
   /*
    ** Plugins to load before mounting the App
    */
@@ -34,19 +40,40 @@ export default {
   /*
    ** Nuxt.js dev-modules
    */
-  buildModules: ["@nuxt/typescript-build", "@nuxtjs/vuetify"],
+  buildModules: ['@nuxt/typescript-build', '@nuxtjs/vuetify'],
   /*
    ** Nuxt.js modules
    */
-  modules: [],
+  modules: ['@nuxtjs/axios', '@nuxtjs/proxy'],
+  /*
+   ** Axios module configuration
+   */
+  axios: {
+    proxy: true, // Can be also an object with default options
+  },
+  /*
+   ** Proxy module configuration
+   */
+  proxy: {
+    '/api/': {
+      target: 'https://seven-staging.videoident.me/',
+      pathRewrite: {
+        '^/api/': '/api/',
+      },
+    },
+  },
   /*
    ** vuetify module configuration
    ** https://github.com/nuxt-community/vuetify-module
    */
   vuetify: {
-    customVariables: ["~/assets/variables.scss"],
+    customVariables: ['~/assets/variables.sass'],
+    defaultAssets: {
+      icons: 'mdi',
+    },
+    treeShake: true,
     theme: {
-      dark: true,
+      dark: false,
       themes: {
         dark: {
           primary: colors.blue.darken2,
@@ -56,6 +83,14 @@ export default {
           warning: colors.amber.base,
           error: colors.deepOrange.accent4,
           success: colors.green.accent3,
+        },
+        light: {
+          primary: {
+            base: '#006FE6',
+            lighten5: '#E7F1FC',
+          },
+          text: '#65728E',
+          skribbleu: '#293D66',
         },
       },
     },
@@ -69,4 +104,4 @@ export default {
      */
     extend(config, ctx) {},
   },
-};
+}

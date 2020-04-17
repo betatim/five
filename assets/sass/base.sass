@@ -1,0 +1,61 @@
+@font-face
+  font-family: Averta
+  src: url('../fonts/woff2/averta-regular.woff2') format('woff2'), url('../fonts/woff/hinted-averta-regular.woff') format('woff')
+  font-weight: 400
+  font-style: normal
+  font-display: fallback
+
+@font-face
+  font-family: Averta
+  src: url('../fonts/woff2/averta-extra-bold.woff2') format('woff2'), url('../fonts/woff/hinted-averta-extrabold.woff') format('woff')
+  font-weight: 800
+  font-style: normal
+  font-display: fallback
+
+@import 'vars'
+@import 'mixins'
+
+*
+  box-sizing: border-box
+
+
+html .v-application
+  +media(xs-only)
+    font-size: 18px
+
+.display-4,
+.display-3,
+.display-2,
+.display-1,
+.headline
+  color: $c-skribbleu
+
+.v-application 
+  .font-weight-bold
+    color: $c-skribbleu
+    
+  .link
+    color: $c-text
+    text-decoration: underline
+    &:hover
+      color: $c-primary
+
+  .v-btn
+    &:not(.v-btn--round).v-size--large
+      min-width: 9rem
+      height: 3.2rem
+      font-size: 1rem
+      font-weight: bold
+      text-transform: none
+      letter-spacing: .4px
+
+    &--outlined.v-btn
+      border: 3px solid currentColor
+
+  .v-text-field 
+    .v-label
+      font: 1rem/1 Averta
+
+    input
+      font: 1rem/1 Averta
+      color: $c-skribbleu
