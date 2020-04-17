@@ -266,8 +266,8 @@
                           large
                           class="pay-with-stripe"
                           color="primary"
+                          :disabled="!(validForm && completeStripe)"
                         >
-                          <!-- :disabled="!(validForm && completeStripe)" -->
                           Jetzt bezahlen
                         </v-btn>
                       </div>
@@ -341,17 +341,15 @@
                     <p>
                       Die Bestätigung finden Sie in Ihrem E-Mail-Briefkasten.
                     </p>
-                    <p class="font-weight-bold">
-                      Sie können nun mit der Video-Identifikation fortfahren.
-                    </p>
-                    <p>
-                      <a
-                        class="pay__link my-6"
-                        :href="identURL"
-                        target="_blank"
-                        >{{ identURL }}</a
-                      >
-                    </p>
+                    <v-btn
+                      large
+                      color="primary"
+                      class="mt-6 mb-10"
+                      :href="identURL"
+                      target="_blank"
+                    >
+                      Video-Identifikation jetzt starten
+                    </v-btn>
                     <p class="caption mb-0">
                       Sie werden zum Portal unseres Identifikations-Partners
                       weitergeleitet, bei dem Sie sich im Auftrag der Swisscom
@@ -834,14 +832,6 @@ export default {
 
   &__error
     max-width: 580px
-
-  &__link
-    display: block
-    padding: 6px 12px
-    border: 3px solid $c-border
-    border-radius: 4px
-    &:hover
-      border-color: $c-primary
 
 .faq
 
