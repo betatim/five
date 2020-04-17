@@ -16,9 +16,15 @@
 [context.branch-deploy]
   command = "yarn generate-staging"
 
+# More specific redirect to catch production
+[[redirects]]
+  from = "https://www.videoident.me/api/*"
+  to = "https://seven.videoident.me/api/:splat"
+  status = 200
+  signed = "PROXY_REQUEST_KEY"
+
 [[redirects]]
   from = "/api/*"
   to = "https://seven-staging.videoident.me/api/:splat"
   status = 200
   signed = "PROXY_REQUEST_KEY"
-  
