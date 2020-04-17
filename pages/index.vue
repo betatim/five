@@ -109,7 +109,7 @@
                 >
                   Die Identitätsprüfung erfolgt online und dauert nur wenige
                   Minuten. Anschliessend wird die QES innert 30 Minuten für Sie
-                  auf <a href="https://www.skribble.com/" target="_blank"
+                  auf <a href="https://www.skribble.com/de/" target="_blank"
                     >Skribble.com</a
                   > freigeschaltet.
                 </p>
@@ -441,7 +441,7 @@
                     interessieren, kontaktieren Sie bitte
                     <a
                       class="link"
-                      href="https://www.skribble.com"
+                      href="https://www.skribble.com/de/"
                       target="_blank"
                       >Skribble</a
                     >.
@@ -483,11 +483,11 @@
                     einsetzen kann?
                   </v-expansion-panel-header>
                   <v-expansion-panel-content
-                    >Die QES wird nach maximal 30 Minuten nach der
+                    >Die QES wird maximal 30 Minuten nach der
                     Identifikation auf
                     <a
                       class="link"
-                      href="https://www.skribble.com"
+                      href="https://www.skribble.com/de/"
                       target="_blank"
                       >Skribble</a
                     >
@@ -539,7 +539,7 @@
                     Die E-ID kann für
                     <a
                       class="link"
-                      href="https://www.skribble.com"
+                      href="https://www.skribble.com/de/"
                       target="_blank"
                       >Skribble</a
                     >
@@ -569,7 +569,7 @@
           <div class="footer text-center my-10">
             Built by
             <a
-              href="https://www.skribble.com/"
+              href="https://www.skribble.com/de/"
               target="_blank"
               class="skribble-logo mt-2"
             >
