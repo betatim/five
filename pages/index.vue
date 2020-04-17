@@ -546,16 +546,16 @@ export default {
       stripeOptions: {
         // see https://stripe.com/docs/stripe.js#element-options for details
         elements: {
-          // fonts: [
-          //   {
-          //     family: "Averta",
-          //     src:
-          //       'url("https://my.skribble.com/_nuxt/fonts/48cfe38.woff2") format("woff2")',
-          //     style: "normal",
-          //     weight: 400,
-          //     display: "swap",
-          //   },
-          // ],
+          fonts: [
+            {
+              family: 'Averta',
+              src:
+                'url("https://my.skribble.com/_nuxt/fonts/48cfe38.woff2") format("woff2")',
+              style: 'normal',
+              weight: 400,
+              display: 'swap',
+            },
+          ],
         },
         style: {
           base: {
