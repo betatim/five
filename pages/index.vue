@@ -491,8 +491,8 @@
                       target="_blank"
                       >Skribble</a
                     >
-                    und anderen Services, die auf Swisscom Signing Service
-                    beruhenden, freigeschaltet.
+                    und anderen Services, die auf dem Swisscom Signing Service
+                    beruhen, freigeschaltet.
                   </v-expansion-panel-content>
                 </v-expansion-panel>
 
