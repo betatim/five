@@ -30,8 +30,8 @@
                 handschriftlichen Unterschrift vor dem Gesetz gleichgestellt.
               </p>
               <p>
-                Um Mit QES signieren zu können, muss man seine Identität
-                einmalig überprüfen lassen. Bis am 02. Oktober 2020 Ist das per
+                Um mit QES signieren zu können, muss man seine Identität
+                einmalig überprüfen lassen. Bis am 02. Oktober 2020 ist das per
                 Video-Call möglich. Der Bund
                 <a
                   class="link"
@@ -108,7 +108,7 @@
                   ]"
                 >
                   Die Identitätsprüfung erfolgt online und dauert nur wenige
-                  Minuten. Anschlissend wird die QES innert 30 Minuten für Sie
+                  Minuten. Anschliessend wird die QES innert 30 Minuten für Sie
                   auf Skribble.com freigeschaltet.
                 </p>
               </div>
