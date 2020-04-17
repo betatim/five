@@ -109,7 +109,11 @@
                 >
                   Die Identitätsprüfung erfolgt online und dauert nur wenige
                   Minuten. Anschlissend wird die QES innert 30 Minuten für Sie
-                  auf Skribble.com freigeschaltet.
+                  auf
+                  <a href="https://www.skribble.com/" target="_blank"
+                    >Skribble.com</a
+                  >
+                  freigeschaltet.
                 </p>
               </div>
               <ol class="steps__list mt-8 mt-md-12 pa-0">
@@ -547,10 +551,14 @@
         <v-row justify="center">
           <div class="footer text-center my-10">
             Built by
-            <div class="skribble-logo mt-2">
+            <a
+              href="https://www.skribble.com/"
+              target="_blank"
+              class="skribble-logo mt-2"
+            >
               <img src="/logo-skribble.svg" alt="Skribble logo" />
               <div>Skribble</div>
-            </div>
+            </a>
           </div>
         </v-row>
       </v-container>
@@ -775,6 +783,9 @@ export default {
   &__heading
     max-width: 480px
 
+    a
+      color: $c-skribbleu
+
   &__footer
     margin-left: auto
     margin-right: auto
@@ -879,7 +890,6 @@ export default {
         padding-left: 20px
 
     &-content__wrap
-      max-width: 700px
       padding-left: 0
 
 .footer
@@ -888,4 +898,7 @@ export default {
   .skribble-logo
     font: bold 1.5rem/1 $averta
     color: $c-skribbleu
+
+  a
+    text-decoration: none
 </style>
