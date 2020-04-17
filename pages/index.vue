@@ -109,7 +109,9 @@
                 >
                   Die Identitätsprüfung erfolgt online und dauert nur wenige
                   Minuten. Anschliessend wird die QES innert 30 Minuten für Sie
-                  auf Skribble.com freigeschaltet.
+                  auf <a href="https://www.skribble.com/" target="_blank"
+                    >Skribble.com</a
+                  > freigeschaltet.
                 </p>
               </div>
               <ol class="steps__list mt-8 mt-md-12 pa-0">
@@ -436,7 +438,13 @@
                     Die hier erstellte E-ID wird in erster Linie für das
                     Signieren mit der Qualifizierten Elektronischen Signatur
                     (QES) generiert. Falls Sie sich für andere Anwendungsfälle
-                    interessieren, kontaktieren Sie bitte Skribble.
+                    interessieren, kontaktieren Sie bitte
+                    <a
+                      class="link"
+                      href="https://www.skribble.com"
+                      target="_blank"
+                      >Skribble</a
+                    >.
                   </v-expansion-panel-content>
                 </v-expansion-panel>
 
@@ -476,8 +484,15 @@
                   </v-expansion-panel-header>
                   <v-expansion-panel-content
                     >Die QES wird nach maximal 30 Minuten nach der
-                    Identifikation auf Skribble und anderen Services, die auf
-                    Swisscom Signing Service beruhenden, freigeschaltet.
+                    Identifikation auf
+                    <a
+                      class="link"
+                      href="https://www.skribble.com"
+                      target="_blank"
+                      >Skribble</a
+                    >
+                    und anderen Services, die auf Swisscom Signing Service
+                    beruhenden, freigeschaltet.
                   </v-expansion-panel-content>
                 </v-expansion-panel>
 
@@ -521,9 +536,15 @@
                     Für welche Signaturservices kann ich die E-ID einsetzen?
                   </v-expansion-panel-header>
                   <v-expansion-panel-content>
-                    Die E-ID kann für Skribble und andere Signaturservices
-                    eingesetzt werden, die auf Swisscom Signing Service
-                    beruhenden.
+                    Die E-ID kann für
+                    <a
+                      class="link"
+                      href="https://www.skribble.com"
+                      target="_blank"
+                      >Skribble</a
+                    >
+                    und andere Signaturservices eingesetzt werden, die auf
+                    dem Swisscom Signing Service beruhen.
                   </v-expansion-panel-content>
                 </v-expansion-panel>
 
@@ -547,10 +568,14 @@
         <v-row justify="center">
           <div class="footer text-center my-10">
             Built by
-            <div class="skribble-logo mt-2">
+            <a
+              href="https://www.skribble.com/"
+              target="_blank"
+              class="skribble-logo mt-2"
+            >
               <img src="/logo-skribble.svg" alt="Skribble logo" />
               <div>Skribble</div>
-            </div>
+            </a>
           </div>
         </v-row>
       </v-container>
@@ -775,6 +800,9 @@ export default {
   &__heading
     max-width: 480px
 
+    a
+      color: $c-skribbleu
+
   &__footer
     margin-left: auto
     margin-right: auto
@@ -879,7 +907,6 @@ export default {
         padding-left: 20px
 
     &-content__wrap
-      max-width: 700px
       padding-left: 0
 
 .footer
@@ -888,4 +915,7 @@ export default {
   .skribble-logo
     font: bold 1.5rem/1 $averta
     color: $c-skribbleu
+
+  a
+    text-decoration: none
 </style>
