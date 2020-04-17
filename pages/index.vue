@@ -117,7 +117,7 @@
                   <h3 class="headline">Mit Kreditkarte bezahlen</h3>
                   <p>
                     Sie brauchen keine Rechnung abzuwarten, um mit dem Signieren
-                    los zulegen.
+                    loszulegen.
                   </p>
                 </li>
                 <li>
