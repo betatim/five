@@ -1,7 +1,7 @@
-import colors from 'vuetify/es5/util/colors'
+import colors from "vuetify/es5/util/colors";
 
 export default {
-  mode: 'universal',
+  mode: "universal",
   /*
    ** Environment variables
    */
@@ -36,7 +36,7 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [],
+  plugins: [{ src: "~plugins/matomo.js", mode: "client" }],
   /*
    ** Nuxt.js dev-modules
    */
