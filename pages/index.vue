@@ -91,46 +91,34 @@
                     'mb-6',
                   ]"
                 >
-                  In drei Schritten zur E-ID
+                  {{ $t('steps.title') }}
                 </h2>
-                <p
+                <i18n
+                  path="steps.subtitle"
+                  tag="p"
+                  for="steps.subtitle_link"
                   :class="[
                     { 'font-weight-bold': $vuetify.breakpoint.smAndDown },
                     { headline: $vuetify.breakpoint.mdAndUp },
                   ]"
                 >
-                  Die Identitätsprüfung erfolgt online und dauert nur wenige
-                  Minuten. Anschliessend wird die QES innert 30 Minuten für Sie
-                  auf
-                  <a href="https://www.skribble.com/de/" target="_blank"
-                    >Skribble.com</a
-                  >
-                  freigeschaltet.
-                </p>
+                  <a href="https://www.skribble.com/de/" target="_blank">{{
+                    $t('steps.subtitle_link')
+                  }}</a>
+                </i18n>
               </div>
               <ol class="steps__list mt-8 mt-md-12 pa-0">
                 <li>
-                  <h3 class="headline">Mit Kreditkarte bezahlen</h3>
-                  <p>
-                    Sie brauchen keine Rechnung abzuwarten, um mit dem Signieren
-                    loszulegen.
-                  </p>
+                  <h3 class="headline">{{ $t('steps.step1.title') }}</h3>
+                  <p>{{ $t('steps.step1.description') }}</p>
                 </li>
                 <li>
-                  <h3 class="headline">Per Video-Call identifizieren lassen</h3>
-                  <p>
-                    Ein geschulter Mitarbeitender unseres
-                    Identifikationspartners wird Ihr Identitätsdokument per
-                    Webcam prüfen.
-                  </p>
+                  <h3 class="headline">{{ $t('steps.step2.title') }}</h3>
+                  <p>{{ $t('steps.step2.description') }}</p>
                 </li>
                 <li>
-                  <h3 class="headline">Via Mobiltelefon bestätigen</h3>
-                  <p>
-                    Sie erhalten von Swisscom einen Link per SMS und legen das
-                    Passwort fest, mit dem Sie in Zukunft ihre Signaturen
-                    bestätigen.
-                  </p>
+                  <h3 class="headline">{{ $t('steps.step3.title') }}</h3>
+                  <p>{{ $t('steps.step3.description') }}</p>
                 </li>
               </ol>
               <div
@@ -140,15 +128,8 @@
                   'mt-8 mt-md-12',
                 ]"
               >
-                <p>
-                  Der Identifikationsservice ist täglich von 07.00 bis 22.00 Uhr
-                  verfügbar.
-                </p>
-                <p>
-                  Bitte halten Sie Ihren Reisepass/ID, eine Kreditkarte und Ihr
-                  Mobiltelefon bereit. Ihr Gerät muss über eine Webcam und ein
-                  Mikrofon verfügen.
-                </p>
+                <p>{{ $t('steps.caption.paragraph1') }}</p>
+                <p>{{ $t('steps.caption.paragraph2') }}</p>
               </div>
             </div>
           </v-col>
@@ -173,7 +154,7 @@
                   'white--text',
                 ]"
               >
-                Mit Kreditkarte bezahlen
+                {{ $t('payment.title') }}
               </h2>
               <p
                 :class="[
@@ -182,10 +163,7 @@
                   'white--text',
                 ]"
               >
-                Nach dem Bezahlvorgang werden Sie an unseren
-                Identifikationspartner weitergeleitet, bei dem Sie sich im
-                Auftrag von Swisscom Trust Services via Video-Call
-                identifizieren können.
+                {{ $t('payment.subtitle') }}
               </p>
             </div>
             <div
@@ -197,11 +175,10 @@
                 'white--text',
               ]"
             >
-              <strong
-                >Sie profitieren für begrenzte Zeit vom Vorzugspreis von CHF
-                19.-</strong
-              ><br />
-              (regulärer Preis: 25.-)
+              <p>
+                <strong>{{ $t('payment.price_info1') }}</strong>
+              </p>
+              <p>{{ $t('payment.price_info2') }}</p>
             </div>
             <!-- Form -->
             <div class="pay__flex">
@@ -221,7 +198,7 @@
                       <v-text-field
                         v-model="firstName"
                         :rules="nameRules"
-                        label="Vorname"
+                        :label="$t('payment.form.first_name')"
                         autocomplete="given-name"
                         required
                         outlined
@@ -229,7 +206,7 @@
                       <v-text-field
                         v-model="lastName"
                         :rules="nameRules"
-                        label="Nachname"
+                        :label="$t('payment.form.last_name')"
                         autocomplete="family-name"
                         required
                         outlined
@@ -237,7 +214,7 @@
                       <v-text-field
                         v-model="email"
                         :rules="emailRules"
-                        label="E-Mail"
+                        :label="$t('payment.form.email')"
                         autocomplete="email"
                         required
                         outlined
@@ -261,16 +238,20 @@
                         required
                       >
                         <template v-slot:label>
-                          <div class="pay__consent-label">
-                            Mit dem Bezahlen akzeptiere ich Skribbles
+                          <i18n
+                            path="payment.form.terms"
+                            tag="div"
+                            for="payment.form.terms_link"
+                            class="pay__consent-label"
+                          >
                             <a
                               @click.stop
                               class="link"
                               href="https://www.skribble.com/de/datenschutz/"
                               target="_blank"
-                              >Datenschutzrichtlinien</a
-                            >.
-                          </div>
+                              >{{ $t('payment.form.terms_link') }}</a
+                            >
+                          </i18n>
                         </template>
                       </v-checkbox>
                       <div class="text-center mt-6">
@@ -282,7 +263,7 @@
                           :disabled="!(validForm && completeStripe)"
                           :block="$vuetify.breakpoint.xsOnly"
                         >
-                          Jetzt bezahlen
+                          {{ $t('payment.form.pay_now') }}
                         </v-btn>
                       </div>
 
@@ -355,10 +336,10 @@
                         'mb-6',
                       ]"
                     >
-                      Zahlung erfolgreich!
+                      {{ $t('payment.success.title') }}
                     </h2>
                     <p>
-                      Die Bestätigung finden Sie in Ihrem E-Mail-Briefkasten.
+                      {{ $t('payment.success.subtitle') }}
                     </p>
                     <v-btn
                       large
@@ -367,15 +348,10 @@
                       :href="identURL"
                       target="_blank"
                     >
-                      Video-Identifikation jetzt starten
+                      {{ $t('payment.success.cta') }}
                     </v-btn>
                     <p class="caption mb-0">
-                      Sie werden zum Portal unseres Identifikations-Partners
-                      weitergeleitet, bei dem Sie sich im Auftrag der Swisscom
-                      Trust Services identifizieren können. Ihre hierfür
-                      erhobenen Personendaten werden ausschliesslich für die
-                      ordnungsgemässe Identifizierung im Rahmen der
-                      elektronischen Signatur verwendet.
+                      {{ $t('payment.success.caption') }}
                     </p>
                   </div>
                 </v-expand-transition>
