@@ -14,8 +14,7 @@
                   'mb-6',
                 ]"
               >
-                Video-Identifikation für elektronisches Signieren mit höchster
-                Beweiskraft
+                {{ $t('intro.title') }}
               </h1>
               <p
                 :class="[
@@ -24,33 +23,26 @@
                   'mb-6',
                 ]"
               >
-                Erstellen Sie sich in wenigen Minuten eine E-ID, die das
-                Signieren mit der qualifizierten elektronischen Signatur (QES)
-                erlaubt. Die QES ist der höchste Signaturstandard und der
-                handschriftlichen Unterschrift vor dem Gesetz gleichgestellt.
+                {{ $t('intro.subtitle') }}
               </p>
-              <p>
-                Um mit QES signieren zu können, muss man seine Identität
-                einmalig überprüfen lassen. Bis am 02. Oktober 2020 ist das per
-                Video-Call möglich. Der Bund
+
+              <i18n
+                path="intro.content.paragraph1"
+                tag="p"
+                for="intro.content.paragraph1_link"
+              >
                 <a
                   class="link"
                   href="https://www.admin.ch/gov/de/start/dokumentation/medienmitteilungen.msg-id-78641.html"
                   target="_blank"
-                  >setzte diese Ausnahmeregelung im Rahmen der COVID-19 Krise in
-                  Kraft</a
-                >, um die Notwendigkeit für persönlichen Kontakt zu reduzieren
-                und der gestiegenen Nachfrage für elektronisches Signieren
-                nachzukommen.
+                  >{{ $t('intro.content.paragraph1_link') }}</a
+                >
+              </i18n>
+              <p>
+                {{ $t('intro.content.paragraph2') }}
               </p>
               <p>
-                Diese Verordnung gilt für den Rechtsraum Schweiz. Für das
-                Signieren nach EU-Gesetz kann die E-ID auch nach dieser
-                Zeitperiode weiter eingesetzt werden.
-              </p>
-              <p>
-                VideoIdent.me wird von Skribble in Zusammenarbeit mit Swisscom
-                und IdentityTM angeboten.
+                {{ $t('intro.content.paragraph3') }}
               </p>
 
               <div class="intro__logos my-6">
@@ -75,7 +67,7 @@
                 large
                 color="primary"
                 :block="$vuetify.breakpoint.xsOnly"
-                >Jetzt starten</v-btn
+                >{{ $t('intro.cta') }}</v-btn
               >
             </div>
           </v-col>
@@ -109,9 +101,11 @@
                 >
                   Die Identitätsprüfung erfolgt online und dauert nur wenige
                   Minuten. Anschliessend wird die QES innert 30 Minuten für Sie
-                  auf <a href="https://www.skribble.com/de/" target="_blank"
+                  auf
+                  <a href="https://www.skribble.com/de/" target="_blank"
                     >Skribble.com</a
-                  > freigeschaltet.
+                  >
+                  freigeschaltet.
                 </p>
               </div>
               <ol class="steps__list mt-8 mt-md-12 pa-0">
@@ -483,8 +477,7 @@
                     einsetzen kann?
                   </v-expansion-panel-header>
                   <v-expansion-panel-content
-                    >Die QES wird maximal 30 Minuten nach der
-                    Identifikation auf
+                    >Die QES wird maximal 30 Minuten nach der Identifikation auf
                     <a
                       class="link"
                       href="https://www.skribble.com/de/"
@@ -543,8 +536,8 @@
                       target="_blank"
                       >Skribble</a
                     >
-                    und andere Signaturservices eingesetzt werden, die auf
-                    dem Swisscom Signing Service beruhen.
+                    und andere Signaturservices eingesetzt werden, die auf dem
+                    Swisscom Signing Service beruhen.
                   </v-expansion-panel-content>
                 </v-expansion-panel>
 

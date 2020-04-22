@@ -1,7 +1,8 @@
-import colors from "vuetify/es5/util/colors";
+import colors from 'vuetify/es5/util/colors'
+// const de_CH = require('/locales/de_CH.json')
 
 export default {
-  mode: "universal",
+  mode: 'universal',
   /*
    ** Environment variables
    */
@@ -36,7 +37,7 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [{ src: "~plugins/matomo.js", mode: "client" }],
+  plugins: [{ src: '~plugins/matomo.js', mode: 'client' }],
   /*
    ** Nuxt.js dev-modules
    */
@@ -44,7 +45,7 @@ export default {
   /*
    ** Nuxt.js modules
    */
-  modules: ['@nuxtjs/axios', '@nuxtjs/proxy'],
+  modules: ['@nuxtjs/axios', '@nuxtjs/proxy', 'nuxt-i18n'],
   /*
    ** Axios module configuration
    */
@@ -61,6 +62,27 @@ export default {
         '^/api/': '/api/',
       },
     },
+  },
+  /*
+   ** nuxt-i18n locales module configuration
+   */
+  i18n: {
+    locales: [
+      {
+        code: 'de',
+        file: 'de_CH.js',
+      },
+      {
+        code: 'en',
+        file: 'en_CH.js',
+      },
+    ],
+    defaultLocale: 'de',
+    lazy: true,
+    langDir: 'locales/',
+    // vueI18n: {
+    //   fallbackLocale: 'de_CH',
+    // },
   },
   /*
    ** vuetify module configuration
