@@ -109,9 +109,11 @@
                 >
                   Die Identitätsprüfung erfolgt online und dauert nur wenige
                   Minuten. Anschliessend wird die QES innert 30 Minuten für Sie
-                  auf <a href="https://www.skribble.com/de/" target="_blank"
+                  auf
+                  <a href="https://www.skribble.com/de/" target="_blank"
                     >Skribble.com</a
-                  > freigeschaltet.
+                  >
+                  freigeschaltet.
                 </p>
               </div>
               <ol class="steps__list mt-8 mt-md-12 pa-0">
@@ -323,9 +325,6 @@
                     Identifikationsprozess erstellen. Klicken Sie auf Erneut
                     senden, um es nochmals zu versuchen.
                   </p>
-                  <p>
-                    Ihre Karte wird nicht nochmals belastet.
-                  </p>
                   <div class="mt-10 text-center">
                     <v-btn
                       @click="reSubmit"
@@ -483,8 +482,7 @@
                     einsetzen kann?
                   </v-expansion-panel-header>
                   <v-expansion-panel-content
-                    >Die QES wird maximal 30 Minuten nach der
-                    Identifikation auf
+                    >Die QES wird maximal 30 Minuten nach der Identifikation auf
                     <a
                       class="link"
                       href="https://www.skribble.com/de/"
@@ -543,8 +541,8 @@
                       target="_blank"
                       >Skribble</a
                     >
-                    und andere Signaturservices eingesetzt werden, die auf
-                    dem Swisscom Signing Service beruhen.
+                    und andere Signaturservices eingesetzt werden, die auf dem
+                    Swisscom Signing Service beruhen.
                   </v-expansion-panel-content>
                 </v-expansion-panel>
 
