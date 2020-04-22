@@ -325,9 +325,6 @@
                     Identifikationsprozess erstellen. Klicken Sie auf Erneut
                     senden, um es nochmals zu versuchen.
                   </p>
-                  <p>
-                    Ihre Karte wird nicht nochmals belastet.
-                  </p>
                   <div class="mt-10 text-center">
                     <v-btn
                       @click="reSubmit"
