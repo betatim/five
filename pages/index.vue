@@ -68,15 +68,16 @@
                   />
                 </div>
               </div>
-
-              <v-btn
-                @click="$vuetify.goTo('#pay-form')"
-                class="mt-md-6"
-                large
-                color="primary"
-                :block="$vuetify.breakpoint.xsOnly"
-                >Jetzt starten</v-btn
-              >
+              <div class="text-center">
+                <v-btn
+                  @click="$vuetify.goTo('#pay-form')"
+                  class="intro__cta mt-md-6"
+                  large
+                  color="primary"
+                  :block="$vuetify.breakpoint.xsOnly"
+                  >Jetzt starten</v-btn
+                >
+              </div>
             </div>
           </v-col>
         </v-row>
@@ -109,9 +110,11 @@
                 >
                   Die Identitätsprüfung erfolgt online und dauert nur wenige
                   Minuten. Anschliessend wird die QES innert 30 Minuten für Sie
-                  auf <a href="https://www.skribble.com/de/" target="_blank"
+                  auf
+                  <a href="https://www.skribble.com/de/" target="_blank"
                     >Skribble.com</a
-                  > freigeschaltet.
+                  >
+                  freigeschaltet.
                 </p>
               </div>
               <ol class="steps__list mt-8 mt-md-12 pa-0">
@@ -483,8 +486,7 @@
                     einsetzen kann?
                   </v-expansion-panel-header>
                   <v-expansion-panel-content
-                    >Die QES wird maximal 30 Minuten nach der
-                    Identifikation auf
+                    >Die QES wird maximal 30 Minuten nach der Identifikation auf
                     <a
                       class="link"
                       href="https://www.skribble.com/de/"
@@ -543,8 +545,8 @@
                       target="_blank"
                       >Skribble</a
                     >
-                    und andere Signaturservices eingesetzt werden, die auf
-                    dem Swisscom Signing Service beruhen.
+                    und andere Signaturservices eingesetzt werden, die auf dem
+                    Swisscom Signing Service beruhen.
                   </v-expansion-panel-content>
                 </v-expansion-panel>
 
@@ -794,6 +796,9 @@ export default {
         margin-left: 0
       &:last-child
         margin-right: 0
+
+  &__cta.v-btn:not(.v-btn--round).v-size--large
+    min-width: 240px
 
 .steps
 
