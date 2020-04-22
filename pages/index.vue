@@ -68,15 +68,16 @@
                   />
                 </div>
               </div>
-
-              <v-btn
-                @click="$vuetify.goTo('#pay-form')"
-                class="mt-md-6"
-                large
-                color="primary"
-                :block="$vuetify.breakpoint.xsOnly"
-                >Jetzt starten</v-btn
-              >
+              <div class="text-center">
+                <v-btn
+                  @click="$vuetify.goTo('#pay-form')"
+                  class="intro__cta mt-md-6"
+                  large
+                  color="primary"
+                  :block="$vuetify.breakpoint.xsOnly"
+                  >Jetzt starten</v-btn
+                >
+              </div>
             </div>
           </v-col>
         </v-row>
@@ -792,6 +793,9 @@ export default {
         margin-left: 0
       &:last-child
         margin-right: 0
+
+  &__cta.v-btn:not(.v-btn--round).v-size--large
+    min-width: 240px
 
 .steps
 
