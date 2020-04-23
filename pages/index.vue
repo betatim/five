@@ -259,29 +259,18 @@
                         :options="stripeOptions"
                         @change="completeStripe = $event.complete"
                       />
-                      <v-checkbox
-                        class="pay__consent mt-8 mx-auto"
-                        v-model="checkbox"
-                        :rules="[
-                          v =>
-                            !!v ||
-                            'Sie müssen zustimmen, um den Prozess zu starten.',
-                        ]"
-                        required
-                      >
-                        <template v-slot:label>
-                          <div class="pay__consent-label">
-                            Mit dem Bezahlen akzeptiere ich Skribbles
-                            <a
-                              @click.stop
-                              class="link"
-                              href="https://www.skribble.com/de/datenschutz/"
-                              target="_blank"
-                              >Datenschutzrichtlinien</a
-                            >.
-                          </div>
-                        </template>
-                      </v-checkbox>
+
+                      <div class="pay__consent text-center mt-8">
+                        Es gelten die
+                        <a
+                          @click.stop
+                          class="link"
+                          href="https://www.skribble.com/de/datenschutz/"
+                          target="_blank"
+                          >Datenschutzrichtlinien</a
+                        >
+                        von Skribble.
+                      </div>
                       <div class="text-center mt-6">
                         <v-btn
                           @click="pay"
@@ -631,7 +620,6 @@ export default {
         v => !!v || 'E-mail wird benötigt',
         v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
       ],
-      checkbox: false,
       lazy: false,
 
       paymentIntentID: '',
@@ -868,8 +856,8 @@ export default {
     border-top: 1px solid #fff
     border-bottom: 1px solid #fff
 
-  &__consent.v-input
-    max-width: 300px
+  &__consent
+    font-size: .8rem
 
   &__card.v-card
     max-width: 580px
