@@ -96,8 +96,8 @@ export default {
         'An error occurred while paying. Please use a different form of payment or try again later.',
     },
     form: {
-      country: 'Country',
-      country_is_required: 'Country is required',
+      country: 'Billing country',
+      country_is_required: 'A billing country is required',
       email: 'e-mail',
       email_is_required: 'E-mail is required',
       email_must_be_valid: 'E-mail must be valid',
