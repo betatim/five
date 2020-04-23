@@ -468,7 +468,7 @@
 
                 <v-expansion-panel>
                   <v-expansion-panel-header>
-                    Wie lange dauert, bis ich die E-ID für das Signieren
+                    Wie lange dauert es, bis ich die E-ID für das Signieren
                     einsetzen kann?
                   </v-expansion-panel-header>
                   <v-expansion-panel-content
