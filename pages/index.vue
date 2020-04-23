@@ -60,15 +60,16 @@
                   />
                 </div>
               </div>
-
-              <v-btn
-                @click="$vuetify.goTo('#pay-form')"
-                class="mt-md-6"
-                large
-                color="primary"
-                :block="$vuetify.breakpoint.xsOnly"
-                >{{ $t('intro.cta') }}</v-btn
-              >
+              <div class="text-center">
+                <v-btn
+                  @click="$vuetify.goTo('#pay-form')"
+                  class="intro__cta mt-md-6"
+                  large
+                  color="primary"
+                  :block="$vuetify.breakpoint.xsOnly"
+                  >{{ $t('intro.cta') }}</v-btn
+                >
+              </div>
             </div>
           </v-col>
         </v-row>
@@ -227,29 +228,21 @@
                         :options="stripeOptions"
                         @change="completeStripe = $event.complete"
                       />
-                      <v-checkbox
-                        class="pay__consent mt-8 mx-auto"
-                        v-model="checkbox"
-                        :rules="[v => !!v || $t('payment.form.you_must_agree')]"
-                        required
+
+                      <i18n
+                        path="payment.form.terms"
+                        tag="div"
+                        for="payment.form.terms_linkText"
+                        class="pay__consent text-center mt-8"
                       >
-                        <template v-slot:label>
-                          <i18n
-                            path="payment.form.terms"
-                            tag="div"
-                            for="payment.form.terms_linkText"
-                            class="pay__consent-label"
-                          >
-                            <a
-                              @click.stop
-                              class="link"
-                              :href="$t('payment.form.terms_linkURL')"
-                              target="_blank"
-                              >{{ $t('payment.form.terms_linkText') }}</a
-                            >
-                          </i18n>
-                        </template>
-                      </v-checkbox>
+                        <a
+                          @click.stop
+                          class="link"
+                          :href="$t('payment.form.terms_linkURL')"
+                          target="_blank"
+                          >{{ $t('payment.form.terms_linkText') }}</a
+                        >
+                      </i18n>
                       <div class="text-center mt-6">
                         <v-btn
                           @click="pay"
@@ -576,7 +569,6 @@ export default {
         v => !!v || this.$t('payment.form.email_is_required'),
         v => /.+@.+\..+/.test(v) || this.$t('payment.form.email_must_be_valid'),
       ],
-      checkbox: false,
       lazy: false,
 
       paymentIntentID: '',
@@ -751,6 +743,9 @@ export default {
       &:last-child
         margin-right: 0
 
+  &__cta.v-btn:not(.v-btn--round).v-size--large
+    min-width: 240px
+
 .steps
 
   &__heading
@@ -822,8 +817,8 @@ export default {
     border-top: 1px solid #fff
     border-bottom: 1px solid #fff
 
-  &__consent.v-input
-    max-width: 300px
+  &__consent
+    font-size: .8rem
 
   &__card.v-card
     max-width: 580px

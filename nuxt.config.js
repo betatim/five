@@ -88,6 +88,8 @@ export default {
   vuetify: {
     customVariables: ['~/assets/variables.sass'],
     defaultAssets: {
+      // Don't load roboto font, we don't use it
+      font: false,
       icons: 'mdi',
     },
     treeShake: true,
