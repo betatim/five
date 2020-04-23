@@ -68,7 +68,7 @@ export default {
   intro: {
     content: {
       paragraph1:
-        'To be able to sign with QES, you must have your identity verified once. Until the October 2, 2020 this is possible via video call. The federal government {0} in order to reduce the need for personal contact and to meet the increased demand for electronic signatures. ',
+        'To be able to sign with QES, you must have your identity verified once. Until the October 2, 2020 this is possible via video call. The federal government {0} in order to reduce the need for personal contact and to meet the increased demand for electronic signatures.',
       paragraph1_linkText:
         'implemented this exceptional regulation in the context of the COVID-19 crisis',
       paragraph1_linkURL:
@@ -87,11 +87,13 @@ export default {
   payment: {
     failure: {
       after_payment: {
-        paragraph1: '',
-        paragraph2: '',
-        send_again_button: '',
+        paragraph1:
+          "The payment was successful, but we couldn't create an identification process. Click Resend to try again.",
+        paragraph2: 'Your card will not be charged again.',
+        send_again_button: 'Resend',
       },
-      during_payment: '',
+      during_payment:
+        'An error occurred while paying. Please use a different form of payment or try again later.',
     },
     form: {
       email: 'e-mail',
@@ -101,7 +103,7 @@ export default {
       last_name: 'Name',
       name_is_required: 'Name is required',
       pay_now: 'Pay now',
-      terms: 'By paying I accept the {0} of Skribble',
+      terms: "Skribble's {0} applies.",
       terms_linkText: 'privacy policy',
       terms_linkURL: 'https://www.skribble.com/privacy/',
       you_must_agree: 'You must agree to start the process.',
@@ -117,7 +119,7 @@ export default {
       subtitle: 'You will find the confirmation in your e-mail inbox.',
       title: 'Payment successful!',
     },
-    title: 'Pay by credit card',
+    title: '1. Pay by credit card',
   },
   steps: {
     caption: {

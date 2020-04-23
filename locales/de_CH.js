@@ -45,7 +45,7 @@ export default {
       answer:
         'Die QES wird maximal 30 Minuten nach der Identifikation auf Skribble und anderen Services, die auf dem Swisscom Signing Service beruhen, freigeschaltet.',
       question:
-        'Wie lange dauert, bis ich die E-ID für das Signieren einsetzen kann?',
+        'Wie lange dauert es, bis ich die E-ID für das Signieren einsetzen kann?',
     },
     question7: {
       answer:
@@ -86,7 +86,7 @@ export default {
     },
     cta: 'Jetzt starten',
     subtitle:
-      'Erstellen Sie sich in wenigen Minuten eine E-ID, die das Signieren mit der qualifizierten elektronischen Signatur (QES) erlaubt. Die QES ist der höchste Signaturstandard und der handschriftlichen Unterschrift vor dem Gesetz gleichgestellt.',
+      'Erstellen Sie sich in wenigen Minuten eine E-ID, die das Signieren mit der qualifizierten elektronischen Signatur (QES) erlaubt. Die QES ist der höchste Signatur-standard- und der handschriftlichen Unterschrift vor dem Gesetz gleichgestellt.',
     title:
       'Video-Identifikation für elektronisches Signieren mit höchster Beweiskraft',
   },
@@ -109,7 +109,7 @@ export default {
       last_name: 'Nachname',
       name_is_required: 'Name wird benötigt',
       pay_now: 'Jetzt bezahlen',
-      terms: 'Mit dem Bezahlen akzeptiere ich Skribbles {0}.',
+      terms: 'Es gelten die {0} von Skribble.',
       terms_linkText: 'Datenschutzrichtlinien',
       terms_linkURL: 'https://www.skribble.com/de/datenschutz/',
       you_must_agree: 'Sie müssen zustimmen, um den Prozess zu starten.',
@@ -126,7 +126,7 @@ export default {
       subtitle: 'Die Bestätigung finden Sie in Ihrem E-Mail-Briefkasten.',
       title: 'Zahlung erfolgreich!',
     },
-    title: 'Mit Kreditkarte bezahlen',
+    title: '1. Mit Kreditkarte bezahlen',
   },
   steps: {
     caption: {
