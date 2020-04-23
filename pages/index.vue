@@ -176,10 +176,8 @@
                 'white--text',
               ]"
             >
-              <p>
-                <strong>{{ $t('payment.price_info1') }}</strong>
-              </p>
-              <p>{{ $t('payment.price_info2') }}</p>
+              <strong>{{ $t('payment.price_info1') }}</strong>
+              {{ $t('payment.price_info2') }}
             </div>
             <!-- Form -->
             <div class="pay__flex">
