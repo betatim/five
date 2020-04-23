@@ -102,6 +102,8 @@ export default {
         'Es ist ein Fehler beim Bezahlen aufgetreten. Bitte verwenden Sie ein anderes Zahlungsmittel oder versuchen Sie es später erneut.',
     },
     form: {
+      country: 'Abrechnungsland',
+      country_is_required: 'Ein Abrechnungsland wird benötigt',
       email: 'E-Mail',
       email_is_required: 'E-mail wird benötigt',
       email_must_be_valid: 'E-mail must be valid',
