@@ -44,7 +44,7 @@ export default {
   /*
    ** Nuxt.js modules
    */
-  modules: ['@nuxtjs/axios', '@nuxtjs/proxy'],
+  modules: ['@nuxtjs/axios', '@nuxtjs/proxy', 'nuxt-i18n'],
   /*
    ** Axios module configuration
    */
@@ -61,6 +61,25 @@ export default {
         '^/api/': '/api/',
       },
     },
+  },
+  /*
+   ** nuxt-i18n locales module configuration
+   */
+  i18n: {
+    strategy: 'prefix',
+    locales: [
+      {
+        code: 'ch/de',
+        file: 'de_CH.js',
+      },
+      {
+        code: 'ch/en',
+        file: 'en_CH.js',
+      },
+    ],
+    defaultLocale: 'ch/de',
+    lazy: true,
+    langDir: 'locales/',
   },
   /*
    ** vuetify module configuration
