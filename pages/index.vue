@@ -194,7 +194,7 @@
                       v-model="validForm"
                       :lazy-validation="lazy"
                       ><v-row>
-                        <v-col class="py-0" cols="6">
+                        <v-col class="py-0" cols="12" sm="6">
                           <v-text-field
                             v-model="firstName"
                             :rules="nameRules"
@@ -204,7 +204,7 @@
                             outlined
                           ></v-text-field
                         ></v-col>
-                        <v-col class="py-0" cols="6">
+                        <v-col class="py-0" cols="12" sm="6">
                           <v-text-field
                             v-model="lastName"
                             :rules="nameRules"
@@ -226,6 +226,11 @@
                       <v-select
                         v-model="country"
                         :items="countryList"
+                        class="pay__countries"
+                        :label="$t('payment.form.country')"
+                        autocomplete="country-name"
+                        :rules="countryRules"
+                        required
                         outlined
                       ></v-select>
 
@@ -567,99 +572,101 @@ export default {
           },
         },
       },
-      country: 'ch',
+      country: null,
       countryList: [
-        { value: 'al', text: 'Albanien' },
-        { value: 'am', text: 'Armenien' },
-        { value: 'ao', text: 'Angola' },
-        { value: 'at', text: 'Österreich' },
-        { value: 'au', text: 'Australien' },
-        { value: 'ba', text: 'Bosnien und Herzegowina' },
-        { value: 'be', text: 'Belgien' },
-        { value: 'bg', text: 'Bulgarien' },
-        { value: 'bj', text: 'Benin' },
-        { value: 'br', text: 'Brasilien' },
-        { value: 'by', text: 'Weissrussland' },
-        { value: 'ca', text: 'Kanada' },
-        { value: 'cg', text: 'Kongo' },
         { value: 'ch', text: 'Schweiz' },
-        { value: 'ci', text: 'Elfenbeinküste' },
-        { value: 'cl', text: 'Chile' },
-        { value: 'cm', text: 'Kamerun' },
-        { value: 'cn', text: 'China' },
-        { value: 'co', text: 'Kolumbien' },
-        { value: 'cu', text: 'Kuba' },
-        { value: 'cy', text: 'Zypern' },
-        { value: 'cz', text: 'Tschechien' },
         { value: 'de', text: 'Deutschland' },
+        { value: 'fr', text: 'Frankreich' },
+        { value: 'at', text: 'Österreich' },
+        { value: '', text: '', divider: true },
+        { value: 'eg', text: 'Ägypten' },
+        { value: 'al', text: 'Albanien' },
+        { value: 'dz', text: 'Algerien' },
+        { value: 'ao', text: 'Angola' },
+        { value: 'am', text: 'Armenien' },
+        { value: 'et', text: 'Äthiopien' },
+        { value: 'au', text: 'Australien' },
+        { value: 'be', text: 'Belgien' },
+        { value: 'bj', text: 'Benin' },
+        { value: 'ba', text: 'Bosnien und Herzegowina' },
+        { value: 'br', text: 'Brasilien' },
+        { value: 'bg', text: 'Bulgarien' },
+        { value: 'cl', text: 'Chile' },
+        { value: 'cn', text: 'China' },
         { value: 'dk', text: 'Dänemark' },
         { value: 'do', text: 'Dominikanische Republik' },
-        { value: 'dz', text: 'Algerien' },
         { value: 'ec', text: 'Ecuador' },
+        { value: 'ci', text: 'Elfenbeinküste' },
         { value: 'ee', text: 'Estland' },
-        { value: 'eg', text: 'Ägypten' },
-        { value: 'es', text: 'Spanien' },
-        { value: 'et', text: 'Äthiopien' },
         { value: 'fi', text: 'Finnland' },
-        { value: 'fr', text: 'Frankreich' },
-        { value: 'gb', text: 'Grossbritannien' },
         { value: 'gr', text: 'Griechenland' },
+        { value: 'gb', text: 'Grossbritannien' },
         { value: 'hk', text: 'Hongkong' },
-        { value: 'hr', text: 'Kroatien' },
-        { value: 'hu', text: 'Ungarn' },
-        { value: 'id', text: 'Indonesien' },
-        { value: 'ie', text: 'Irland' },
-        { value: 'il', text: 'Israel' },
         { value: 'in', text: 'Indien' },
+        { value: 'id', text: 'Indonesien' },
         { value: 'iq', text: 'Irak' },
         { value: 'ir', text: 'Iran' },
+        { value: 'ie', text: 'Irland' },
+        { value: 'il', text: 'Israel' },
         { value: 'it', text: 'Italien' },
         { value: 'jp', text: 'Japan' },
+        { value: 'cm', text: 'Kamerun' },
+        { value: 'ca', text: 'Kanada' },
         { value: 'kz', text: 'Kasachstan' },
+        { value: 'co', text: 'Kolumbien' },
+        { value: 'cg', text: 'Kongo' },
+        { value: 'xk', text: 'Kosovo' },
+        { value: 'hr', text: 'Kroatien' },
+        { value: 'cu', text: 'Kuba' },
         { value: 'la', text: 'Laos' },
+        { value: 'lv', text: 'Lettland' },
         { value: 'lb', text: 'Libanon' },
         { value: 'li', text: 'Liechtenstein' },
         { value: 'lt', text: 'Litauen' },
         { value: 'lu', text: 'Luxemburg' },
-        { value: 'lv', text: 'Lettland' },
-        { value: 'ma', text: 'Marokko' },
-        { value: 'me', text: 'Montenegro' },
-        { value: 'mk', text: 'Mazedonien' },
-        { value: 'mt', text: 'Malta' },
-        { value: 'mx', text: 'Mexiko' },
         { value: 'my', text: 'Malaysia' },
-        { value: 'ng', text: 'Nigeria' },
-        { value: 'nl', text: 'Niederlande' },
-        { value: 'no', text: 'Norwegen' },
+        { value: 'mt', text: 'Malta' },
+        { value: 'ma', text: 'Marokko' },
+        { value: 'mk', text: 'Mazedonien' },
+        { value: 'mx', text: 'Mexiko' },
+        { value: 'me', text: 'Montenegro' },
         { value: 'nz', text: 'Neuseeland' },
+        { value: 'nl', text: 'Niederlande' },
+        { value: 'ng', text: 'Nigeria' },
+        { value: 'no', text: 'Norwegen' },
+        { value: 'pk', text: 'Pakistan' },
         { value: 'pe', text: 'Peru' },
         { value: 'ph', text: 'Philippinen' },
-        { value: 'pk', text: 'Pakistan' },
         { value: 'pl', text: 'Polen' },
         { value: 'pt', text: 'Portugal' },
         { value: 'ro', text: 'Rumänien' },
-        { value: 'rs', text: 'Serbien' },
         { value: 'ru', text: 'Russland' },
         { value: 'se', text: 'Schweden' },
-        { value: 'si', text: 'Slowenien' },
-        { value: 'sk', text: 'Slowakei' },
         { value: 'sn', text: 'Senegal' },
+        { value: 'rs', text: 'Serbien' },
+        { value: 'sk', text: 'Slowakei' },
+        { value: 'si', text: 'Slowenien' },
         { value: 'so', text: 'Somalia' },
+        { value: 'es', text: 'Spanien' },
+        { value: 'za', text: 'Südafrika' },
         { value: 'sy', text: 'Syrisch-Arabische Republik' },
-        { value: 'tg', text: 'Togo' },
         { value: 'th', text: 'Thailand' },
+        { value: 'tg', text: 'Togo' },
+        { value: 'cz', text: 'Tschechien' },
         { value: 'tn', text: 'Tunesien' },
         { value: 'tr', text: 'Türkei' },
         { value: 'ua', text: 'Ukraine' },
-        { value: 'us', text: 'Vereinigte Staaten von Amerika' },
+        { value: 'hu', text: 'Ungarn' },
         { value: 've', text: 'Venezuela' },
+        { value: 'us', text: 'Vereinigte Staaten von Amerika' },
         { value: 'vn', text: 'Vietnam' },
-        { value: 'xk', text: 'Kosovo' },
-        { value: 'za', text: 'Südafrika' },
+        { value: 'by', text: 'Weissrussland' },
+        { value: 'cy', text: 'Zypern' },
       ],
       validForm: true,
       firstName: '',
       lastName: '',
+      countryRules: [v => !!v || this.$t('payment.form.country_is_required')],
       nameRules: [v => !!v || this.$t('payment.form.name_is_required')],
       email: '',
       emailRules: [
@@ -925,6 +932,10 @@ export default {
     +media(xs-only)
       margin-left: -20px
       margin-right: -20px
+
+  &__countries.v-input
+    font: 1rem/1 Averta
+    color: $c-skribbleu
 
   &__form
     max-width: 580px
