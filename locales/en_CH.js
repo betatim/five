@@ -108,7 +108,7 @@ export default {
       terms_linkURL: 'https://www.skribble.com/privacy/',
       you_must_agree: 'You must agree to start the process.',
     },
-    price_info1: 'Benefit from the special price of CHF 19– for a limited time',
+    price_info1: 'Benefit from the special price of CHF 19.– for a limited time',
     price_info2: '(regular price: CHF  25.–)',
     subtitle:
       'Once the payment process is complete, you will be forwarded to our identification partner in order to get identified via video call on behalf of Swisscom Trust Services.',
