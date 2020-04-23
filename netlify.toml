@@ -33,15 +33,15 @@
 # The redirects engine will process the first matching rule it finds, reading from top to bottom.
 # https://docs.netlify.com/routing/redirects/#syntax-for-the-netlify-configuration-file
 
-# If browser is in German, show CH/DE page
-[[redirects]]
-  from = "/"
-  to = "/ch/de"
-  status = 301
-  conditions = {Language = ["de"]}
-
-# Otherwise, display CH/EN page
+# If browser is in English, show CH/EN page
 [[redirects]]
   from = "/"
   to = "/ch/en"
+  status = 301
+  conditions = {Language = ["en"]}
+
+# Otherwise, display CH/DE page
+[[redirects]]
+  from = "/"
+  to = "/ch/de"
   status = 301
