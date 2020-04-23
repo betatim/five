@@ -67,22 +67,20 @@ export default {
    ** nuxt-i18n locales module configuration
    */
   i18n: {
+    strategy: 'prefix',
     locales: [
       {
-        code: 'de',
+        code: 'ch/de',
         file: 'de_CH.js',
       },
       {
-        code: 'en',
+        code: 'ch/en',
         file: 'en_CH.js',
       },
     ],
-    defaultLocale: 'de',
+    defaultLocale: 'ch/de',
     lazy: true,
     langDir: 'locales/',
-    // vueI18n: {
-    //   fallbackLocale: 'de_CH',
-    // },
   },
   /*
    ** vuetify module configuration
