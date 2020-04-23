@@ -1,5 +1,4 @@
 import colors from 'vuetify/es5/util/colors'
-// const de_CH = require('/locales/de_CH.json')
 
 export default {
   mode: 'universal',
