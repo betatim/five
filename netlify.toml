@@ -35,13 +35,13 @@
 
 # If browser is in German, show CH/DE page
 [[redirects]]
-  from = "/*"
+  from = "/"
   to = "/ch/de"
   status = 301
   conditions = {Language = ["de"]}
 
 # Otherwise, display CH/EN page
 [[redirects]]
-  from = "/*"
+  from = "/"
   to = "/ch/en"
   status = 301
