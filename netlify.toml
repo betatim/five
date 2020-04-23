@@ -33,12 +33,12 @@
 [[redirects]]
   from = "/"
   to = "/ch/de"
-  force = true,
+  force = true
   status = 302
   conditions = {Language = ["de"]}
 # Otherwise, display CH/EN page
 [[redirects]]
   from = "/"
   to = "/ch/en"
-  force = true,
+  force = true
   status = 302
