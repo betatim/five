@@ -227,22 +227,28 @@
                       v-model="validForm"
                       :lazy-validation="lazy"
                     >
-                      <v-text-field
-                        v-model="firstName"
-                        :rules="nameRules"
-                        label="Vorname"
-                        autocomplete="given-name"
-                        required
-                        outlined
-                      ></v-text-field>
-                      <v-text-field
-                        v-model="lastName"
-                        :rules="nameRules"
-                        label="Nachname"
-                        autocomplete="family-name"
-                        required
-                        outlined
-                      ></v-text-field>
+                      <v-row>
+                        <v-col class="py-0" cols="6">
+                          <v-text-field
+                            v-model="firstName"
+                            :rules="nameRules"
+                            label="Vorname"
+                            autocomplete="given-name"
+                            required
+                            outlined
+                          ></v-text-field>
+                        </v-col>
+                        <v-col class="py-0" cols="6">
+                          <v-text-field
+                            v-model="lastName"
+                            :rules="nameRules"
+                            label="Nachname"
+                            autocomplete="family-name"
+                            required
+                            outlined
+                          ></v-text-field>
+                        </v-col>
+                      </v-row>
                       <v-text-field
                         v-model="email"
                         :rules="emailRules"
@@ -251,6 +257,11 @@
                         required
                         outlined
                       ></v-text-field>
+                      <v-select
+                        v-model="country"
+                        :items="countryList"
+                        outlined
+                      ></v-select>
 
                       <card
                         class="stripe-card"
@@ -621,7 +632,96 @@ export default {
           },
         },
       },
-
+      country: 'ch',
+      countryList: [
+        { value: 'al', text: 'Albanien' },
+        { value: 'am', text: 'Armenien' },
+        { value: 'ao', text: 'Angola' },
+        { value: 'at', text: 'Österreich' },
+        { value: 'au', text: 'Australien' },
+        { value: 'ba', text: 'Bosnien und Herzegowina' },
+        { value: 'be', text: 'Belgien' },
+        { value: 'bg', text: 'Bulgarien' },
+        { value: 'bj', text: 'Benin' },
+        { value: 'br', text: 'Brasilien' },
+        { value: 'by', text: 'Weissrussland' },
+        { value: 'ca', text: 'Kanada' },
+        { value: 'cg', text: 'Kongo' },
+        { value: 'ch', text: 'Schweiz' },
+        { value: 'ci', text: 'Elfenbeinküste' },
+        { value: 'cl', text: 'Chile' },
+        { value: 'cm', text: 'Kamerun' },
+        { value: 'cn', text: 'China' },
+        { value: 'co', text: 'Kolumbien' },
+        { value: 'cu', text: 'Kuba' },
+        { value: 'cy', text: 'Zypern' },
+        { value: 'cz', text: 'Tschechien' },
+        { value: 'de', text: 'Deutschland' },
+        { value: 'dk', text: 'Dänemark' },
+        { value: 'do', text: 'Dominikanische Republik' },
+        { value: 'dz', text: 'Algerien' },
+        { value: 'ec', text: 'Ecuador' },
+        { value: 'ee', text: 'Estland' },
+        { value: 'eg', text: 'Ägypten' },
+        { value: 'es', text: 'Spanien' },
+        { value: 'et', text: 'Äthiopien' },
+        { value: 'fi', text: 'Finnland' },
+        { value: 'fr', text: 'Frankreich' },
+        { value: 'gb', text: 'Grossbritannien' },
+        { value: 'gr', text: 'Griechenland' },
+        { value: 'hk', text: 'Hongkong' },
+        { value: 'hr', text: 'Kroatien' },
+        { value: 'hu', text: 'Ungarn' },
+        { value: 'id', text: 'Indonesien' },
+        { value: 'ie', text: 'Irland' },
+        { value: 'il', text: 'Israel' },
+        { value: 'in', text: 'Indien' },
+        { value: 'iq', text: 'Irak' },
+        { value: 'ir', text: 'Iran' },
+        { value: 'it', text: 'Italien' },
+        { value: 'jp', text: 'Japan' },
+        { value: 'kz', text: 'Kasachstan' },
+        { value: 'la', text: 'Laos' },
+        { value: 'lb', text: 'Libanon' },
+        { value: 'li', text: 'Liechtenstein' },
+        { value: 'lt', text: 'Litauen' },
+        { value: 'lu', text: 'Luxemburg' },
+        { value: 'lv', text: 'Lettland' },
+        { value: 'ma', text: 'Marokko' },
+        { value: 'me', text: 'Montenegro' },
+        { value: 'mk', text: 'Mazedonien' },
+        { value: 'mt', text: 'Malta' },
+        { value: 'mx', text: 'Mexiko' },
+        { value: 'my', text: 'Malaysia' },
+        { value: 'ng', text: 'Nigeria' },
+        { value: 'nl', text: 'Niederlande' },
+        { value: 'no', text: 'Norwegen' },
+        { value: 'nz', text: 'Neuseeland' },
+        { value: 'pe', text: 'Peru' },
+        { value: 'ph', text: 'Philippinen' },
+        { value: 'pk', text: 'Pakistan' },
+        { value: 'pl', text: 'Polen' },
+        { value: 'pt', text: 'Portugal' },
+        { value: 'ro', text: 'Rumänien' },
+        { value: 'rs', text: 'Serbien' },
+        { value: 'ru', text: 'Russland' },
+        { value: 'se', text: 'Schweden' },
+        { value: 'si', text: 'Slowenien' },
+        { value: 'sk', text: 'Slowakei' },
+        { value: 'sn', text: 'Senegal' },
+        { value: 'so', text: 'Somalia' },
+        { value: 'sy', text: 'Syrisch-Arabische Republik' },
+        { value: 'tg', text: 'Togo' },
+        { value: 'th', text: 'Thailand' },
+        { value: 'tn', text: 'Tunesien' },
+        { value: 'tr', text: 'Türkei' },
+        { value: 'ua', text: 'Ukraine' },
+        { value: 'us', text: 'Vereinigte Staaten von Amerika' },
+        { value: 've', text: 'Venezuela' },
+        { value: 'vn', text: 'Vietnam' },
+        { value: 'xk', text: 'Kosovo' },
+        { value: 'za', text: 'Südafrika' },
+      ],
       validForm: true,
       firstName: '',
       lastName: '',
@@ -653,6 +753,7 @@ export default {
         try {
           return await this.$axios.$post('/api/setup_payment', {
             email: this.email,
+            country: this.country,
           })
         } catch (error) {
           this.status = 'error-during-payment'
