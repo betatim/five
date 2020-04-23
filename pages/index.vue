@@ -29,13 +29,13 @@
               <i18n
                 path="intro.content.paragraph1"
                 tag="p"
-                for="intro.content.paragraph1_link"
+                for="intro.content.paragraph1_linkText"
               >
                 <a
                   class="link"
-                  href="https://www.admin.ch/gov/de/start/dokumentation/medienmitteilungen.msg-id-78641.html"
+                  :href="$t('intro.content.paragraph1_linkURL')"
                   target="_blank"
-                  >{{ $t('intro.content.paragraph1_link') }}</a
+                  >{{ $t('intro.content.paragraph1_linkText') }}</a
                 >
               </i18n>
               <p>
@@ -96,14 +96,14 @@
                 <i18n
                   path="steps.subtitle"
                   tag="p"
-                  for="steps.subtitle_link"
+                  for="steps.subtitle_linkText"
                   :class="[
                     { 'font-weight-bold': $vuetify.breakpoint.smAndDown },
                     { headline: $vuetify.breakpoint.mdAndUp },
                   ]"
                 >
-                  <a href="https://www.skribble.com/de/" target="_blank">{{
-                    $t('steps.subtitle_link')
+                  <a :href="$t('steps.subtitle_linkURL')" target="_blank">{{
+                    $t('steps.subtitle_linkText')
                   }}</a>
                 </i18n>
               </div>
@@ -230,26 +230,22 @@
                       <v-checkbox
                         class="pay__consent mt-8 mx-auto"
                         v-model="checkbox"
-                        :rules="[
-                          v =>
-                            !!v ||
-                            'Sie müssen zustimmen, um den Prozess zu starten.',
-                        ]"
+                        :rules="[v => !!v || $t('payment.form.you_must_agree')]"
                         required
                       >
                         <template v-slot:label>
                           <i18n
                             path="payment.form.terms"
                             tag="div"
-                            for="payment.form.terms_link"
+                            for="payment.form.terms_linkText"
                             class="pay__consent-label"
                           >
                             <a
                               @click.stop
                               class="link"
-                              href="https://www.skribble.com/de/datenschutz/"
+                              :href="$t('payment.form.terms_linkURL')"
                               target="_blank"
-                              >{{ $t('payment.form.terms_link') }}</a
+                              >{{ $t('payment.form.terms_linkText') }}</a
                             >
                           </i18n>
                         </template>
@@ -279,9 +275,7 @@
                           {{ stripePaymentErrorMsg }}
                         </p>
                         <p class="caption red--text">
-                          Es ist ein Fehler beim Bezahlen aufgetreten. Bitte
-                          verwenden Sie ein anderes Zahlungsmittel oder
-                          versuchen Sie es später erneut.
+                          {{ $t('payment.failure.during_payment') }}
                         </p>
                       </div>
                     </v-form>
@@ -294,12 +288,10 @@
                   class="pay__error text--text text-center"
                 >
                   <p>
-                    Die Zahlung war erfolgreich, aber wir konnten keinen
-                    Identifikationsprozess erstellen. Klicken Sie auf Erneut
-                    senden, um es nochmals zu versuchen.
+                    {{ $t('payment.failure.after_payment.paragraph1') }}
                   </p>
                   <p>
-                    Ihre Karte wird nicht nochmals belastet.
+                    {{ $t('payment.failure.after_payment.paragraph2') }}
                   </p>
                   <div class="mt-10 text-center">
                     <v-btn
@@ -308,7 +300,9 @@
                       color="primary"
                       :block="$vuetify.breakpoint.xsOnly"
                     >
-                      Erneut senden
+                      {{
+                        $t('payment.failure.after_payment.send_again_button')
+                      }}
                     </v-btn>
                   </div>
                 </div>
@@ -370,162 +364,118 @@
                 :class="{ 'text-center': $vuetify.breakpoint.smAndUp }"
                 class="display-3 mb-6"
               >
-                FAQ
+                {{ $t('faq.title') }}
               </h2>
               <v-expansion-panels accordion flat multiple class="my-10">
                 <v-expansion-panel>
                   <v-expansion-panel-header>
-                    Was passiert mit der E-ID nach dem 2. Oktober 2020?
+                    {{ $t('faq.question1.question') }}
                   </v-expansion-panel-header>
                   <v-expansion-panel-content>
-                    Die hier erstellt E-ID wird, nach heutigem Kenntnisstand,
-                    per 2. Oktober 2020 fürs Signieren nach Schweizer Gesetz
-                    (ZertES) deaktiviert werden müssen. Die E-ID kann jedoch
-                    weiterhin fürs Signieren nach europäischen Gesetzt (eIDAS)
-                    eingesetzt werden.</v-expansion-panel-content
-                  >
-                </v-expansion-panel>
-
-                <v-expansion-panel>
-                  <v-expansion-panel-header>
-                    Wo wird meine E-ID gespeichert?
-                  </v-expansion-panel-header>
-                  <v-expansion-panel-content
-                    >Die E-ID wird nach höchsten Sicherheitsstandards,
-                    verschlüsselt in den Rechenzentren der Swisscom abgelegt.
-                    Die E-ID kann nur im Falle eines Rechtsfalls von den
-                    Sicherheitsleuten des Swisscom Signing Service im
-                    4-Augen-Prinzip entschlüsselt und den Behörden zur Verfügung
-                    gestellt werden.
+                    {{ $t('faq.question1.answer') }}
                   </v-expansion-panel-content>
                 </v-expansion-panel>
 
                 <v-expansion-panel>
                   <v-expansion-panel-header>
-                    Für was kann ich die E-ID alles nutzen?
+                    {{ $t('faq.question2.question') }}
                   </v-expansion-panel-header>
                   <v-expansion-panel-content>
-                    Die hier erstellte E-ID wird in erster Linie für das
-                    Signieren mit der Qualifizierten Elektronischen Signatur
-                    (QES) generiert. Falls Sie sich für andere Anwendungsfälle
-                    interessieren, kontaktieren Sie bitte
-                    <a
-                      class="link"
-                      href="https://www.skribble.com/de/"
-                      target="_blank"
-                      >Skribble</a
-                    >.
+                    {{ $t('faq.question2.answer') }}
                   </v-expansion-panel-content>
                 </v-expansion-panel>
 
                 <v-expansion-panel>
                   <v-expansion-panel-header>
-                    Wer führt die Video-Identifikation durch?
+                    {{ $t('faq.question3.question') }}
                   </v-expansion-panel-header>
                   <v-expansion-panel-content>
-                    Die Identifikation wird von Swisscom Trust Services
-                    angeboten und in Zusammenarbeit mit identity Trust
-                    Management AG durchgeführt.
+                    <p v-html="linkifySkribble($t('faq.question3.answer'))"></p>
                   </v-expansion-panel-content>
                 </v-expansion-panel>
 
                 <v-expansion-panel>
                   <v-expansion-panel-header>
-                    Ich bin nicht aus der Schweiz. Kann ich mich trotzdem
-                    identifizieren lassen?
+                    {{ $t('faq.question4.question') }}
                   </v-expansion-panel-header>
-                  <v-expansion-panel-content
-                    >Ja, der Service steht für die meisten Nationalitäten zur
-                    Verfügung.
-                    <a
-                      class="link"
-                      href="http://documents.swisscom.com/product/filestore/lib/5705ba58-3fdb-446f-9e48-18a297b8d239/l%C3%A4nderliste%20f%C3%BCr%20die%20videoidentifikation-kurier-pos-en.pdf?idxme=pex-search"
-                      target="_blank"
-                      >Liste der akzeptierten Länder und Ausweisdokumente
-                      ansehen.</a
+                  <v-expansion-panel-content>
+                    {{ $t('faq.question4.answer') }}
+                  </v-expansion-panel-content>
+                </v-expansion-panel>
+
+                <v-expansion-panel>
+                  <v-expansion-panel-header>
+                    {{ $t('faq.question5.question') }}
+                  </v-expansion-panel-header>
+                  <v-expansion-panel-content>
+                    <i18n
+                      path="faq.question5.answer"
+                      tag="p"
+                      for="faq.question5.answer_linkText"
                     >
+                      <a
+                        class="link"
+                        :href="$t('faq.question5.answer_linkURL')"
+                        target="_blank"
+                        >{{ $t('faq.question5.answer_linkText') }}</a
+                      >
+                    </i18n>
                   </v-expansion-panel-content>
                 </v-expansion-panel>
 
                 <v-expansion-panel>
                   <v-expansion-panel-header>
-                    Wie lange dauert, bis ich die E-ID für das Signieren
-                    einsetzen kann?
-                  </v-expansion-panel-header>
-                  <v-expansion-panel-content
-                    >Die QES wird maximal 30 Minuten nach der Identifikation auf
-                    <a
-                      class="link"
-                      href="https://www.skribble.com/de/"
-                      target="_blank"
-                      >Skribble</a
-                    >
-                    und anderen Services, die auf dem Swisscom Signing Service
-                    beruhen, freigeschaltet.
-                  </v-expansion-panel-content>
-                </v-expansion-panel>
-
-                <v-expansion-panel>
-                  <v-expansion-panel-header>
-                    Wie lange dauert die Video-Identifikation?
-                  </v-expansion-panel-header>
-                  <v-expansion-panel-content
-                    >Die Video-Identifikation dauert ca. 5 Minuten. Je nach
-                    Auslastung des Video-Identifikations-Team kann die Wartezeit
-                    bis zum Start der Videoidentifikation bis zu 2 Minuten
-                    betragen.
-                  </v-expansion-panel-content>
-                </v-expansion-panel>
-
-                <v-expansion-panel>
-                  <v-expansion-panel-header>
-                    In welcher Sprache kann ich die Video-Identifikation
-                    durchführen?
-                  </v-expansion-panel-header>
-                  <v-expansion-panel-content
-                    >Du kannst die Identifikation in Deutsch und Englisch
-                    durchführen.
-                  </v-expansion-panel-content>
-                </v-expansion-panel>
-
-                <v-expansion-panel>
-                  <v-expansion-panel-header
-                    >Was ist im Preis enthalten?
-                  </v-expansion-panel-header>
-                  <v-expansion-panel-content
-                    >Im Preis enthalten ist die Identifikation via Video, die
-                    anschliessend generierte elektronische Identität (E-ID).
-                    Nicht enthalten sind die Signaturen, die mit der E-ID
-                    gemacht werden.
-                  </v-expansion-panel-content>
-                </v-expansion-panel>
-
-                <v-expansion-panel>
-                  <v-expansion-panel-header>
-                    Für welche Signaturservices kann ich die E-ID einsetzen?
+                    {{ $t('faq.question6.question') }}
                   </v-expansion-panel-header>
                   <v-expansion-panel-content>
-                    Die E-ID kann für
-                    <a
-                      class="link"
-                      href="https://www.skribble.com/de/"
-                      target="_blank"
-                      >Skribble</a
-                    >
-                    und andere Signaturservices eingesetzt werden, die auf dem
-                    Swisscom Signing Service beruhen.
+                    <p v-html="linkifySkribble($t('faq.question6.answer'))"></p>
                   </v-expansion-panel-content>
                 </v-expansion-panel>
 
                 <v-expansion-panel>
                   <v-expansion-panel-header>
-                    Ist mein Signaturpasswort auf allen Signaturservices
-                    dasselbe?
+                    {{ $t('faq.question7.question') }}
                   </v-expansion-panel-header>
-                  <v-expansion-panel-content
-                    >Ja. Ihr Passwort ist an Ihre E-ID geknüpft und kommt immer
-                    zum Zug, wenn sie mit einem Anbieter signieren, der auf dem
-                    Swisscom Signing Service beruht.
+                  <v-expansion-panel-content>
+                    {{ $t('faq.question7.answer') }}
+                  </v-expansion-panel-content>
+                </v-expansion-panel>
+
+                <v-expansion-panel>
+                  <v-expansion-panel-header>
+                    {{ $t('faq.question8.question') }}
+                  </v-expansion-panel-header>
+                  <v-expansion-panel-content>
+                    {{ $t('faq.question8.answer') }}
+                  </v-expansion-panel-content>
+                </v-expansion-panel>
+
+                <v-expansion-panel>
+                  <v-expansion-panel-header>
+                    {{ $t('faq.question9.question') }}
+                  </v-expansion-panel-header>
+                  <v-expansion-panel-content>
+                    {{ $t('faq.question9.answer') }}
+                  </v-expansion-panel-content>
+                </v-expansion-panel>
+
+                <v-expansion-panel>
+                  <v-expansion-panel-header>
+                    {{ $t('faq.question10.question') }}
+                  </v-expansion-panel-header>
+                  <v-expansion-panel-content>
+                    <p
+                      v-html="linkifySkribble($t('faq.question10.answer'))"
+                    ></p>
+                  </v-expansion-panel-content>
+                </v-expansion-panel>
+
+                <v-expansion-panel>
+                  <v-expansion-panel-header>
+                    {{ $t('faq.question11.question') }}
+                  </v-expansion-panel-header>
+                  <v-expansion-panel-content>
+                    {{ $t('faq.question11.answer') }}
                   </v-expansion-panel-content>
                 </v-expansion-panel>
               </v-expansion-panels>
@@ -536,9 +486,9 @@
       <v-container class="px-6 px-md-4">
         <v-row justify="center">
           <div class="footer text-center my-10">
-            Built by
+            {{ $t('footer.built_by') }}
             <a
-              href="https://www.skribble.com/de/"
+              :href="$t('global.skribbleURL')"
               target="_blank"
               class="skribble-logo mt-2"
             >
@@ -572,6 +522,7 @@ export default {
             {
               family: 'Averta',
               src:
+                //TODO: replace with deployed font in videoident.me
                 'url("https://my.skribble.com/_nuxt/fonts/48cfe38.woff2") format("woff2")',
               style: 'normal',
               weight: 400,
@@ -595,11 +546,11 @@ export default {
       validForm: true,
       firstName: '',
       lastName: '',
-      nameRules: [v => !!v || 'Name wird benötigt'],
+      nameRules: [v => !!v || this.$t('payment.form.name_is_required')],
       email: '',
       emailRules: [
-        v => !!v || 'E-mail wird benötigt',
-        v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
+        v => !!v || this.$t('payment.form.email_is_required'),
+        v => /.+@.+\..+/.test(v) || this.$t('payment.form.email_must_be_valid'),
       ],
       checkbox: false,
       lazy: false,
@@ -689,6 +640,7 @@ export default {
         }
       )
     },
+    // Re-submit request to create an identity request if payment was successful but identity request failed
     reSubmit() {
       this.status = 'processing'
 
@@ -713,6 +665,17 @@ export default {
         this.identURL = responseIdentityRequest.identUrl
         this.status = 'paid'
       })
+    },
+    // Turns Skribble string into a link pointing to Skribble.com
+    linkifySkribble(text) {
+      console.log()
+      // TODO: replace with lokalised skribble page
+      return text.replace(
+        'Skribble',
+        `<a class="link" href="${this.$t(
+          'global.skribbleURL'
+        )}" target="_blank">Skribble</a>`
+      )
     },
   },
 }
