@@ -1,7 +1,7 @@
-import colors from "vuetify/es5/util/colors";
+import colors from 'vuetify/es5/util/colors'
 
 export default {
-  mode: "universal",
+  mode: 'universal',
   /*
    ** Environment variables
    */
@@ -36,7 +36,7 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [{ src: "~plugins/matomo.js", mode: "client" }],
+  plugins: [{ src: '~plugins/matomo.js', mode: 'client' }],
   /*
    ** Nuxt.js dev-modules
    */
@@ -69,6 +69,8 @@ export default {
   vuetify: {
     customVariables: ['~/assets/variables.sass'],
     defaultAssets: {
+      // Don't load roboto font, we don't use it
+      font: false,
       icons: 'mdi',
     },
     treeShake: true,
@@ -102,6 +104,19 @@ export default {
     /*
      ** You can extend webpack config here
      */
+    extractCSS: true,
+    optimization: {
+      splitChunks: {
+        cacheGroups: {
+          styles: {
+            name: 'styles',
+            test: /\.(css|vue)$/,
+            chunks: 'all',
+            enforce: true,
+          },
+        },
+      },
+    },
     extend(config, ctx) {},
   },
 }
