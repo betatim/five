@@ -488,6 +488,31 @@
         </v-row>
       </v-container>
       <v-container class="px-6 px-md-4">
+        <!-- Temporary language switcher, to be replaced as soon as we have multi-region -->
+        <!-- Disabled until VideoIdent works in English -->
+        <!-- <v-row justify="center">
+          <div class="footer text-center my-5">
+            <div v-if="$i18n.locale === 'ch/de'">
+              <strong>Deutsch</strong> |
+              <nuxt-link
+                :to="switchLocalePath('ch/en')"
+                class="link"
+                style="text-decoration: none;"
+                >English</nuxt-link
+              >
+            </div>
+            <div v-if="$i18n.locale === 'ch/en'">
+              <nuxt-link
+                :to="switchLocalePath('ch/de')"
+                class="link"
+                style="text-decoration: none;"
+                >Deutsch</nuxt-link
+              >
+              |
+              <strong>English</strong>
+            </div>
+          </div>
+        </v-row> -->
         <v-row justify="center">
           <div class="footer text-center my-5">
             {{ $t('footer.built_by') }}
