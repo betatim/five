@@ -197,6 +197,7 @@
                             v-model="firstName"
                             :rules="nameRules"
                             :label="$t('payment.form.first_name')"
+                            :hint="$t('payment.form.name_hint')"
                             autocomplete="given-name"
                             required
                             outlined
@@ -208,6 +209,7 @@
                             :rules="nameRules"
                             :label="$t('payment.form.last_name')"
                             autocomplete="family-name"
+                            :hint="$t('payment.form.name_hint')"
                             required
                             outlined
                           ></v-text-field>
