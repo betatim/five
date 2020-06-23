@@ -109,6 +109,7 @@ export default {
       first_name: 'Vorname',
       last_name: 'Nachname',
       name_is_required: 'Name wird benötigt',
+      name_hint: 'Wie im Ausweis aufgeführt',
       pay_now: 'Jetzt bezahlen',
       terms: 'Es gelten die {0} von Skribble.',
       terms_linkText: 'Datenschutzrichtlinien',
