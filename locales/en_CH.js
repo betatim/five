@@ -102,10 +102,12 @@ export default {
       email_is_required: 'E-mail address is required',
       email_must_be_valid: 'E-mail address must be valid',
       first_name: 'First name(s)',
+      identification: 'Identification',
       last_name: 'Name',
       name_hint: '',
       name_is_required: 'Name is required',
       pay_now: 'Pay now',
+      payment: 'Payment',
       terms: "Skribble's {0} applies.",
       terms_linkText: 'privacy policy',
       terms_linkURL: 'https://www.skribble.com/privacy/',
@@ -114,6 +116,7 @@ export default {
     price_info1:
       'Benefit from the special price of CHF 19.– for a limited time',
     price_info2: '(regular price: CHF 25.–)',
+    price_info3: '',
     subtitle:
       'Once the payment process is complete, you will be forwarded to our identification partner in order to get identified via video call on behalf of Swisscom Trust Services.',
     success: {
