@@ -527,8 +527,7 @@ export default {
             {
               family: 'Averta',
               src:
-                //TODO: replace with deployed font in videoident.me
-                'url("https://my.skribble.com/_nuxt/fonts/48cfe38.woff2") format("woff2")',
+                'url("https://www.videoident.me/_nuxt/fonts/48cfe38.woff2") format("woff2")',
               style: 'normal',
               weight: 400,
               display: 'swap',
