@@ -31,7 +31,7 @@ export default {
       question: 'Who carries out the video identification?',
     },
     question5: {
-      answer: 'Yes, the service is available for most nationalities. {0}.',
+      answer: 'Yes, the service is available for most nationalities. {0}',
       answer_linkText:
         'See the list of accepted countries and documents of identification',
       answer_linkURL:

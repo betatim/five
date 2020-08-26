@@ -104,7 +104,7 @@ export default {
       email_is_required: 'E-Mail-Adresse wird benötigt',
       email_must_be_valid: 'E-Mail-Adresse muss gültig sein',
       first_name: 'Vorname(n)',
-      identification: 'Angaben für die Identifikation',
+      identification: 'Vollständiger Name (so wie im Ausweis)',
       last_name: 'Nachname',
       name_hint: 'Wie im Ausweis aufgeführt',
       name_is_required: 'Name wird benötigt',
