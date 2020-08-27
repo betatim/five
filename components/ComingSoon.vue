@@ -3,7 +3,6 @@
 </template>
 
 <script lang="ts">
-// @ts-ignore
 export default {
   name: 'ComingSoon',
 }
