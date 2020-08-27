@@ -3,7 +3,6 @@
     <v-row justify="center">
       <v-col cols="12" sm="10" md="11" lg="9" xl="6">
         <div class="faq py-2 py-md-12 my-2 my-md-12">
-          <!-- FAQ -->
           <h2
             :class="{ 'text-center': $vuetify.breakpoint.smAndUp }"
             class="display-3 mb-6"
@@ -138,6 +137,7 @@ export default {
 <style lang="sass">
 @import ~/assets/sass/_vars
 @import ~/assets/sass/_mixins
+
 .faq
   .theme--light.v-expansion-panels .v-expansion-panel
     color: $c-text
