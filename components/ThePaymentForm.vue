@@ -279,13 +279,15 @@ export default Vue.extend({
       firstName: '',
       lastName: '',
       countryRules: [
-        (v: any) => !!v || this.$t('payment.form.country_is_required'),
+        (v: string) => !!v || this.$t('payment.form.country_is_required'),
       ],
-      nameRules: [(v: any) => !!v || this.$t('payment.form.name_is_required')],
+      nameRules: [
+        (v: string) => !!v || this.$t('payment.form.name_is_required'),
+      ],
       email: '',
       emailRules: [
-        (v: any) => !!v || this.$t('payment.form.email_is_required'),
-        (v: any) =>
+        (v: string) => !!v || this.$t('payment.form.email_is_required'),
+        (v: string) =>
           /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
             v
           ) || this.$t('payment.form.email_must_be_valid'),
@@ -358,8 +360,8 @@ export default Vue.extend({
 
       // Call Stripe to execute payment
       const handleCardPaymentInStripe = async (
-        clientSecret: any,
-        paymentMethod: any
+        clientSecret: string,
+        paymentMethod: object
       ) => {
         try {
           const response = await handleCardPayment(clientSecret, paymentMethod)
