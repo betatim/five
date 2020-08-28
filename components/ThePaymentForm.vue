@@ -230,6 +230,8 @@
 </template>
 
 <script lang="ts">
+import Vue from 'vue'
+
 import {
   Card,
   createPaymentMethod,
@@ -237,7 +239,7 @@ import {
   // @ts-ignore
 } from 'vue-stripe-elements-plus'
 
-export default {
+export default Vue.extend({
   name: 'ThePaymentForm',
   components: { Card },
   data() {
@@ -276,12 +278,14 @@ export default {
       validForm: true,
       firstName: '',
       lastName: '',
-      countryRules: [v => !!v || this.$t('payment.form.country_is_required')],
-      nameRules: [v => !!v || this.$t('payment.form.name_is_required')],
+      countryRules: [
+        (v: any) => !!v || this.$t('payment.form.country_is_required'),
+      ],
+      nameRules: [(v: any) => !!v || this.$t('payment.form.name_is_required')],
       email: '',
       emailRules: [
-        v => !!v || this.$t('payment.form.email_is_required'),
-        v =>
+        (v: any) => !!v || this.$t('payment.form.email_is_required'),
+        (v: any) =>
           /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
             v
           ) || this.$t('payment.form.email_must_be_valid'),
@@ -295,7 +299,9 @@ export default {
   },
   beforeMount() {
     // Get a list of all countries from i18n-iso-countries-library in the selected language
+    // @ts-ignore
     const currentLanguage = this.$i18n.loadedLanguages[0].substring(3, 5)
+    // @ts-ignore
     let rawCountries = this.$countries.getNames(currentLanguage)
 
     // With the "favourite" countries first
@@ -310,12 +316,14 @@ export default {
     // And the rest of the countries sorted alphabetically
     let additionalCountries = []
     for (let key in rawCountries) {
+      // @ts-ignore
       if (!favouriteCountries.includes(key))
         additionalCountries.push({ value: key, text: rawCountries[key] })
     }
     additionalCountries.sort((a, b) => a.text.localeCompare(b.text))
 
     // Assign to dropdown
+    // @ts-ignore
     this.countryList = [...favouriteCountries, ...additionalCountries]
   },
   methods: {
@@ -349,7 +357,10 @@ export default {
       }
 
       // Call Stripe to execute payment
-      const handleCardPaymentInStripe = async (clientSecret, paymentMethod) => {
+      const handleCardPaymentInStripe = async (
+        clientSecret: any,
+        paymentMethod: any
+      ) => {
         try {
           const response = await handleCardPayment(clientSecret, paymentMethod)
           if ('error' in response) throw response.error
@@ -424,7 +435,7 @@ export default {
       })
     },
   },
-}
+})
 </script>
 
 <style lang="sass">
