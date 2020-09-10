@@ -171,7 +171,9 @@ export default {
   computed: {
     breakpoint() {
       // just an example, could be one specific value if that's all you need
-      return this.isMounted ? this.$vuetify.breakpoint : {} // "empty" $breakpoint object with initial values
+      return this.isMounted
+        ? this.$vuetify.breakpoint
+        : { smAndUp: true, mdAndUp: true } // "empty" $breakpoint object with initial values
     },
   },
   mounted() {
