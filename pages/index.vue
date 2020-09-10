@@ -5,7 +5,7 @@
         <script src="https://js.stripe.com/v3/" />
         <v-row justify="center">
           <v-col cols="12" sm="10" md="11" lg="9" xl="6">
-            <div class="intro py-md-12 my-12 my-sm-4 my-md-12">
+            <div class="intro py-12 py-md-12 my-12 my-sm-4 my-md-12">
               <!-- Intro -->
               <h1
                 :class="[
