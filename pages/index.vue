@@ -5,7 +5,7 @@
         <script src="https://js.stripe.com/v3/" />
         <v-row justify="center">
           <v-col cols="12" sm="10" md="11" lg="9" xl="6">
-            <div class="intro py-12 py-md-12 my-12 my-sm-4 my-md-12">
+            <div class="intro py-12 my-12 py-md-12 my-sm-4 my-md-12">
               <!-- Intro -->
               <h1
                 :class="[
@@ -40,7 +40,7 @@
               <div class="text-center">
                 <v-btn
                   @click="$vuetify.goTo('#pay-form')"
-                  class="intro__cta mt-md-6"
+                  class="intro__cta mt-6 mt-md-6"
                   large
                   color="primary"
                   :block="breakpoint.xsOnly"
