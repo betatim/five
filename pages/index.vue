@@ -219,12 +219,14 @@ export default {
     display: flex
     align-items: center
     justify-content: center
+    height: 35px
     +media(sm-and-down)
       flex-direction: column
       align-items: flex-start
 
   &__logo
     margin: 0 20px
+
     +media(sm-and-down)
       margin: 10px
     +media(md-and-up)
