@@ -9,8 +9,8 @@
               <!-- Intro -->
               <h1
                 :class="[
-                  { 'display-1': $vuetify.breakpoint.smAndDown },
-                  { 'display-4': $vuetify.breakpoint.mdAndUp },
+                  { 'display-1': breakpoint.smAndDown },
+                  { 'display-4': breakpoint.mdAndUp },
                   'mb-6',
                 ]"
               >
@@ -18,8 +18,8 @@
               </h1>
               <p
                 :class="[
-                  { 'font-weight-bold': $vuetify.breakpoint.smAndDown },
-                  { headline: $vuetify.breakpoint.mdAndUp },
+                  { 'font-weight-bold': breakpoint.smAndDown },
+                  { headline: breakpoint.mdAndUp },
                   'mb-6',
                 ]"
                 v-html="$t('intro.subtitle')"
@@ -43,7 +43,7 @@
                   class="intro__cta mt-md-6"
                   large
                   color="primary"
-                  :block="$vuetify.breakpoint.xsOnly"
+                  :block="breakpoint.xsOnly"
                   >{{ $t('intro.cta') }}</v-btn
                 >
               </div>
@@ -57,15 +57,15 @@
             <div class="steps py-2 py-md-12 my-4 my-md-12">
               <div
                 :class="[
-                  { 'text-center': $vuetify.breakpoint.smAndUp },
-                  { 'mx-auto': $vuetify.breakpoint.smAndUp },
+                  { 'text-center': breakpoint.smAndUp },
+                  { 'mx-auto': breakpoint.smAndUp },
                   'steps__heading',
                 ]"
               >
                 <h2
                   :class="[
-                    { 'display-1': $vuetify.breakpoint.smAndDown },
-                    { 'display-3': $vuetify.breakpoint.mdAndUp },
+                    { 'display-1': breakpoint.smAndDown },
+                    { 'display-3': breakpoint.mdAndUp },
                     'mb-6',
                   ]"
                 >
@@ -73,8 +73,8 @@
                 </h2>
                 <p
                   :class="[
-                    { 'font-weight-bold': $vuetify.breakpoint.smAndDown },
-                    { headline: $vuetify.breakpoint.mdAndUp },
+                    { 'font-weight-bold': breakpoint.smAndDown },
+                    { headline: breakpoint.mdAndUp },
                   ]"
                   v-html="$t('steps.subtitle')"
                 ></p>
@@ -163,6 +163,20 @@ import ThePaymentForm from '~/components/ThePaymentForm.vue'
 
 export default {
   components: { TheFAQ, ThePaymentForm },
+  data() {
+    return {
+      isMounted: false,
+    }
+  },
+  computed: {
+    breakpoint() {
+      // just an example, could be one specific value if that's all you need
+      return this.isMounted ? this.$vuetify.breakpoint : {} // "empty" $breakpoint object with initial values
+    },
+  },
+  mounted() {
+    this.isMounted = true
+  },
 }
 </script>
 
