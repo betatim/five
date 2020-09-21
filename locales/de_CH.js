@@ -31,7 +31,7 @@ export default {
     },
     question5: {
       answer:
-        'Die Prüfung Ihrer Identität ist mit einem gültigen Personalausweis oder Reisepass möglich. Nicht zugelassen sind Dokumente wie Führerschein oder Aufenthaltstitel (Ausländerausweis für die Schweiz). Derzeit unterstützen wir Ausweisdokumente aus über 150 Ländern. {0}',
+        'Die Prüfung Ihrer Identität ist mit einem gültigen Personalausweis oder Reisepass möglich. Nicht zugelassen sind Dokumente wie Führerschein oder Aufenthaltstitel. Derzeit unterstützen wir Ausweisdokumente aus über 150 Ländern. {0}',
       answer_linkText:
         "Hier geht's zur Liste der akzeptierten Ausweisdokumente.",
       answer_linkURL:
@@ -46,9 +46,9 @@ export default {
     },
     question7: {
       answer:
-        'Für das Signieren nach Schweizer Recht (ZertES) können Sie die via Video-Call geprüfte Identität bis zum 2. Oktober 2020 einsetzen. Gemäss Stand heute wird für das Signieren nach dem 2. Oktober 2020 eine Face-to-Face-Identifikation erforderlich.',
+        'Die Identifikation via Video wurde in der Schweiz durch eine befristete Ausnahmeregelung ermöglicht, die vom Bund im Rahmen von COVID-19 für sechs Monate in Kraft gesetzt wurde. Diese Ausnahmeregelung läuft am 01. Oktober aus. Um nach dem 01. Oktober weiterhin auf Stufe "qualifiziert" nach Schweizer Recht elektronisch signieren zu können, müssen Sie sich einmalig im persönlichen Kontakt identifizieren lassen.\n<br><br>\nIhnen steht ein <a href="https://www.skribble.com/de/qes-freischalten/#identifizieren" target="_blank"> Netz an Identifikationsstandorten</a> in allen vier Sprachregionen der Schweiz zur Verfügung, an denen Sie sich kostenlos identifizieren lassen können. Kommen Sie vorbei und bringen Sie einen gültigen Pass oder Identitätskarte sowie Ihr Mobiltelefon mit.\n<br><br>\n<strong>Hinweis:</strong> Die Gültigkeit von Signaturen, die Sie vor dem 01. Oktober mit einer Video-basierten Identifikation erstellt haben, bleibt erhalten.',
       question:
-        'Muss ich meine Identität zum Signieren nach Schweizer Recht nach dem 2. Oktober 2020 erneut prüfen lassen?',
+        'Muss ich meine Identität zum Signieren nach Schweizer Recht nach dem 1. Oktober 2020 erneut prüfen lassen?',
     },
     question8: {
       answer:
@@ -71,7 +71,7 @@ export default {
   intro: {
     content: {
       paragraph1:
-        '<strong>Wichtiger Hinweis für die Schweiz:</strong> Für das elektronische Signieren nach Schweizer Recht (ZertES) hat der Bundesrat eine <a href="https://www.admin.ch/gov/de/start/dokumentation/medienmitteilungen.msg-id-78641.html" target="_blank">Ausnahmeregelung</a> im Rahmen der COVID-19-Krise in Kraft gesetzt und erlaubt vorläufig bis zum 2. Oktober 2020 die Identitätsprüfung per Video.',
+        '<strong>Wichtiger Hinweis für die Schweiz:</strong> Die Identifikation via Video wurde in der Schweiz durch eine befristete <a href="https://www.admin.ch/gov/de/start/dokumentation/medienmitteilungen.msg-id-78641.html" target="_blank">Ausnahmeregelung</a> ermöglicht, welche am 1. Oktober 2020 ausläuft. Um nach dem 01. Oktober weiterhin auf Stufe "qualifiziert" nach Schweizer Recht elektronisch signieren zu können, müssen Sie sich einmalig <a href="https://www.skribble.com/de/qes-freischalten/#identifizieren" target="_blank">im persönlichen Kontakt</a> identifizieren lassen.',
       paragraph1_linkText:
         'setzte diese Ausnahmeregelung im Rahmen der COVID-19-Krise in Kraft',
       paragraph1_linkURL:
