@@ -424,7 +424,7 @@
                     {{ $t('faq.question7.question') }}
                   </v-expansion-panel-header>
                   <v-expansion-panel-content>
-                    {{ $t('faq.question7.answer') }}
+                    <p v-html="linkifySkribble($t('faq.question7.answer'))"></p>
                   </v-expansion-panel-content>
                 </v-expansion-panel>
 
