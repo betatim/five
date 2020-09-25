@@ -71,7 +71,7 @@ export default {
   intro: {
     content: {
       paragraph1:
-        '<strong>Wichtiger Hinweis für die Schweiz:</strong> Die Identifikation via Video wird für die QES nach Schweizer Recht in Kürze <strong>nicht mehr zugelassen und kann nicht mehr durchgeführt werden<strong>. Um nach dem 1. Oktober weiterhin auf Stufe «qualifiziert» elektronisch signieren zu können, müssen Sie sich <a href="https://www.skribble.com/de/qes-freischalten/#identifizieren" target="_blank">persönlich vor Ort</a> erneut identifizieren lassen. Die Identifikation via Video wurde in der Schweiz durch eine <a href="https://www.admin.ch/gov/de/start/dokumentation/medienmitteilungen.msg-id-78641.html" target="_blank">befristete Ausnahmeregelung</a> ermöglicht, welche am 1. Oktober 2020 ausläuft.',
+        '<strong>Wichtiger Hinweis für die Schweiz:</strong> Die Identifikation via Video wird für die QES nach Schweizer Recht in Kürze <strong>nicht mehr zugelassen und kann nicht mehr durchgeführt werden</strong>. Um nach dem 1. Oktober weiterhin auf Stufe «qualifiziert» elektronisch signieren zu können, müssen Sie sich <a href="https://www.skribble.com/de/qes-freischalten/#identifizieren" target="_blank">persönlich vor Ort</a> erneut identifizieren lassen. Die Identifikation via Video wurde in der Schweiz durch eine <a href="https://www.admin.ch/gov/de/start/dokumentation/medienmitteilungen.msg-id-78641.html" target="_blank">befristete Ausnahmeregelung</a> ermöglicht, welche am 1. Oktober 2020 ausläuft.',
       paragraph1_linkText:
         'setzte diese Ausnahmeregelung im Rahmen der COVID-19-Krise in Kraft',
       paragraph1_linkURL:
