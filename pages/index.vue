@@ -166,15 +166,31 @@ export default {
   data() {
     return {
       isMounted: false,
+      initialWidth: 970,
     }
   },
   computed: {
     breakpoint() {
-      // just an example, could be one specific value if that's all you need
+      // Vuetify takes some time to calculate the initial breakpoints and associated service object variables.
+      // In order to avoid FOUC (flash of unstyled content) we manually hardcode the initial breakpoint variables
+
+      // Initial variables. Only the variables used in the template are specified.
+      // The breakpoints correspond to ~/assets/variables.sass
+      const initialBreakPointVariables = {
+        xsOnly: this.initialWidth < 600,
+        smAndDown: this.initialWidth < 960,
+        smAndUp: this.initialWidth > 600,
+        mdAndUp: this.initialWidth > 960,
+      }
+
+      // If templated has finished mounting, use real variables. Until then, use initial variables
       return this.isMounted
         ? this.$vuetify.breakpoint
-        : { smAndUp: true, mdAndUp: true } // "empty" $breakpoint object with initial values
+        : initialBreakPointVariables
     },
+  },
+  beforeMount() {
+    this.initialWidth = window.innerWidth
   },
   mounted() {
     this.isMounted = true
