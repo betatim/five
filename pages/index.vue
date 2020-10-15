@@ -166,7 +166,7 @@ export default {
   data() {
     return {
       isMounted: false,
-      initialWidth: 970,
+      initialWidth: 960, // Most (+-60%) users are using screen sizes of 960 and above
     }
   },
   computed: {
@@ -179,8 +179,8 @@ export default {
       const initialBreakPointVariables = {
         xsOnly: this.initialWidth < 600,
         smAndDown: this.initialWidth < 960,
-        smAndUp: this.initialWidth > 600,
-        mdAndUp: this.initialWidth > 960,
+        smAndUp: this.initialWidth >= 600,
+        mdAndUp: this.initialWidth >= 960,
       }
 
       // If templated has finished mounting, use real variables. Until then, use initial variables
