@@ -2,7 +2,7 @@ export default {
   faq: {
     question1: {
       answer:
-        'Bei Skribble haben Sie dank der qualifizierten elektronischen Signatur (QES) die Möglichkeit, mit maximaler Beweiskraft zu signieren. Die QES ist der handschriftlichen Unterschrift gemäss EU- und Schweizer Recht gleichgestellt. Wer mit ihr signieren will, muss eine Identitätsprüfung durchlaufen. Sobald Ihre Identität erfolgreich geprüft wurde, wird die QES auf <a href="https://www.skribble.com" target="_blank">Skribble</a> für Sie freigeschaltet.',
+        'Bei Skribble haben Sie dank der qualifizierten elektronischen Signatur (QES) die Möglichkeit, mit maximaler Beweiskraft zu signieren. Die QES ist der handschriftlichen Unterschrift gemäss EU- und Schweizer Recht gleichgestellt. Wer mit ihr signieren will, muss eine Identitätsprüfung durchlaufen. Sobald Ihre Identität erfolgreich geprüft wurde, wird die QES nach EU-Recht auf <a href="https://www.skribble.com" target="_blank">Skribble</a> für Sie freigeschaltet.',
       question: 'Wofür muss ich mich identifizieren?',
     },
     question10: {
@@ -17,13 +17,13 @@ export default {
     },
     question2: {
       answer:
-        'Sie benötigen ein internetfähiges Mobilgerät oder einen Computer mit Kamera, eine stabile Internetverbindung und einen gültigen Ausweis (Personalausweis oder Reisepass). So funktioniert\'s: \n<br><br>\n• Persönliche Angaben wie z.B. Ihren Vor- und Nachnamen eingeben<br>\n• Mit Kreditkarte bezahlen<br>\n• Einen gültigen Ausweis (Personalausweis oder Reisepass) bereithalten und Identität via Video-Call prüfen lassen. Ein geschulter Mitarbeiter unseres Identifikations-Partners wird Sie durch die Identifikation führen.<br>\n<br><br>\nDie QES wird im Anschluss auf <a href="https://www.skribble.com" target="_blank">Skribble</a> für Sie freigeschaltet.',
+        'Sie benötigen ein internetfähiges Mobilgerät oder einen Computer mit Kamera, eine stabile Internetverbindung und einen gültigen Ausweis (Personalausweis oder Reisepass). So funktioniert\'s: \n<br><br>\n• Persönliche Angaben wie z.B. Ihren Vor- und Nachnamen eingeben<br>\n• Mit Kreditkarte bezahlen<br>\n• Einen gültigen Ausweis (Personalausweis oder Reisepass) bereithalten und Identität via Video-Call prüfen lassen. Ein geschulter Mitarbeiter unseres Identifikations-Partners wird Sie durch die Identifikation führen.<br>\n<br><br>\nDie QES nach EU-Recht wird im Anschluss auf <a href="https://www.skribble.com" target="_blank">Skribble</a> für Sie freigeschaltet.',
       question: 'Wie funktioniert die Identitätsprüfung?',
     },
     question3: {
       answer:
         'Der ganze Vorgang dauert ca. 5 Minuten. Die qualifizierte elektronischen Signatur (QES) wird maximal 30 Minuten nach erfolgreicher Prüfung auf Skribble freigeschaltet.',
-      question: 'Wie lange dauert die Identifikation?',
+      question: 'Wie lange dauert die Identitätsprüfung?',
     },
     question4: {
       answer: 'Die Identitätsprüfung steht momentan auf Deutsch zur Verfügung.',
@@ -31,7 +31,7 @@ export default {
     },
     question5: {
       answer:
-        'Die Prüfung Ihrer Identität ist mit einem gültigen Personalausweis oder Reisepass möglich. Nicht zugelassen sind Dokumente wie Führerschein oder Aufenthaltstitel (Ausländerausweis für die Schweiz). Derzeit unterstützen wir Ausweisdokumente aus über 150 Ländern. {0}',
+        'Die Prüfung Ihrer Identität ist mit einem gültigen Personalausweis oder Reisepass möglich. Nicht zugelassen sind Dokumente wie Führerschein oder Aufenthaltstitel. Derzeit unterstützen wir Ausweisdokumente aus über 150 Ländern. {0}',
       answer_linkText:
         "Hier geht's zur Liste der akzeptierten Ausweisdokumente.",
       answer_linkURL:
@@ -46,9 +46,9 @@ export default {
     },
     question7: {
       answer:
-        'Für das Signieren nach Schweizer Recht (ZertES) können Sie die via Video-Call geprüfte Identität bis zum 2. Oktober 2020 einsetzen. Gemäss Stand heute wird für das Signieren nach dem 2. Oktober 2020 eine Face-to-Face-Identifikation erforderlich.',
+        'Nein. Die Identifikation via Video ist nur für die QES nach EU-Recht zugelassen. Wer nach Schweizer Recht auf Stufe «qualifiziert» elektronisch signieren will, muss sich <a href="https://www.skribble.com/de/qes-freischalten/#identifizieren" target="_blank">persönlich vor Ort</a> identifizieren lassen.',
       question:
-        'Muss ich meine Identität zum Signieren nach Schweizer Recht nach dem 2. Oktober 2020 erneut prüfen lassen?',
+        'Ist die Video-Identifikation für die QES nach Schweizer Recht zulässig?',
     },
     question8: {
       answer:
@@ -71,7 +71,7 @@ export default {
   intro: {
     content: {
       paragraph1:
-        '<strong>Wichtiger Hinweis für die Schweiz:</strong> Für das elektronische Signieren nach Schweizer Recht (ZertES) hat der Bundesrat eine <a href="https://www.admin.ch/gov/de/start/dokumentation/medienmitteilungen.msg-id-78641.html" target="_blank">Ausnahmeregelung</a> im Rahmen der COVID-19-Krise in Kraft gesetzt und erlaubt vorläufig bis zum 2. Oktober 2020 die Identitätsprüfung per Video.',
+        '<strong>Wichtiger Hinweis für die Schweiz:</strong> Die Identifikation via Video ist nur für die QES nach EU-Recht zugelassen. Wer nach Schweizer Recht auf Stufe «qualifiziert» elektronisch signieren will, muss sich <a href="https://www.skribble.com/de/qes-freischalten/#identifizieren" target="_blank">persönlich vor Ort</a> identifizieren lassen.',
       paragraph1_linkText:
         'setzte diese Ausnahmeregelung im Rahmen der COVID-19-Krise in Kraft',
       paragraph1_linkURL:
@@ -84,7 +84,8 @@ export default {
     cta: 'Identifikation starten',
     subtitle:
       'Lassen Sie Ihre Identität in wenigen Minuten prüfen, um auf <a href="https://www.skribble.com" target="_blank">Skribble</a> mit der qualifizierten elektronischen Signatur (QES) zu signieren. Die QES ist der höchste E-Signatur-Standard und der handschriftlichen Unterschrift vor dem Gesetz gleichgestellt.',
-    title: 'Video-Identifikation für die qualifizierte elektronische Signatur',
+    title:
+      'Video-Identifikation für die qualifizierte elektronische Signatur nach EU-Recht',
   },
   payment: {
     failure: {
@@ -104,7 +105,7 @@ export default {
       email_is_required: 'E-Mail-Adresse wird benötigt',
       email_must_be_valid: 'E-Mail-Adresse muss gültig sein',
       first_name: 'Vorname(n)',
-      identification: 'Angaben für die Identifikation',
+      identification: 'Vollständiger Name (so wie im Ausweis)',
       last_name: 'Nachname',
       name_hint: 'Wie im Ausweis aufgeführt',
       name_is_required: 'Name wird benötigt',
