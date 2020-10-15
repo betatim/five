@@ -74,19 +74,10 @@
 
             <v-expansion-panel>
               <v-expansion-panel-header>
-                {{ $t('faq.question6.question') }}
-              </v-expansion-panel-header>
-              <v-expansion-panel-content>
-                <p v-html="linkifySkribble($t('faq.question6.answer'))"></p>
-              </v-expansion-panel-content>
-            </v-expansion-panel>
-
-            <v-expansion-panel>
-              <v-expansion-panel-header>
                 {{ $t('faq.question7.question') }}
               </v-expansion-panel-header>
               <v-expansion-panel-content>
-                {{ $t('faq.question7.answer') }}
+                <p v-html="linkifySkribble($t('faq.question7.answer'))"></p>
               </v-expansion-panel-content>
             </v-expansion-panel>
 
