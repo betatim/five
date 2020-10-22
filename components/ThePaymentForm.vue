@@ -217,9 +217,10 @@
                 >
                   {{ $t('payment.success.cta') }}
                 </v-btn>
-                <p class="caption mb-0">
-                  {{ $t('payment.success.caption') }}
-                </p>
+                <p
+                  class="caption mb-0"
+                  v-html="$t('payment.success.caption')"
+                ></p>
               </div>
             </v-expand-transition>
           </v-card>
