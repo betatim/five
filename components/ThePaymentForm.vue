@@ -301,34 +301,43 @@ export default Vue.extend({
       stripePaymentErrorMsg: '',
     }
   },
-  beforeMount() {
+  beforeMount(this: any) {
     // Get a list of all countries from i18n-iso-countries-library in the selected language
-    // @ts-ignore
     const currentLanguage = this.$i18n.loadedLanguages[0].substring(3, 5)
-    // @ts-ignore
-    let rawCountries = this.$countries.getNames(currentLanguage)
+    const allCountriesUnformatted = this.$countries.getNames(currentLanguage)
+    const allCountryCodes = Object.keys(allCountriesUnformatted)
 
-    // With the "favourite" countries first
-    const favouriteCountriesCodes = ['CH', 'DE', 'FR', 'AT']
-    let favouriteCountries = []
-    for (let key of favouriteCountriesCodes) {
-      favouriteCountries.push({ value: key, text: rawCountries[key] })
-    }
-    // Separated by a divider
-    favouriteCountries.push({ value: '', text: '', divider: true })
+    // Manually define our featured countries
+    const featuredCountryCodes = ['CH', 'DE', 'FR', 'AT']
 
-    // And the rest of the countries sorted alphabetically
-    let additionalCountries = []
-    for (let key in rawCountries) {
-      // @ts-ignore
-      if (!favouriteCountries.includes(key))
-        additionalCountries.push({ value: key, text: rawCountries[key] })
-    }
-    additionalCountries.sort((a, b) => a.text.localeCompare(b.text))
+    // Generate a featured countries list in the format { value: 'DE', text: 'Germany' }
+    const featuredCountries: Array<{
+      value: string
+      text: string
+    }> = featuredCountryCodes.map(countryCode => ({
+      value: countryCode,
+      text: allCountriesUnformatted[countryCode],
+    }))
 
-    // Assign to dropdown
-    // @ts-ignore
-    this.countryList = [...favouriteCountries, ...additionalCountries]
+    // Generate a list of all other countries in the format { value: 'DE', text: 'Germany' },
+    // sorted alphabetically
+    const allOtherCountries: Array<{
+      value: string
+      text: string
+    }> = allCountryCodes
+      .filter(countryCode => !featuredCountryCodes.includes(countryCode))
+      .map(countryCode => ({
+        value: countryCode,
+        text: allCountriesUnformatted[countryCode],
+      }))
+      .sort((a, b) => a.text.localeCompare(b.text))
+
+    // Return full list of featured countries and other countries, separated by a divider
+    this.countryList = [
+      ...featuredCountries,
+      { value: '', text: '', divider: true },
+      ...allOtherCountries,
+    ]
   },
   methods: {
     pay() {
