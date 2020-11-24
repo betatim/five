@@ -352,6 +352,7 @@ export default Vue.extend({
           return await this.$axios.$post('/api/setup_payment', {
             email: this.email,
             country: this.country,
+            currency: 'eur',
           })
         } catch (error) {
           this.status = 'error-during-payment'
