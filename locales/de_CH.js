@@ -116,8 +116,7 @@ export default {
       terms_linkURL: 'https://www.skribble.com/de/datenschutz/',
       you_must_agree: 'Sie müssen zustimmen, um den Prozess zu starten.',
     },
-    price_info1:
-      'Sie profitieren für begrenzte Zeit vom Vorzugspreis von CHF 19.–',
+    price_info1: 'Der Preis für die Video-Identifikation beträgt EUR 15.–',
     price_info2: '(regulärer Preis: CHF 25.–)',
     price_info3:
       'Die Identifikation kann derzeit auf Deutsch durchgeführt werden.',

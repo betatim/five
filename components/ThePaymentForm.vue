@@ -42,8 +42,6 @@
           ]"
         >
           <strong>{{ $t('payment.price_info1') }}</strong>
-          {{ $t('payment.price_info2') }}
-          <br />
         </div>
         <!-- Form -->
         <div class="pay__flex">
