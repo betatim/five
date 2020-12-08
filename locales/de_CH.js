@@ -34,8 +34,7 @@ export default {
         'Die Prüfung Ihrer Identität ist mit einem gültigen Personalausweis oder Reisepass möglich. Nicht zugelassen sind Dokumente wie Führerschein oder Aufenthaltstitel. Derzeit unterstützen wir Ausweisdokumente aus über 150 Ländern. {0}',
       answer_linkText:
         "Hier geht's zur Liste der akzeptierten Ausweisdokumente.",
-      answer_linkURL:
-        'http://documents.swisscom.com/product/filestore/lib/5705ba58-3fdb-446f-9e48-18a297b8d239/l%C3%A4nderliste%20f%C3%BCr%20die%20videoidentifikation-kurier-pos-en.pdf?idxme=pex-search',
+      answer_linkURL: '/RA-service-countries.pdf',
       question:
         'Welche Ausweisdokumente werden für die Video-Identifikation akzeptiert?',
     },
