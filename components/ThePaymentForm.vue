@@ -42,8 +42,6 @@
           ]"
         >
           <strong>{{ $t('payment.price_info1') }}</strong>
-          {{ $t('payment.price_info2') }}
-          <br />
         </div>
         <!-- Form -->
         <div class="pay__flex">
@@ -352,6 +350,7 @@ export default Vue.extend({
           return await this.$axios.$post('/api/setup_payment', {
             email: this.email,
             country: this.country,
+            currency: 'eur',
           })
         } catch (error) {
           this.status = 'error-during-payment'
