@@ -26,7 +26,8 @@ export default {
       question: 'Wie lange dauert die Identitätsprüfung?',
     },
     question4: {
-      answer: 'Die Identitätsprüfung steht momentan auf Deutsch zur Verfügung.',
+      answer:
+        'Die Identitätsprüfung steht momentan auf Deutsch und Englisch zur Verfügung.',
       question: 'In welchen Sprachen kann ich die Identifikation durchführen?',
     },
     question5: {
@@ -118,7 +119,7 @@ export default {
     price_info1: 'Der Preis für die Video-Identifikation beträgt EUR 15.–',
     price_info2: '(regulärer Preis: CHF 25.–)',
     price_info3:
-      'Die Identifikation kann derzeit auf Deutsch durchgeführt werden.',
+      'Die Identifikation kann derzeit auf Deutsch und Englisch durchgeführt werden.',
     subtitle:
       'Nach dem Bezahlvorgang werden Sie an unseren Identifikations-Partner weitergeleitet.',
     success: {
